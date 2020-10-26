@@ -34,9 +34,9 @@ class ChannelForm extends React.Component{
             <form onSubmit={this.handleSubmit}>
                 <div>
                     <input type="text"
-                        value={this.state.name}
+                        value={this.state.title}
                         onChange={this.handleChange()}
-                        placeholder="Enter your new channel's name"
+                        placeholder="Enter your new channel's title"
                     />
                     <input type="submit" value="Submit" />
                 </div>
