@@ -66,7 +66,7 @@ Researching more on Google Maps/EventBrite API might pose issues when we want to
 
 ## Day 5
 
-* Automatic creation of public channels for events that are always comming up in the given geo location
+* Automatic creation of public channels for events that are coming up for a given geo location
 
 ## Day 6
 
