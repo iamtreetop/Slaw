@@ -6,6 +6,10 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  channels: {
+    type: Array,
+    default: []
+  },
   email: {
     type: String,
     required: true
