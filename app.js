@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const db = require('./config/keys').mongoURI;
 const users = require("./routes/api/users");
+const channels = require("./routes/api/channels");
 const passport = require('passport');
 const User = require("./models/User")
 const bodyParser = require("body-parser")
@@ -21,16 +22,12 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  // const user = new User({
-  //   handle: "jim",
-  //   email: "jim@jim",
-  //   password:"password"
-  // })
-  // user.save();
   res.send("Hello World");
 });
 
 app.use("/api/users", users)
+
+app.use("/api/channels", channels)
 
 app.use(passport.initialize());
 
