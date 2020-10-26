@@ -5,14 +5,11 @@ Slaw is a Health and Fitness Social Media application that allows a user to expl
 
 ## Background and Overview
 
-We have noticed with personal experience that many individuals prefer to workout in groups or with others.
+We have noticed firsthand that many individuals prefer to workout in groups or with others, and that there lacked a clearcut go-to place to coordinate with and find workout partners. We wanted to take the aspects of effective and easy-to-use collaborative-workplace apps into the health and fitness community.
 
-Wanted to take the aspect of collobarative and community into with health and fitness community.
+Wouldn't it be nice to be able to easily find someone to workout with at a moment's notice? To be able to coordinate workouts and other events with your workout buddies? And to be able to be part of an online community surrounded by those with similar fitness goals and interests.
 
-
-Sometimes, when you’re doing research, you don’t just want to save a page; you want to save a whole group of tabs. If you get somewhere interesting, you may ask yourself, “How did I get here?” Rabbithole will tell you how, and let you save those paths.git
-
-Rabbithole will be accompanied by a Web application which lets a user visualize and interact with these saved paths. Potentially add a favorites feature -- favorite an entire tree/subtree: a RABBITHOLE!
+Slaw, which stands for Searchable Logs of All Workouts, will be accompanied by a web application which lets users join and create channels, todos, events, and communicate via a live chat with members of their channels!
 
 We will need to:
 * Make a web/mobile application that allows users to create and join channels to communicate with others in the community
@@ -30,9 +27,11 @@ We will need to:
 
 ## Technologies & Technical Challenges
 
-We think some of the technical challenges will come with how we set the backend for our channels, events, and todos. We also want to implements comments for any events happening within a channel and have users be able to communicate with one another there.
+We think some of the technical challenges will come with how we set the backend for our channels, events, todos, and our live chat feature. The live chat feature will accompany events happening within a channel and have users be able to communicate with one another there.
 
 Researching more on Google Maps/EventBrite API might pose issues when we want to be able to create public channels for events happening near the area.
+
+Researching and developing how to implement a live chat feature.
 
 ## Group Members & Work Breakdown
 **Jacky Li, JD Buendia, Kevin Lai, Tri Ta**
