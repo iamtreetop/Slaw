@@ -34,7 +34,10 @@ Researching more on Google Maps/EventBrite API might pose issues when we want to
 Researching and developing how to implement a live chat feature.
 
 ## Group Members & Work Breakdown
-**Jacky Li, JD Buendia, Kevin Lai, Tri Ta**
+Tri Ta - Team Lead/Lead Designer/Flex
+Jacky Li - Lead Backend/Flex
+Kevin Lai - Lead Frontend/Flex
+JD Buendia - Lead Research/Flex
 
 ## Day 1
 
