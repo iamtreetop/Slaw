@@ -8,7 +8,8 @@ const mstp = (state) =>{
         channel: {
             admin: "",
             date: "",
-            title: ""
+            title: "",
+            members: []
         }
     }
 }

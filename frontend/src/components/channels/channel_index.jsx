@@ -11,6 +11,10 @@ class ChannelIndex extends React.Component{
     }
 
     render(){
+        if(!this.props.channels){
+            return null;
+        }
+        
         let channelList = this.props.channels.map((channel, index)=>{
             return(
                 <li>

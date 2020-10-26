@@ -4,7 +4,7 @@ import ChannelIndex from './channel_index';
 
 const mstp = (state) =>{
     return {
-        channels: Object.values(state.channels.all)
+        channels: Object.values(state.channels)
     }
 }
 
