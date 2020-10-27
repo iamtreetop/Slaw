@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SideBarContainer from "../sidebar/sidebar_container"
 
 class ChannelIndex extends React.Component{
     constructor(props){
@@ -21,7 +22,6 @@ class ChannelIndex extends React.Component{
         );
         
         let channelList = this.props.channels.map((channel, index)=>{
-            debugger
             return(
                 <li>
                     <Link to={"/channels/" + channel._id}>{"Channel #" + index}</Link>
@@ -33,6 +33,8 @@ class ChannelIndex extends React.Component{
                 <ul>
                     {channelForm}
                     {channelList}
+
+                    <SideBarContainer />
                 </ul>
             </div>
         )
