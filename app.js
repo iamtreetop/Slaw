@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const db = require('./config/keys').mongoURI;
 const users = require("./routes/api/users");
 const channels = require("./routes/api/channels");
+const events = require("./routes/api/events")
 const passport = require('passport');
 const User = require("./models/User")
 const bodyParser = require("body-parser")
@@ -29,9 +30,11 @@ app.use("/api/users", users)
 
 app.use("/api/channels", channels)
 
+app.use("/api/events", events)
+
 app.use(passport.initialize());
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5500;
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
