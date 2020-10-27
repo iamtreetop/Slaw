@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import './channel_index.css'
 
 class ChannelIndex extends React.Component{
     constructor(props){
@@ -35,16 +35,18 @@ class ChannelIndex extends React.Component{
         
         let channelList = this.props.channels.map((channel, index)=>{
             return(
-                <li>
-                    <Link to={"/channels/" + channel._id}>{channel.title}</Link>
-                    <button onClick={()=>this.handleClick(channel._id)}>JOIN</button>
+                <li className="channel-item">
+                    <Link className="channel-link" to={"/channels/" + channel._id}>{channel.title}</Link>
+                    <button className="join-button" onClick={()=>this.handleClick(channel._id)}>JOIN</button>
                 </li>
             )
         });
         return (
-            <div>
-                <ul>
+            <div className="channel-index-container">
+                <div className="channel-form-button-block">
                     {channelForm}
+                </div>
+                <ul className="channel-index-list">
                     {channelList}
                 </ul>
             </div>
