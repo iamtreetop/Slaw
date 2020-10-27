@@ -59,6 +59,9 @@ class ChannelShow extends React.Component {
             !projectCheck ? <div></div> : (
                 <div className="channel-show-container">
                     <h1>{this.props.channel.title}</h1>
+                    <br/>
+                    <br/>
+                    <br/>
                     <ul>
                         {this.props.channel.members.map((member, idx)=>{
                             return (<li key={idx}>
