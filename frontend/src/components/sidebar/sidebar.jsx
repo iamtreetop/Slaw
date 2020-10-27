@@ -18,8 +18,13 @@ class SideBar extends React.Component {
         })
 
         const channelForm = (
-            <button onClick={() => this.props.openModal('channel')}
-                className="sidebar-form">+</button>
+            <>
+                <div className="tooltip">
+                    <button onClick={() => this.props.openModal('channel')}
+                        className="sidebar-form">+</button>
+                    <span className="sidebar-form-text"> Create a channel </span>
+                </div>
+            </>
         );
 
         return(
