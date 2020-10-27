@@ -15,14 +15,14 @@ const App = () => (
   <div>
     <NavBarContainer />
     <Modal />
+    <ProtectedRoute exact path="/channels" component={SideBarContainer} />
     <Switch>
       <AuthRoute exact path="/" component={MainPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/channels" component={ChannelIndexContainer} />
-      <ProtectedRoute exact path="/channels/:id" component={ChannelIndexContainer} />
+      <ProtectedRoute exact path="/channels/:channelId" component={ChannelIndexContainer} />
     </Switch>
-    <ProtectedRoute exact path="/channels" component={SideBarContainer} />
   </div>
 );
 
