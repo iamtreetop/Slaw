@@ -20,6 +20,13 @@ class ChannelIndex extends React.Component{
         this.props.updateChannel(newMembers).then( (action)=>{
             // this.props.history.push(`/channels/${action.channel.id}`)
         })
+
+        let newChannels = {
+            id: this.props.user.id,
+            channels: channelId
+        }
+
+        this.props.updateUser(newChannels);
     }
 
     render(){
@@ -27,23 +34,6 @@ class ChannelIndex extends React.Component{
             return null;
         }
 
-        const channelForm = (
-            <button onClick={() => this.props.openModal('channel')}
-                className="channel-form">Create a channel</button>
-        );
-        
-        // let channelListNotJoined = []
-        // this.props.channels.map((channel, index)=>{
-        //     if(channel.members.length > 1) {
-        //         channel.members.forEach((member) =>{
-        //             if (member.id === this.props.user.id) {
-        //                 channelListNotJoined.push(channel)
-        //             }
-        //         })
-        //     } else {
-        //         channelListNotJoined.push(channel)
-        //     }
-        // });
         let channelList = this.props.channels.map((channel) => {
             return(
                 <li className="channel-list-item">
@@ -52,12 +42,12 @@ class ChannelIndex extends React.Component{
                 </li>
             )
         });
+                // <div className="channel-form-button-block">
+                //     {channelForm}
+                // </div>
 
         return (
             <div className="channel-index-container">
-                <div className="channel-form-button-block">
-                    {channelForm}
-                </div>
                 <div className="channel-index-list-block">
                     <ul className="channel-index-list">
                         {channelList}

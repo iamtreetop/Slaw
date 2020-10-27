@@ -15,6 +15,8 @@ const App = () => (
   <div>
     <NavBarContainer />
     <Modal />
+    <ProtectedRoute exact path="/channels" component={SideBarContainer} />
+    <ProtectedRoute exact path="/channels/:channelId" component={SideBarContainer} />
     <Switch>
       <AuthRoute exact path="/" component={MainPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
@@ -22,7 +24,6 @@ const App = () => (
       <ProtectedRoute exact path="/channels" component={ChannelIndexContainer} />
       <ProtectedRoute exact path="/channels/:channelId" component={ChannelShowContainer} />
     </Switch>
-    <ProtectedRoute exact path="/channels" component={SideBarContainer} />
   </div>
 );
 

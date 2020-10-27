@@ -7,8 +7,7 @@ const UserSchema = new Schema({
     required: true
   },
   channels: {
-    type: Array,
-    default: []
+    type: [{ type: Schema.Types.ObjectId, ref:'Channel' }],
   },
   email: {
     type: String,
