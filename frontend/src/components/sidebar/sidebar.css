@@ -1,0 +1,51 @@
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0 0;
+    background-color: var(--background-tertiary);
+    background-color: aqua;
+    height: 100vh;
+    width: max-content;
+    position: fixed;
+    top: 79px;
+    z-index: 1;
+}
+
+.sidebar-channel-items {
+    width: 48px;
+    height: 48px;
+    border-radius: 30px;
+    text-align: center;
+    /* position: relative; */
+    margin: 0 0 8px;
+    margin-left: 10px;
+    margin-right: 10px;
+    /* display: -webkit-box; */
+    /* display: -ms-flexbox; */
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 5px; */
+}
+
+.sidebar-form {
+    width: 48px;
+    height: 48px;
+    border-radius: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+.guild-separator {
+    height: 1px;
+    width: 42px;
+    margin-bottom: 13px;
+    margin-top: 5px;
+    margin-left: 14px;
+    border-radius: 1px;
+    font-size: x-large;
+    background-color: white;
+}

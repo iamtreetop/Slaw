@@ -9,10 +9,15 @@ const ChannelReducer = (state = {}, action) => {
     
     switch (action.type) {
         case RECEIVE_CHANNELS:
-            newState = action.channels.data;
+            //debugger
+            action.channels.data.forEach((channel)=>{
+                newState[channel._id] = channel;
+            })
             return newState;
         case RECEIVE_CHANNEL:
-            newState[action.channel.id] = action.channel.data;
+            //debugger
+            // newState.channels[action.channel.data._id] = action.channel.data;
+            newState[action.channel.data._id] = action.channel.data;
             return newState;
     
         default:
