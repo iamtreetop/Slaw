@@ -12,9 +12,11 @@ class ChannelIndex extends React.Component{
     }
 
     handleClick(channelId){
+        //debugger
+        
         let newMembers = {
             id: channelId,
-            members: [this.props.userId]
+            members: this.props.userId
         }
 
         this.props.updateChannel(newMembers).then( (action)=>{
@@ -35,7 +37,7 @@ class ChannelIndex extends React.Component{
         let channelList = this.props.channels.map((channel, index)=>{
             return(
                 <li>
-                    <Link to={"/channels/" + channel._id}>{"Channel #" + index}</Link>
+                    <Link to={"/channels/" + channel._id}>{channel.title}</Link>
                     <button onClick={()=>this.handleClick(channel._id)}>JOIN</button>
                 </li>
             )
