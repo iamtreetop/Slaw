@@ -8,14 +8,18 @@ import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import ChannelIndexContainer from './channels/channel_index_container';
 
+import Modal from "../components/modal/modal"
+
 const App = () => (
   <div>
     <NavBarContainer />
+    <Modal />
     <Switch>
       <AuthRoute exact path="/" component={MainPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
-      <Route exact path="/channels" component={ChannelIndexContainer} />
+      <ProtectedRoute exact path="/channels" component={ChannelIndexContainer} />
+      <ProtectedRoute exact path="/channels/:id" component={ChannelIndexContainer} />
     </Switch>
   </div>
 );

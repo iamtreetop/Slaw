@@ -1,8 +1,9 @@
 import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
-import ChannelFormContainer from '../session_form/login_form_container';
-// import SignupFormContainer from '../session_form/signup_form_container';
+import ChannelFormContainer from '../channels/channel_form_container';
+import "./modal.css"
+
 
 const Modal = ({ modal, closeModal }) => {
     if (!modal) {
@@ -10,18 +11,9 @@ const Modal = ({ modal, closeModal }) => {
     }
     let component = null;
     switch (modal) {
-        // case 'login':
-        //     component = <LoginFormContainer />;
-        //     break;
-        // case 'signup':
-        //     component = <SignupFormContainer />;
-        //     break;
         case 'channel':
             component = <ChannelFormContainer />;
             break;
-        case 'delete':
-            component = <DeleteFormContainer id={modal.id} />;
-            break
         default:
             return null;
     }

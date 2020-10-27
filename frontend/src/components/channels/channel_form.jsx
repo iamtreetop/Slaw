@@ -23,9 +23,10 @@ class ChannelForm extends React.Component{
         e.preventDefault();
 
         this.props.createChannel(this.state).then(
-            (action) => (
-                this.props.history.push(`/channels/${action.channel.id}`)
-            )
+            (action) => {
+                this.props.history.push(`/channels/${action.channel.data._id}`)
+                this.props.closeModal()
+            }
         )
     }
 
@@ -35,7 +36,7 @@ class ChannelForm extends React.Component{
                 <div>
                     <input type="text"
                         value={this.state.title}
-                        onChange={this.handleChange()}
+                        onChange={this.handleChange("title")}
                         placeholder="Enter your new channel's title"
                     />
                     <input type="submit" value="Submit" />

@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import { fetchChannels } from '../../actions/channel_actions';
 import ChannelIndex from './channel_index';
+import { openModal } from '../../actions/modal_actions';
+
 
 const mstp = (state) =>{
     return {
@@ -10,7 +12,8 @@ const mstp = (state) =>{
 
 const mdtp = (dispatch) => {
     return {
-        fetchChannels: () => dispatch(fetchChannels())
+        fetchChannels: () => dispatch(fetchChannels()),
+        openModal: (modal, id) => (dispatch(openModal(modal, id)))
     }
 }
 
