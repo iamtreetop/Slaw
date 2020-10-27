@@ -16,8 +16,7 @@ const ChannelSchema = new Schema({
         default: Date.now
     }, 
     members: {
-        type: Array,
-        default: []
+        type: [{ type: Schema.Types.ObjectId, ref:'User' }],
     }
 })
 
