@@ -22,7 +22,7 @@ router.post("/",
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        Todo.findByIdAndUpdate(req.params.id, { title: req.body.title }, {new: true})
+        Todo.findByIdAndUpdate(req.params.id, { title: req.body.title, status: req.body.status }, {new: true})
             .then((model) => {
             (res.json(model))
             return model.save();})
