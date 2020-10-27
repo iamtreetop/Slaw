@@ -1,0 +1,30 @@
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0 0;
+    background-color: var(--background-tertiary);
+    background-color: aqua;
+    height: 100vh;
+    /* justify-content: space-between; */
+
+}
+
+.sidebar-channel-items {
+    position: relative;
+    margin: 0 0 8px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 72px;
+}
+
+.guild-separator {
+    height: 2px;
+    width: 32px;
+    margin: 5px;
+    border-radius: 1px;
+    background-color: var(--background-modifier-accent);
+}
