@@ -1,0 +1,14 @@
+.main-container{
+    /* background-color: #06272b; */
+    background: linear-gradient(45deg, #0f3135, #06272b);
+    display: flex;
+    justify-content: center;
+    height: 75vh;
+    width: 100vw;
+    /* background: url("../../images/main.jpeg"); */
+    background-repeat: no-repeat;
+}
+
+.main-header{
+    color: #ebebf7;
+}
