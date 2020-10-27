@@ -3,10 +3,19 @@
     background: linear-gradient(45deg, #0f3135, #06272b);
     display: flex;
     justify-content: center;
+    flex-direction: row;
     height: 75vh;
     width: 100vw;
     /* background: url("../../images/main.jpeg"); */
     background-repeat: no-repeat;
+}
+
+.main-message-wrapper{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .main-header{
