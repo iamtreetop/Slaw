@@ -15,9 +15,9 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
     Channel.findById(req.params.id)
         .populate('members')
-        .exec(function( err, story) {
+        .exec(function( err, channel) {
             if (err) return console.log(err)
-            res.json(story)
+            res.json(channel)
         }) 
         // .then(channel => res.json(channel))
         // .catch(err => res.status(400).json(err));
