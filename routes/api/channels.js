@@ -37,7 +37,7 @@ router.post("/",
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        debugger
+        //debugger
 
         Channel.findByIdAndUpdate(req.params.id, { $push: {members: req.body.members} }, {new: true})
             .then((model) => {
