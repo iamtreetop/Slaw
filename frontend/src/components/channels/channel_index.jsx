@@ -35,7 +35,7 @@ class ChannelIndex extends React.Component{
         
         let channelList = this.props.channels.map((channel, index)=>{
             return(
-                <li className="channel-item">
+                <li className="channel-list-item">
                     <Link className="channel-link" to={"/channels/" + channel._id}>{channel.title}</Link>
                     <button className="join-button" onClick={()=>this.handleClick(channel._id)}>JOIN</button>
                 </li>
@@ -46,9 +46,11 @@ class ChannelIndex extends React.Component{
                 <div className="channel-form-button-block">
                     {channelForm}
                 </div>
-                <ul className="channel-index-list">
-                    {channelList}
-                </ul>
+                <div className="channel-index-list-block">
+                    <ul className="channel-index-list">
+                        {channelList}
+                    </ul>
+                </div>
             </div>
         )
     }

@@ -10,11 +10,25 @@
     justify-content: center;
 }
 
-.channel-index-list{
-    display: block;
+.channel-form {
+    height: 60px;
+    width: 300px;
+    font-size: 30px;
+    margin-bottom: 30px;
+    margin-top: 20px;
 }
 
-.channel-item {
+.channel-index-list-block {
+    display: flex;
+    justify-content: center;
+}
+
+.channel-index-list{
+    display: block;
+    /* background-color: red; */
+}
+
+.channel-list-item {
     display: block;
     width: 400px;
     height: 100px;
@@ -22,6 +36,7 @@
     background-color: #1e9191;
     margin-bottom: 50px;
     border-radius: 5px;
+    margin-right: 40px;
 }
 
 .channel-link {
