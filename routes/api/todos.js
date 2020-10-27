@@ -4,7 +4,7 @@ const passport = require("passport");
 const Todo = require("../../models/Todo")
 const validateTodoInput = require("../../validation/todos")
 
-router.post("/",
+router.post("/create",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         const { isValid, errors } = validateTodoInput(req.body);
@@ -15,6 +15,8 @@ router.post("/",
 
         const newTodo = new Todo({
             title: req.body.title,
+            description: req.body.description,
+            status: false
         })
         newTodo.save().then(todo => res.json(todo))
     })
