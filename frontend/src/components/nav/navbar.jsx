@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-// import './navbar.css'
-// import "../../../stylesheets/session_form.css"
+import './nav.css'
+
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -15,20 +15,19 @@ class NavBar extends React.Component {
       this.props.logout();
   }
 
-  // Selectively render links dependent on whether the user is logged in
   getLinks() {
       if (this.props.loggedIn) {
         return (
             <div>
                 <Link to={'/profile'}>Profile</Link>
-                <button onClick={this.logoutUser}>Logout</button>
+                <button className="session-button" onClick={this.logoutUser}>Logout</button>
             </div>
         );
       } else {
         return (
             <div>
-                <Link to={'/signup'}>Signup</Link>
-                <Link to={'/login'}>Login</Link>
+                <Link className="session-button" to={'/signup'}>Signup</Link>
+                <Link className="session-button" to={'/login'}>Login</Link>
             </div>
         );
       }
@@ -36,7 +35,7 @@ class NavBar extends React.Component {
 
   render() {
       return (
-        <div>
+        <div class="navbar-container">
             <h1>Slaw</h1>
             { this.getLinks() }
         </div>

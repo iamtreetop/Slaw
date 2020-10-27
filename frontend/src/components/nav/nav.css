@@ -1,0 +1,31 @@
+.navbar-container{
+    background-color: #06272b;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.session-button{
+    color: black;
+    font-size: 12px;
+    margin-left: 20px;
+    /* border: 1px solid #fff; */
+    border-radius: 25px;
+    padding: 8px 15px;
+    text-decoration: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.session-button:hover{
+    background-color: #8acbb6;
+    font-weight: bolder;
+    transition: background-color .4s ease-out;
+}
+
+.session-button:active{
+    text-decoration: underline;
+    color: black;
+    font-weight: bolder;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+}
