@@ -4,11 +4,22 @@ import SideBarContainer from "../sidebar/sidebar_container"
 
 class ChannelIndex extends React.Component{
     constructor(props){
-        super(props)
+        super(props);
     }
 
     componentDidMount(){
         this.props.fetchChannels();
+    }
+
+    handleClick(channelId){
+        let newMembers = {
+            id: channelId,
+            members: [this.props.userId]
+        }
+
+        this.props.updateChannel(newMembers).then( (action)=>{
+            //this.props.history.push(`/channels/${action.channel._id}`)
+        })
     }
 
     render(){
@@ -25,6 +36,7 @@ class ChannelIndex extends React.Component{
             return(
                 <li>
                     <Link to={"/channels/" + channel._id}>{"Channel #" + index}</Link>
+                    <button onClick={()=>this.handleClick(channel._id)}>JOIN</button>
                 </li>
             )
         });
