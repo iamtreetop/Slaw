@@ -11,18 +11,27 @@ class SideBar extends React.Component {
 
         let channelList = this.props.channels.map((channel, index) => {
             return (
-                <li className="sidebar-channel-items">
+                <button className="sidebar-channel-items">
                     <Link to={"/channels/" + channel._id}>{channel.title}</Link>
-                </li>
+                </button>
             )
         })
+
+        const channelForm = (
+            <button onClick={() => this.props.openModal('channel')}
+                className="sidebar-form">+</button>
+        );
 
         return(
             <>
                 <div className="sidebar-container">
-                    <Link to={"/channels/"} className="sidebar-channel-items">home</Link>
-                    <div className="guild-separator">-</div>
+                    <button className="sidebar-channel-items">
+                        <Link to={"/channels/"}>home</Link>
+                    </button>
+                    <div className="guild-separator"></div>
                     {channelList}
+                    <div className="guild-separator"></div>
+                    {channelForm}
                 </div>
             </>
         )
