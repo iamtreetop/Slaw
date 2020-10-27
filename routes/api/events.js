@@ -44,11 +44,14 @@ router.post("/create",
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        Event.findByIdAndUpdate(req.params.id, { $push: {members: req.body.member} }, {new: true})
-            .then((model) => {
-            (res.json(model))
-            return model.save();})
-            .catch((err) => res.status(400).json(err));
+        Event.findByIdAndUpdate(req.params.id, 
+            { $push: {participants: req.body.participants} }, 
+            {title: req.body.title}, 
+            {new: true})
+                .then((model) => {
+                (res.json(model))
+                return model.save();})
+                .catch((err) => res.status(400).json(err));
     }
 )
 
