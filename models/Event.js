@@ -12,12 +12,20 @@ const EventSchema = new Schema({
     },
     date: {
         type: Date,
-        default: Date.now
+        required: true
     },
     description: {
         type: String,
         required: true,
     },
+    participants: {
+        type: Array,
+        default: []
+    },
+    todo: {
+        type: Array,
+        default: []
+    }
     // timestamps: true
 })
 

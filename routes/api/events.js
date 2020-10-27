@@ -9,6 +9,20 @@ router.get("/test", (req, res) => {
     res.json({ msg: "This is the Events route"});
 });
 
+router.get("/", (req, res) => {
+    Event
+        .find()
+        .sort({ title: -1 })
+        .then(events => res.json(events))
+        .catch(err => res.status(400).json(err));
+})
+
+router.get("/:id", (req, res) => {
+    Event.findById(req.params.id)
+        .then(event => res.json(event))
+        .catch(err => res.status(400).json(err));
+})
+
 router.post("/create", 
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
@@ -26,5 +40,7 @@ router.post("/create",
         newEvent.save().then(event => res.json(event))
     }
 )
+
+
 
 module.exports = router;
