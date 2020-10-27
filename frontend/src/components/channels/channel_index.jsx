@@ -20,6 +20,13 @@ class ChannelIndex extends React.Component{
         this.props.updateChannel(newMembers).then( (action)=>{
             // this.props.history.push(`/channels/${action.channel.id}`)
         })
+
+        let newChannels = {
+            id: this.props.user.id,
+            channels: channelId
+        }
+
+        this.props.updateUser(newChannels);
     }
 
     render(){
