@@ -7,7 +7,7 @@ import { openModal } from '../../actions/modal_actions';
 const mstp = (state) =>{
     return {
         channels: Object.values(state.channels),
-        userId: state.session.user.id
+        user: state.session.user
     }
 }
 

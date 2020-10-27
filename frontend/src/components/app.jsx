@@ -2,6 +2,7 @@ import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Route, Switch } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
+import SideBarContainer from "./sidebar/sidebar_container"
 
 import MainPage from './main/main_page';
 import LoginFormContainer from './session/login_form_container';
@@ -14,6 +15,7 @@ const App = () => (
   <div>
     <NavBarContainer />
     <Modal />
+      <ProtectedRoute exact path="/channels" component={SideBarContainer} />
     <Switch>
       <AuthRoute exact path="/" component={MainPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />

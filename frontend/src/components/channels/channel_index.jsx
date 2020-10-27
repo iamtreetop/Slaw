@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SideBarContainer from "../sidebar/sidebar_container"
+
 
 class ChannelIndex extends React.Component{
     constructor(props){
@@ -12,15 +12,14 @@ class ChannelIndex extends React.Component{
     }
 
     handleClick(channelId){
-        //debugger
-        
+
         let newMembers = {
             id: channelId,
-            members: this.props.userId
+            members: this.props.user
         }
 
         this.props.updateChannel(newMembers).then( (action)=>{
-            //this.props.history.push(`/channels/${action.channel._id}`)
+            this.props.history.push(`/channels/${action.channel._id}`)
         })
     }
 
@@ -47,8 +46,6 @@ class ChannelIndex extends React.Component{
                 <ul>
                     {channelForm}
                     {channelList}
-
-                    <SideBarContainer />
                 </ul>
             </div>
         )
