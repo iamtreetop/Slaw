@@ -33,14 +33,26 @@ class ChannelIndex extends React.Component{
                 className="channel-form">Create a channel</button>
         );
         
-        let channelList = this.props.channels.map((channel, index)=>{
-            return(
-                <li>
-                    <Link to={"/channels/" + channel._id}>{channel.title}</Link>
-                    <button onClick={()=>this.handleClick(channel._id)}>JOIN</button>
-                </li>
-            )
+        let channelListNotJoined = []
+        this.props.channels.map((channel, index)=>{
+            if(channel.members.length > 1) {
+                channel.members.forEach((member) =>{
+                    if (member.id === this.props.user.id) {
+                        channelListNotJoined.push(channel)
+                    }
+                })
+            } else {
+                channelListNotJoined.push(channel)
+            }
         });
+        let channelList = channelListNotJoined.map((channel) => {
+            return(
+                    <li>
+                        <Link to={"/channels/" + channel._id}>{channel.title}</Link>
+                        <button onClick={()=>this.handleClick(channel._id)}>JOIN</button>
+                    </li>
+                )
+        })
         return (
             <div>
                 <ul>
