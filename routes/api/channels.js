@@ -14,8 +14,13 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
     Channel.findById(req.params.id)
-        .then(channel => res.json(channel))
-        .catch(err => res.status(400).json(err));
+        .populate('members')
+        .exec(function( err, story) {
+            if (err) return console.log(err)
+            res.json(story)
+        }) 
+        // .then(channel => res.json(channel))
+        // .catch(err => res.status(400).json(err));
 })
 
 router.post("/",
@@ -37,9 +42,7 @@ router.post("/",
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        //debugger
-
-        Channel.findByIdAndUpdate(req.params.id, { $push: {members: req.body.members} }, {new: true})
+        Channel.findByIdAndUpdate(req.params.id, { $push: {members: req.body.members.id} }, {new: true})
             .then((model) => {
             (res.json(model))
             return model.save();})

@@ -12,14 +12,13 @@ class ChannelIndex extends React.Component{
     }
 
     handleClick(channelId){
-
         let newMembers = {
             id: channelId,
             members: this.props.user
         }
 
         this.props.updateChannel(newMembers).then( (action)=>{
-            this.props.history.push(`/channels/${action.channel._id}`)
+            // this.props.history.push(`/channels/${action.channel.id}`)
         })
     }
 
@@ -33,19 +32,19 @@ class ChannelIndex extends React.Component{
                 className="channel-form">Create a channel</button>
         );
         
-        let channelListNotJoined = []
-        this.props.channels.map((channel, index)=>{
-            if(channel.members.length > 1) {
-                channel.members.forEach((member) =>{
-                    if (member.id === this.props.user.id) {
-                        channelListNotJoined.push(channel)
-                    }
-                })
-            } else {
-                channelListNotJoined.push(channel)
-            }
-        });
-        let channelList = channelListNotJoined.map((channel) => {
+        // let channelListNotJoined = []
+        // this.props.channels.map((channel, index)=>{
+        //     if(channel.members.length > 1) {
+        //         channel.members.forEach((member) =>{
+        //             if (member.id === this.props.user.id) {
+        //                 channelListNotJoined.push(channel)
+        //             }
+        //         })
+        //     } else {
+        //         channelListNotJoined.push(channel)
+        //     }
+        // });
+        let channelList = this.props.channels.map((channel) => {
             return(
                     <li>
                         <Link to={"/channels/" + channel._id}>{channel.title}</Link>
