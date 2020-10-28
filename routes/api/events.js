@@ -15,13 +15,13 @@ router.get("/", (req, res) => {
         .sort({ title: -1 })
         .then(events => res.json(events))
         .catch(err => res.status(400).json(err));
-})
+    })
 
 router.get("/:id", (req, res) => {
     Event.findById(req.params.id)
         .then(event => res.json(event))
         .catch(err => res.status(400).json(err));
-})
+    })
 
 router.post("/create", 
     passport.authenticate("jwt", { session: false }),
@@ -35,24 +35,45 @@ router.post("/create",
             admin: req.user.id,
             title: req.body.title,
             description: req.body.description,
-            date: req.body.date
+            date: req.body.date,
+            participants: req.body.participants,
+            todo: req.body.todo
         })
         newEvent.save().then(event => res.json(event))
-    }
-)
+    })
 
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        Event.findByIdAndUpdate(req.params.id, 
-            { $push: {participants: req.body.participants} }, 
-            {title: req.body.title}, 
+        // const newParticipant = req.body.participants;
+        // if (!participants.include(newParticipant)) {
+        //     $push: {participants: newParticipant}
+        // }
+        Event.findByIdAndUpdate(req.params.id, {   
+                title: req.body.title, 
+                description: req.body.description,
+                date: req.body.date,
+                $push: {participants: req.body.participants},
+                // todo: req.body.todo,
+                // participants: req.body.participants,
+                // todo: req.body.todo
+            },  
             {new: true})
                 .then((model) => {
                 (res.json(model))
                 return model.save();})
                 .catch((err) => res.status(400).json(err));
-    }
-)
+    })
+
+router.delete("/:id",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+
+        Event.findByIdAndDelete(req.params.id)
+            .then((model) => {
+                (res.json(model))
+            })
+            .catch((err) => res.status(400).json(err));
+    })
 
 module.exports = router;
