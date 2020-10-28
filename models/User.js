@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   handle: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   channels: {
     type: [{ type: Schema.Types.ObjectId, ref:'Channel' }],

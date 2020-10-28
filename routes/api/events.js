@@ -32,7 +32,7 @@ router.post("/create",
         }
 
         const newEvent = new Event({
-            admin: req.user.id,
+            author: req.user.id,
             title: req.body.title,
             description: req.body.description,
             date: req.body.date,
