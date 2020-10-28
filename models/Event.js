@@ -23,8 +23,7 @@ const EventSchema = new Schema({
         default: []
     },
     todo: {
-        type: Schema.Types.ObjectId, 
-        ref:'todos' 
+        type: [{type: Schema.Types.ObjectId, ref:'todos'}]
         // type: [{ type: Schema.Types.ObjectId, ref:'todos' }]
         // type: Schema.Types.ObjectId, 
         // ref:'Todo' 
