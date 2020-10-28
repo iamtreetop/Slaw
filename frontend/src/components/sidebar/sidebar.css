@@ -24,6 +24,9 @@
     -ms-flex-pack: center;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    object-fit: cover;
+    
 }
 
 .sidebar-channel-items:hover {
@@ -31,6 +34,7 @@
     background-color: #43b581;
     color: white;
     transition: .3s;
+    opacity: .7;
     
 }
 
@@ -47,6 +51,7 @@
 .tooltip {
   position: relative;
   display: inline-block;
+
 }
 
 .tooltip .sidebar-form-text{
@@ -66,6 +71,11 @@
 
 .tooltip:hover .sidebar-form-text{
   visibility: visible;
+}
+
+.channel-create-text {
+  font-size: 30px;
+  cursor: pointer;
 } 
 
 .tooltip .home-text{
@@ -96,8 +106,8 @@
   border-radius: 6px;
   position: absolute;
   z-index: 1;
-  margin-left: 120px;
-  margin-top: -1px;
+  margin-left: 80px;
+  margin-top: -45px;
   box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
   border: none;
 }

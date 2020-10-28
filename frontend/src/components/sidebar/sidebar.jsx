@@ -9,14 +9,15 @@ class SideBar extends React.Component {
 
     render() {
 
+        // if (!this.props.channel) return null;
+
         let channelList = this.props.channels.map((channel, index) => {
             return (
                 <div className="tooltip">
-                    <button className="sidebar-channel-items">
-                        <Link to={"/channels/" + channel._id}>{channel.title}</Link>
+                    <Link to={"/channels/" + channel._id}>
+                        <img src={channel.channelPicture} className="sidebar-channel-items"/>
                         <p className="channel-text">{channel.title}</p>
-                    </button>
-
+                    </Link>
                 </div>
             )
         })
@@ -25,7 +26,9 @@ class SideBar extends React.Component {
             <>
                 <div className="tooltip">
                     <button onClick={() => this.props.openModal('channel')}
-                        className="sidebar-channel-items">+</button>
+                        className="sidebar-channel-items">
+                        <p className="channel-create-text">+</p>
+                        </button>
                     <span className="sidebar-form-text"> Create a channel </span>
                 </div>
             </>
