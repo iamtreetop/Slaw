@@ -6,7 +6,7 @@ module.exports = function validateEventInput(data) {
 
     data.title = validText(data.title) ? data.title : ""
     data.description = validText(data.description) ? data.description : ""
-    data.date = validText(data.date) ? data.date : ""
+    // data.date = validText(data.date) ? data.date : ""
     
 
     if (Validator.isEmpty(data.title)) {

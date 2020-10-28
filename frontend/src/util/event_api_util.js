@@ -9,5 +9,15 @@ export const fetchEvent = (eventId) => {
 }
 
 export const createEvent = (event) => {
+  debugger
   return axios.post('/api/events/create', event)
+}
+
+export const updateEvent = (event) => {
+    //debugger
+    return axios.patch('/api/events/' + event.id, event);
+}
+
+export const deleteEvent = (eventId) => {
+    return axios.delete('/api/events/' + eventId);
 }

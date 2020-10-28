@@ -21,10 +21,20 @@ class ChannelForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-
+        // this.props.createEvent({title: "General", description: `Welcome to ${this.state.title}`})
+        //     .then((action) => {
+        //         debugger
+        //         this.props.createChannel({admin: this.state.admin, date: this.state.date, title: this.state.title, members: this.state.members, events: [action.id]})
+        //         .then((action) => {
+        //                 debugger
+        //                 this.props.history.push(`/channels/${action.channel.data._id}`)
+        //                 this.props.closeModal()
+        //         })
+        //     })
         this.props.createChannel(this.state).then(
             (action) => {
-                this.props.history.push(`/channels/${action.channel.data._id}`)
+                debugger
+                this.props.history.push(`/channels/${action.data.channel.data._id}`)
                 this.props.closeModal()
             }
         )

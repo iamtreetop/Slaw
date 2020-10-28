@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 const Channel = require("../../models/Channel")
 const validateChannelInput = require("../../validation/channels")
+const Event = require("../../models/Event")
 
 router.get("/", (req, res) => {
     Channel
@@ -14,7 +15,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
     Channel.findById(req.params.id)
-        .populate('members')
+        .populate('members events')
         .exec(function( err, channel) {
             if (err) return console.log(err)
             res.json(channel)
@@ -31,10 +32,9 @@ router.post("/",
         if (!isValid) {
             return res.status(400).json(errors)
         }
-
         const newChannel = new Channel({
             admin: req.user.id,
-            title: req.body.title,
+            title: req.body.title
         })
         newChannel.save().then(channel => res.json(channel))
     })
