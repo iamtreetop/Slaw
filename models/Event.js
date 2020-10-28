@@ -12,7 +12,6 @@ const EventSchema = new Schema({
     },
     date: {
         type: Date,
-        required: true
     },
     description: {
         type: String,
@@ -23,6 +22,7 @@ const EventSchema = new Schema({
     },
     todo: {
         type: [{type: Schema.Types.ObjectId, ref:'Todo'}]
+
         // type: [{ type: Schema.Types.ObjectId, ref:'todos' }]
         // type: Schema.Types.ObjectId, 
         // ref:'Todo' 
