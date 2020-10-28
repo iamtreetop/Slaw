@@ -9,7 +9,7 @@ export const fetchChannel = (channelId) => {
 }
 
 export const createChannel = channel => {
-  debugger
+  // debugger
   return axios.post('/api/channels/', channel)
 }
 
