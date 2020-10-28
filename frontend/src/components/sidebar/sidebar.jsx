@@ -39,7 +39,7 @@ class SideBar extends React.Component {
                 <div className="sidebar-container">
                     <div className="tooltip">
                         <button className="sidebar-channel-items">
-                            <Link to={"/channels/"}>home
+                            <Link to={"/channels"}>home
                                 <p className="home-text">home</p>
                             </Link>
                         </button>
