@@ -63,7 +63,7 @@ Researching and developing how to implement a live chat feature.
 
 * Finish out Todo's and design
 * Build out backend comments for event's
-* Build out froentend comments for event's
+* Build out frontend comments for event's
 * Connect Google API/EventBrite for public channels
 
 ## Day 5

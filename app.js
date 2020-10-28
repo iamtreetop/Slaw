@@ -6,6 +6,7 @@ const users = require("./routes/api/users");
 const channels = require("./routes/api/channels");
 const events = require("./routes/api/events");
 const todos = require("./routes/api/todos");
+const comments = require("./routes/api/comments");
 const passport = require('passport');
 const User = require("./models/User")
 const bodyParser = require("body-parser")
@@ -44,6 +45,8 @@ app.use("/api/channels", channels)
 app.use("/api/events", events)
 
 app.use("/api/todos", todos)
+
+app.use("/api/comments", comments);
 
 app.use(passport.initialize());
 
