@@ -18,10 +18,11 @@ const EventSchema = new Schema({
         required: true,
     },
     participants: {
-        type: [{type: Schema.Types.ObjectId, ref: "User"}]
+        type: [{type: Schema.Types.ObjectId, ref:'User'}]
     },
     todo: {
-        type: [{type: Schema.Types.ObjectId, ref:'Todo'}] 
+        type: [{type: Schema.Types.ObjectId, ref:'Todo'}]
+
         // type: [{ type: Schema.Types.ObjectId, ref:'todos' }]
         // type: Schema.Types.ObjectId, 
         // ref:'Todo' 
@@ -29,7 +30,6 @@ const EventSchema = new Schema({
         // type: Array,
         // default: []
     }
-    // timestamps: true
 })
 
 module.exports = Event = mongoose.model("Event", EventSchema);
