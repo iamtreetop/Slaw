@@ -28,6 +28,10 @@ const ChannelSchema = new Schema({
 
     members: {
         type: [{ type: Schema.Types.ObjectId, ref:'User' }],
+    },
+
+    events: {
+        type: [{ type: Schema.Types.ObjectId, ref:'Event' }],
     }
 })
 
