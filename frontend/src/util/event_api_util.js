@@ -14,11 +14,11 @@ export const createEvent = (event) => {
 
 export const updateEvent = (event) => {
     let newDetails = { 
-        title: req.body.title, 
-        description: req.body.description,
-        date: req.body.date,
-        todo: req.body.todo,
-        participants: req.body.participants
+        title: event.title, 
+        description: event.description,
+        date: event.date,
+        todo: event.todo,
+        participants: event.participants
     };
     return axios.patch('/api/channels/' + event.id, newDetails);
 }
