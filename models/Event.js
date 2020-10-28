@@ -12,17 +12,22 @@ const EventSchema = new Schema({
     },
     date: {
         type: Date,
-        required: true
     },
     description: {
         type: String,
         required: true,
     },
     participants: {
-        type: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+        type: [{type: Schema.Types.ObjectId, ref: "User"}]
     },
     todo: {
-        type: [{type: Schema.Types.ObjectId, ref:'Todo'}]
+        type: [{type: Schema.Types.ObjectId, ref:'Todo'}] 
+        // type: [{ type: Schema.Types.ObjectId, ref:'todos' }]
+        // type: Schema.Types.ObjectId, 
+        // ref:'Todo' 
+        // type: [{ type: Schema.Types.ObjectId, ref:'Todo' }]
+        // type: Array,
+        // default: []
     }
 })
 
