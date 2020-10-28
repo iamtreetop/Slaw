@@ -9,6 +9,14 @@ const todos = require("./routes/api/todos");
 const passport = require('passport');
 const User = require("./models/User")
 const bodyParser = require("body-parser")
+const path = require('path');
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  })
+}
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -37,7 +45,7 @@ app.use("/api/todos", todos)
 
 app.use(passport.initialize());
 
-const port = process.env.PORT || 5500;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
