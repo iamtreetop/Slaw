@@ -11,3 +11,14 @@ export const fetchEvent = (eventId) => {
 export const createEvent = (event) => {
   return axios.post('/api/events/create', event)
 }
+
+export const updateEvent = (event) => {
+    let newDetails = { 
+        title: req.body.title, 
+        description: req.body.description,
+        date: req.body.date,
+        todo: req.body.todo,
+        participants: req.body.participants
+    };
+    return axios.patch('/api/channels/' + event.id, newDetails);
+}

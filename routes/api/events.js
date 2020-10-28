@@ -44,9 +44,19 @@ router.post("/create",
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        Event.findByIdAndUpdate(req.params.id, 
-            { $push: {participants: req.body.participants} }, 
-            {title: req.body.title}, 
+        // const newParticipant = req.body.participants;
+        Event.findByIdAndUpdate(req.params.id, {   
+                title: req.body.title, 
+                description: req.body.description,
+                date: req.body.date,
+                todo: req.body.todo,
+                participants: req.body.participants
+                // if((!participants.includes(newParticipant)) = (newParticpant) => {
+
+                //     $push: {participants: newParticpant}
+                // })
+            },  
+            // { $push: {todo: req.body.todo} }, 
             {new: true})
                 .then((model) => {
                 (res.json(model))
