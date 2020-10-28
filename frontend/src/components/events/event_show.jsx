@@ -1,12 +1,31 @@
 import React from "react";
 
-class Event extends React.Component {
+class EventShow extends React.Component {
     constructor(props) {
-        super(props)
-    } 
+        super(props);
+    }
+
+    componentDidMount(){
+        this.props.fetchEvent(this.props.eventId).then( (action) => {
+                this.setState(action.event);
+            }
+        );
+    }
+
     render() {
+
+        if(!this.state){
+            return null;
+        }
+
         return (
-            <div>HELLO</div>
+            <div>
+                <h1>Welcome to {this.state.title}</h1>
+                <h2>{this.state.description}</h2>
+                <button onClick={() => this.props.openModal('todo',this.props.eventId)}>Create New Todo</button>
+            </div>
         )
     }
 }
+
+export default EventShow;

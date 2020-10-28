@@ -49,20 +49,67 @@ router.patch("/:id",
         // if (!participants.include(newParticipant)) {
         //     $push: {participants: newParticipant}
         // }
-        Event.findByIdAndUpdate(req.params.id, {   
-                title: req.body.title, 
-                description: req.body.description,
-                date: req.body.date,
-                $push: {participants: req.body.participants},
-                // todo: req.body.todo,
-                // participants: req.body.participants,
-                // todo: req.body.todo
-            },  
-            {new: true})
+        // Event.findByIdAndUpdate(req.params.id, {   
+        //         title: req.body.title, 
+        //         description: req.body.description,
+        //         date: req.body.date,
+        //         $push: {participants: req.body.participants},
+        //         // todo: req.body.todo,
+        //         // participants: req.body.participants,
+        //         // todo: req.body.todo
+        //     },  
+        //     {new: true})
+        //         .then((model) => {
+        //         (res.json(model))
+        //         return model.save();})
+        //         .catch((err) => res.status(400).json(err));
+
+
+        if (req.body.participants && !req.body.todo) {
+            Event.findByIdAndUpdate(req.params.id,
+                {            
+                    title: req.body.title, 
+                    description: req.body.description,
+                    date: req.body.date,
+                    $push: {participants: req.body.participants.id},
+                },  
+                {new: true})
                 .then((model) => {
                 (res.json(model))
                 return model.save();})
                 .catch((err) => res.status(400).json(err));
+
+        }
+        else if (req.body.todo && !req.body.participants) {
+            Event.findByIdAndUpdate(req.params.id,
+                {            
+                    title: req.body.title, 
+                    description: req.body.description,
+                    date: req.body.date,
+                    $push: {todo: req.body.todo.id},
+                },  
+                {new: true})
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
+        }
+        else {
+            Event.findByIdAndUpdate(req.params.id,
+                {            
+                    title: req.body.title, 
+                    description: req.body.description,
+                    date: req.body.date,
+                    $push: {participants: req.body.participants.id},
+                    $push: {todo: req.body.todo.id},
+                },
+                {new: true})
+                .then((model) => {
+                (res.json(model))
+                return model.save();})
+                .catch((err) => res.status(400).json(err));
+        }
     })
 
 router.delete("/:id",
