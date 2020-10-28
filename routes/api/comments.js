@@ -8,7 +8,7 @@ router.get("/test", (req, res) => {
     res.json({ msg: "This is the Comments route"});
 });
 
-router.post("/create", 
+router.post("/", 
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         const { isValid, errors } = validateCommentInput(req.body);
