@@ -23,5 +23,6 @@ export const updateTodo = (todo) => {
 }
 
 export const deleteTodo = (todoId) => {
-    return axios.delete('/api/todos' + todoId)
+    // debugger
+    return axios.delete('/api/todos/' + todoId)
 }

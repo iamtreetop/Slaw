@@ -6,7 +6,7 @@ import configureStore from './store/store';
 import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
-import { createTodo } from './actions/todo_actions'
+// import { createTodo, deleteTodo } from './actions/todo_actions'
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore({});
   }
   const root = document.getElementById('root');
-  window.createTodo = createTodo;
-  window.dispatch = store.dispatch
+  // window.createTodo = createTodo;
+  // window.deleteTodo = deleteTodo;
+  // window.dispatch = store.dispatch
   ReactDOM.render(<Root store={store} />, root);
 });

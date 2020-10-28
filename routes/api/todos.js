@@ -6,6 +6,7 @@ const validateTodoInput = require("../../validation/todos")
 
 router.post("/",
     passport.authenticate("jwt", { session: false }),
+    
     (req, res) => {
         const { isValid, errors } = validateTodoInput(req.body);
 
@@ -34,7 +35,6 @@ router.patch("/:id",
 router.delete("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-
         Todo.findByIdAndDelete(req.params.id)
             .then((model) => {
                 (res.json(model))

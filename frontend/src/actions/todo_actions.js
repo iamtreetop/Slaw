@@ -27,25 +27,26 @@ export const removeTodo = (todoId) => {
 
 export const createTodo = (todo) => {
     // debugger
-    return (dispatch) => {
-        return TodoAPIUtil.createTodo(todo).then((payload) => {
-            return dispatch(receiveTodo(payload))
+    // return (dispatch) => {
+        return TodoAPIUtil.createTodo(todo).then((res) => {
+            console.log(res)
         }).catch(err => console.log(err))
     }
-}
+// }
 
 export const updateTodo = (todo) => {
-    return (dispatch) => {
-        return TodoAPIUtil.updateTodo(todo).then( (todo) => {
-            return dispatch(receiveTodo(todo))
+    // return (dispatch) => {
+        return TodoAPIUtil.updateTodo(todo).then( (res) => {
+            console.log(res);
         }).catch(err => console.log(err))
-    }
+    // }
 }
 
 export const deleteTodo = (todoId) => {
-    return (dispatch) => {
-        return TodoAPIUtil.deleteTodo(todoId).then( () => {
-            return dispatch(removeTodo(todoId))
+    // return (dispatch) => {
+        // debugger
+        return TodoAPIUtil.deleteTodo(todoId).then((res) => {
+             console.log(res)
         }).catch(err => console.log(err))
     }
-}
+// }
