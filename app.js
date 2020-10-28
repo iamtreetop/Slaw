@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const db = require('./config/keys').mongoURI;
 const users = require("./routes/api/users");
 const channels = require("./routes/api/channels");
-const events = require("./routes/api/events")
+const events = require("./routes/api/events");
+const todos = require("./routes/api/todos");
 const passport = require('passport');
 const User = require("./models/User")
 const bodyParser = require("body-parser")
@@ -41,6 +42,8 @@ app.use("/api/users", users)
 app.use("/api/channels", channels)
 
 app.use("/api/events", events)
+
+app.use("/api/todos", todos)
 
 app.use(passport.initialize());
 
