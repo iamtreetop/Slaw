@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 const Channel = require("../../models/Channel")
 const validateChannelInput = require("../../validation/channels")
+const Event = require("../../models/Event")
 
 const upload = require("../../services/image_upload");
 const singleUpload = upload.single("image");
@@ -17,7 +18,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
     Channel.findById(req.params.id)
-        .populate('members')
+        .populate('members events')
         .exec(function( err, channel) {
             if (err) return console.log(err)
             res.json(channel)
@@ -34,7 +35,6 @@ router.post("/",
         if (!isValid) {
             return res.status(400).json(errors)
         }
-
         const newChannel = new Channel({
             admin: req.user.id,
             title: req.body.title,
