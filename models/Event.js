@@ -19,11 +19,10 @@ const EventSchema = new Schema({
         required: true,
     },
     participants: {
-        type: Array,
-        default: []
+        type: [{type: Schema.Types.ObjectId, ref:'User'}]
     },
     todo: {
-        type: [{type: Schema.Types.ObjectId, ref:'todos'}]
+        type: [{type: Schema.Types.ObjectId, ref:'Todo'}]
         // type: [{ type: Schema.Types.ObjectId, ref:'todos' }]
         // type: Schema.Types.ObjectId, 
         // ref:'Todo' 
