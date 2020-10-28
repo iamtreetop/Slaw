@@ -12,6 +12,9 @@ class ChannelShow extends React.Component {
     }
 
     render() {
+        debugger
+        let picture;
+        (this.props.channel.channelId) ? picture = this.props.channel.channelId : picture = null
 
         let projectCheck;
         (this.props.channel) ? projectCheck = this.props.channel : projectCheck = null;
@@ -27,6 +30,7 @@ class ChannelShow extends React.Component {
                                 </h2>
                             </li>
                         )})}
+                        <img src={picture} alt=""/>
                     </ul>
                 </div>
             )

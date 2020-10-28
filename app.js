@@ -10,6 +10,8 @@ const passport = require('passport');
 const User = require("./models/User")
 const bodyParser = require("body-parser")
 const path = require('path');
+const cors = require("cors");
+app.use(cors());
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('frontend/build'));
