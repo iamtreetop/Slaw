@@ -38,6 +38,7 @@ router.post("/",
         const newChannel = new Channel({
             admin: req.user.id,
             title: req.body.title,
+            events: req.body.events
         })
         newChannel.save().then(channel => res.json(channel))
     })
