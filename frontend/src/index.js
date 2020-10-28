@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore({});
   }
   const root = document.getElementById('root');
-  window.dispatch = store.dispatch
   window.createTodo = createTodo;
+  window.dispatch = store.dispatch
   ReactDOM.render(<Root store={store} />, root);
 });
