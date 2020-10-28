@@ -15,13 +15,13 @@ router.get("/", (req, res) => {
         .sort({ title: -1 })
         .then(events => res.json(events))
         .catch(err => res.status(400).json(err));
-})
+    })
 
 router.get("/:id", (req, res) => {
     Event.findById(req.params.id)
         .then(event => res.json(event))
         .catch(err => res.status(400).json(err));
-})
+    })
 
 router.post("/create", 
     passport.authenticate("jwt", { session: false }),
@@ -38,31 +38,36 @@ router.post("/create",
             date: req.body.date
         })
         newEvent.save().then(event => res.json(event))
-    }
-)
+    })
 
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        // const newParticipant = req.body.participants;
         Event.findByIdAndUpdate(req.params.id, {   
                 title: req.body.title, 
                 description: req.body.description,
                 date: req.body.date,
+                $push: {participants: req.body.participants},
                 todo: req.body.todo,
-                participants: req.body.participants
-                // if((!participants.includes(newParticipant)) = (newParticpant) => {
-
-                //     $push: {participants: newParticpant}
-                // })
+                // participants: req.body.participants,
+                // todo: req.body.todo
             },  
-            // { $push: {todo: req.body.todo} }, 
             {new: true})
                 .then((model) => {
                 (res.json(model))
                 return model.save();})
                 .catch((err) => res.status(400).json(err));
-    }
-)
+    })
+
+router.delete("/:id",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+
+        Event.findByIdAndDelete(req.params.id)
+            .then((model) => {
+                (res.json(model))
+            })
+            .catch((err) => res.status(400).json(err));
+    })
 
 module.exports = router;
