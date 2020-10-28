@@ -15,11 +15,25 @@ const ChannelSchema = new Schema({
         type: Date,
         default: Date.now
     }, 
-    members: {
-        type: [{ type: Schema.Types.ObjectId, ref:'User' }],
+
+    channelPicture: {
+        type: String,
+        default: "https://slaw-seed.s3-us-west-1.amazonaws.com/squidward-meme.jpg"
+    },
+
+    channelBackground: {
+        type: String,
+        default: ""
     },
     events: {
         type: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
+    },
+    members: {
+        type: [{ type: Schema.Types.ObjectId, ref:'User' }],
+    },
+
+    events: {
+        type: [{ type: Schema.Types.ObjectId, ref:'Event' }],
     }
 })
 

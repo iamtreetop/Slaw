@@ -5,6 +5,9 @@ const Channel = require("../../models/Channel")
 const validateChannelInput = require("../../validation/channels")
 const Event = require("../../models/Event")
 
+const upload = require("../../services/image_upload");
+const singleUpload = upload.single("image");
+
 router.get("/", (req, res) => {
     Channel
         .find()
@@ -34,7 +37,8 @@ router.post("/",
         }
         const newChannel = new Channel({
             admin: req.user.id,
-            title: req.body.title
+            title: req.body.title,
+            events: req.body.events
         })
         newChannel.save().then(channel => res.json(channel))
     })
@@ -61,5 +65,27 @@ router.delete("/:id",
     })
 
 
+
+router.post("/:id/add-channel-picture", function (req, res) {
+    const channelId = req.params.id;
+
+    singleUpload(req, res, function (err) {
+        if (err) {
+            return res.json({
+                success: false,
+                errors: {
+                    title: "Image Upload Error",
+                    detail: err.message,
+                    error: err,
+                },
+            });
+        }
+
+        // let update = ;
+        Channel.findByIdAndUpdate(channelId, { $set: { channelPicture: req.file.location } }, { new: true })
+            .then((channel) => res.status(200).json({ success: true, channel: channel }))
+            .catch((err) => res.status(400).json({ success: false, error: err }));
+    });
+});
 
 module.exports = router;

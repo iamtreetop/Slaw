@@ -14,12 +14,12 @@ module.exports = function validateEventInput(data) {
     }
 
     if (Validator.isEmpty(data.description)) {
-        errors.decription = "Description field is required"
+        errors.description = "Description field is required"
     }
 
-    if (Validator.isEmpty(data.date)) {
-        errors.date = "Date field is required"
-    }
+    // if (Validator.isEmpty(data.date)) {
+    //     errors.date = "Date field is required"
+    // }
 
     return {
         errors,

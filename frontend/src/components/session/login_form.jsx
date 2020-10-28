@@ -52,7 +52,6 @@ class LoginForm extends React.Component {
       e.preventDefault()
       const demo = { email: "demo_user@aa.io", password: "password" }
       const speed = 100;
-      // debugger
       if (this.state.email !== demo.email) {
         const inputEmail = setInterval(() => {
           if (this.state.email !== demo.email) {
@@ -86,7 +85,7 @@ class LoginForm extends React.Component {
 
     render() {
 
-      const demoButton = <button className="demo-button" onClick={this.demoLogin}>DEMO</button>
+      const demoButton = <button className="login-button" onClick={this.demoLogin}>DEMO</button>
 
       return (
         <div className="login-container">

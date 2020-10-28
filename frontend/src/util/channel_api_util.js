@@ -14,7 +14,6 @@ export const createChannel = channel => {
 }
 
 export const updateChannel = (channel) => {
-  //debugger
   let members = { members: channel.members };
   return axios.patch('/api/channels/' + channel.id, members);
 }

@@ -9,15 +9,21 @@ export const fetchEvent = (eventId) => {
 }
 
 export const createEvent = (event) => {
-  debugger
+  //debugger
   return axios.post('/api/events/create', event)
 }
 
 export const updateEvent = (event) => {
-    //debugger
-    return axios.patch('/api/events/' + event.id, event);
+    let newDetails = { 
+        title: event.title, 
+        description: event.description,
+        date: event.date,
+        todo: event.todo,
+        participants: event.participants
+    };
+    return axios.patch('/api/events/' + event.id, newDetails);
 }
 
 export const deleteEvent = (eventId) => {
-    return axios.delete('/api/events/' + eventId);
+  return axios.delete('/api/events/' + eventId);
 }
