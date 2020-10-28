@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchChannel } from '../../actions/channel_actions';
+import { fetchEvents } from '../../actions/event_actions';
+
 import ChannelShow from "./channel_show";
 import { withRouter } from 'react-router-dom';
 

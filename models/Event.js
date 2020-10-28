@@ -19,20 +19,11 @@ const EventSchema = new Schema({
         required: true,
     },
     participants: {
-        type: Array,
-        default: []
+        type: [{ type: Schema.Types.ObjectId, ref: 'User' }]
     },
     todo: {
-        type: Schema.Types.ObjectId, 
-        ref:'todos' 
-        // type: [{ type: Schema.Types.ObjectId, ref:'todos' }]
-        // type: Schema.Types.ObjectId, 
-        // ref:'Todo' 
-        // type: [{ type: Schema.Types.ObjectId, ref:'Todo' }]
-        // type: Array,
-        // default: []
+        type: [{type: Schema.Types.ObjectId, ref:'Todo'}]
     }
-    // timestamps: true
 })
 
 module.exports = Event = mongoose.model("Event", EventSchema);

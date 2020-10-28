@@ -20,7 +20,9 @@ const ChannelSchema = new Schema({
         type: String,
         default: ""
     },
-
+    events: {
+        type: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
+    },
     members: {
         type: [{ type: Schema.Types.ObjectId, ref:'User' }],
     }
