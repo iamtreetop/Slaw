@@ -27,10 +27,10 @@ class ChannelShow extends React.Component {
                 <div className="channel-show-container">
                     <div className="events-section">
                         <ul>
-                            {this.props.channel.events.map((member, idx) => {
+                            {this.props.channel.events.map((event, idx) => {
                                 return (<li key={idx}>
                                     <h4>
-                                        {member.handle}
+                                        {event.handle}
                                     </h4>
                                 </li>
                                 )
