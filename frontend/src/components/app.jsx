@@ -1,6 +1,6 @@
 import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
 import SideBarContainer from "./sidebar/sidebar_container"
 import ChannelShowContainer from './channels/channel_show_container';
@@ -23,6 +23,7 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/channels" component={ChannelIndexContainer} />
       <ProtectedRoute exact path="/channels/:channelId" component={ChannelShowContainer} />
+      <Redirect to="/"></Redirect>
     </Switch>
   </div>
 );
