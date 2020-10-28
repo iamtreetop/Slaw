@@ -15,6 +15,12 @@ const ChannelSchema = new Schema({
         type: Date,
         default: Date.now
     }, 
+
+    channelPicture: {
+        type: String,
+        default: ""
+    },
+
     members: {
         type: [{ type: Schema.Types.ObjectId, ref:'User' }],
     }
