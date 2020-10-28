@@ -13,12 +13,12 @@ class SideBar extends React.Component {
 
         let channelList = this.props.channels.map((channel, index) => {
             return (
-                <div className="tooltip">
+                <li key={index} className="tooltip">
                     <Link to={"/channels/" + channel._id}>
                         <img src={channel.channelPicture} className="sidebar-channel-items"/>
                         <p className="channel-text">{channel.title}</p>
                     </Link>
-                </div>
+                </li>
             )
         })
 
