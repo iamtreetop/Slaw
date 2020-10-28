@@ -8,7 +8,7 @@ const s3 = new aws.S3();
 aws.config.update({
     secretAccessKey: process.env.S3_ACCESS_SECRET,
     accessKeyId: process.env.S3_ACCESS_KEY,
-    region: "us-west-1",
+    region: "us-east-2",
 });
 
 const fileFilter = (req, file, cb) => {
