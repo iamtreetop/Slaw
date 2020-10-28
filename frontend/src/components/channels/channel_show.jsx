@@ -12,7 +12,7 @@ class ChannelShow extends React.Component {
     }
 
     render() {
-        debugger
+        //debugger
         let picture;
         (this.props.channel.channelId) ? picture = this.props.channel.channelId : picture = null
 
