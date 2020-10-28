@@ -6,7 +6,6 @@ import { withRouter } from 'react-router-dom';
 const mstp = (state) => {
     return {
         channel: {
-            date: "",
             title: "",
             description: "",
             participants: []
