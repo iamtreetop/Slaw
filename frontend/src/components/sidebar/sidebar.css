@@ -16,19 +16,24 @@
     height: 48px;
     border-radius: 30px;
     text-align: center;
-    /* position: relative; */
     margin: 0 0 8px;
     margin-left: 10px;
     margin-right: 10px;
-    /* display: -webkit-box; */
-    /* display: -ms-flexbox; */
     display: flex;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
     align-items: center;
-    /* margin-top: 5px; */
 }
+
+.sidebar-channel-items:hover {
+    border-radius: 10px;
+    background-color: #43b581;
+    color: white;
+    transition: .3s;
+    
+}
+
 
 .sidebar-form {
     width: 48px;
@@ -37,6 +42,79 @@
     margin-left: 10px;
     margin-right: 10px;
     font-size: 25px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .sidebar-form-text{
+  visibility: hidden;
+  width: 150px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  margin-left: 80px;
+  margin-top: -45px;
+  
+}
+
+.tooltip:hover .sidebar-form-text{
+  visibility: visible;
+} 
+
+.tooltip .home-text{
+  visibility: hidden;
+  width: 150px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  margin-left: 65px;
+  margin-top: -25px;
+}
+
+.tooltip:hover .home-text{
+  visibility: visible;
+} 
+
+.tooltip .channel-text{
+  visibility: hidden;
+  width: 150px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  margin-left: 120px;
+  margin-top: -1px;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+  border: none;
+}
+
+.tooltip:hover .channel-text{
+  visibility: visible;
+} 
+
+.sidebar-form:hover {
+    border-radius: 10px;
+    background-color: #43b581;
+    color: white;
+    transition: .3s;
+    cursor: pointer;
+    display: block;
+    position: relative;
+    z-index: 3;
 }
 
 .guild-separator {
