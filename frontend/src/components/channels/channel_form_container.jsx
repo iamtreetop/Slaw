@@ -4,7 +4,7 @@ import { createEvent } from '../../actions/event_actions';
 import ChannelForm from "./channel_form";
 import { closeModal } from '../../actions/modal_actions';
 import { withRouter } from 'react-router-dom';
-import { createEvent } from '../../actions/event_actions';
+
 
 const mstp = (state) =>{
     // debugger
