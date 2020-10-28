@@ -35,7 +35,9 @@ router.post("/create",
             admin: req.user.id,
             title: req.body.title,
             description: req.body.description,
-            date: req.body.date
+            date: req.body.date,
+            participants: req.body.participants,
+            todo: req.body.todo
         })
         newEvent.save().then(event => res.json(event))
     })
@@ -43,12 +45,16 @@ router.post("/create",
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
+        // const newParticipant = req.body.participants;
+        // if (!participants.include(newParticipant)) {
+        //     $push: {participants: newParticipant}
+        // }
         Event.findByIdAndUpdate(req.params.id, {   
                 title: req.body.title, 
                 description: req.body.description,
                 date: req.body.date,
                 $push: {participants: req.body.participants},
-                todo: req.body.todo,
+                // todo: req.body.todo,
                 // participants: req.body.participants,
                 // todo: req.body.todo
             },  

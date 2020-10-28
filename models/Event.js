@@ -23,8 +23,14 @@ const EventSchema = new Schema({
         default: []
     },
     todo: {
-        type: Array,
-        default: []
+        type: Schema.Types.ObjectId, 
+        ref:'todos' 
+        // type: [{ type: Schema.Types.ObjectId, ref:'todos' }]
+        // type: Schema.Types.ObjectId, 
+        // ref:'Todo' 
+        // type: [{ type: Schema.Types.ObjectId, ref:'Todo' }]
+        // type: Array,
+        // default: []
     }
     // timestamps: true
 })
