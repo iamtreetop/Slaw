@@ -88,33 +88,35 @@ class LoginForm extends React.Component {
       const demoButton = <button className="login-button" onClick={this.demoLogin}>DEMO</button>
 
       return (
-        <div className="login-container">
-          <form className="login-wrapper" onSubmit={this.handleSubmit}>
-            <h1>Welcome Back!</h1>
-            <h2 className="login-sub-header">We're excited to see you again!</h2>
-            <div className="login-inputs-wrapper">
-                <label className="login-label">EMAIL</label>
-                <input className="login-input-field"
-                  type="text"
-                  value={this.state.email}
-                  onChange={this.update('email')}
-                />
-              <br/>
-                <label className="login-label">PASSWORD</label>
-                <input className="login-input-field" 
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.update('password')}
-                />
-              <br/>
-              <input className="login-button"
-                  type="submit" 
-                  value="Submit" />
-              {this.renderErrors()}
+        <div className="login-bg-image">
+          <div className="login-container">
+            <form className="login-wrapper" onSubmit={this.handleSubmit}>
+              <h1>Welcome Back!</h1>
+              <h2 className="login-sub-header">We're excited to see you again!</h2>
+              <div className="login-inputs-wrapper">
+                  <label className="login-label">EMAIL</label>
+                  <input className="login-input-field"
+                    type="text"
+                    value={this.state.email}
+                    onChange={this.update('email')}
+                  />
+                <br/>
+                  <label className="login-label">PASSWORD</label>
+                  <input className="login-input-field" 
+                    type="password"
+                    value={this.state.password}
+                    onChange={this.update('password')}
+                  />
+                <br/>
+                <input className="login-button"
+                    type="submit" 
+                    value="Submit" />
+                {this.renderErrors()}
 
-            {demoButton}
-            </div>
-          </form>
+              {demoButton}
+              </div>
+            </form>
+          </div>
         </div>
       );
     }

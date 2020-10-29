@@ -8,7 +8,7 @@ import { fetchChannel } from '../../actions/channel_actions';
 
 
 const mstp = (state, ownProps) => {
-    debugger
+    // debugger
     return {
         eventId: ownProps.match.params.eventId,
         channel: state.channels[ownProps.match.params.channelId]

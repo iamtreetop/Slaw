@@ -1,5 +1,5 @@
 import React from "react";
-import "../channels/channel_show.css"
+import "./event_show.css"
 import { Link } from 'react-router-dom';
 
 class EventShow extends React.Component {
@@ -36,7 +36,7 @@ class EventShow extends React.Component {
             return null;
         }
 
-        debugger
+        // debugger
 
         let todoList = this.state.currentEvent.todo.map(
             (todo) => {
@@ -58,7 +58,7 @@ class EventShow extends React.Component {
 
             //     <ul>{todoList}</ul>
             // </div>
-            <div className="channel-show-container">
+            <div className="event-show-container">
                     
                     <div className="events-section">
                         <div className="section-heading">
@@ -97,13 +97,22 @@ class EventShow extends React.Component {
                              </div>
                          </div>
                     </div> */}
-
-                    <div className="channel-show-container">
-                        <h1>Welcome to {this.props.channel.title}</h1>
-                        <h2>{this.state.currentEvent.description}</h2>
-                        <button onClick={() => this.props.openModal('todo',this.props.eventId)}>Create New Todo</button>
-
-                        <ul>{todoList}</ul>
+                    <div className="main-detail-wrapper">
+                        <div className="event-details-container">
+                            <div className="event-details-left">
+                                <h1>{this.state.currentEvent.title}</h1>
+                                <h2>Welcome to {this.props.channel.title} Channel</h2>
+                                <p>`Description: {this.state.currentEvent.description}</p>
+                            </div>
+                            <div className="event-details-right">
+                                <h1>Workout List</h1>
+                                <button onClick={() => this.props.openModal('todo',this.props.eventId)}>Create New Todo</button>
+                                <ul>{todoList}</ul>
+                            </div>
+                        </div>
+                        <div className="comment-section">
+                            <h1>Comments go here</h1>
+                        </div>
                     </div>
 
 

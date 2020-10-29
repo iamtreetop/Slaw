@@ -17,7 +17,7 @@ class SideBar extends React.Component {
         if (!this.props.channels) return null;
 
         let channelList = this.props.channels.map((channel, index) => {
-            debugger
+            // debugger
             return (
                 <li key={index} className="tooltip">
                     <Link to={`/channels/${channel._id}/${channel.events[0]._id}`}>
