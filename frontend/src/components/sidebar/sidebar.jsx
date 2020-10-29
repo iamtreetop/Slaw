@@ -7,7 +7,8 @@ class SideBar extends React.Component {
         super(props)
     }
 
-    componentDidMount(){
+
+    componentDidMount() {
         this.props.fetchChannels();
     }
 

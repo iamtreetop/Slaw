@@ -1,0 +1,24 @@
+.channel-show-container {
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100vw;
+    position: fixed;
+    z-index: 1;
+}
+
+.members-section {
+    margin-right: 98px;
+}
+
+.events-section, .members-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.show-list ul {
+    list-style-type: none;
+}

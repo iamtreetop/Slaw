@@ -3,9 +3,7 @@ import React from 'react';
 class ChannelForm extends React.Component{
     constructor(props){
         super(props)
-
         this.state = this.props.channel;
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 

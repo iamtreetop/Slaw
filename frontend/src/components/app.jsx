@@ -27,8 +27,9 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/channels" component={ChannelIndexContainer} />
       <ProtectedRoute exact path="/channels/:channelId" component={ChannelShowContainer} />
+      <ProtectedRoute exact path="/events/new" component={EventFormContainer} />
       <ProtectedRoute exact path="/channels/:channelId/:eventId" component={EventShowContainer} />
-      
+
       <Redirect to="/"></Redirect>
     </Switch>
   </div>
