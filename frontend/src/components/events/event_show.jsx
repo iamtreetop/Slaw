@@ -97,14 +97,22 @@ class EventShow extends React.Component {
                              </div>
                          </div>
                     </div> */}
-
-                    <div className="event-show-container">
-                        <h1>{this.state.currentEvent.title}</h1>
-                        <h2>Welcome t {this.props.channel.title} Channel</h2>
-                        <p>`Description: {this.state.currentEvent.description}</p>
-                        <button onClick={() => this.props.openModal('todo',this.props.eventId)}>Create New Todo</button>
-
-                        <ul>{todoList}</ul>
+                    <div className="main-detail-wrapper">
+                        <div className="event-details-container">
+                            <div className="event-details-left">
+                                <h1>{this.state.currentEvent.title}</h1>
+                                <h2>Welcome to {this.props.channel.title} Channel</h2>
+                                <p>`Description: {this.state.currentEvent.description}</p>
+                            </div>
+                            <div className="event-details-right">
+                                <h1>Workout List</h1>
+                                <button onClick={() => this.props.openModal('todo',this.props.eventId)}>Create New Todo</button>
+                                <ul>{todoList}</ul>
+                            </div>
+                        </div>
+                        <div className="comment-section">
+                            <h1>Comments go here</h1>
+                        </div>
                     </div>
 
 

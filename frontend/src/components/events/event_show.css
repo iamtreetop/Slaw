@@ -1,6 +1,6 @@
 .members-section {
-    margin-right: 98px;
-        width: 68px;
+    /* padding-right: 48px; */
+    width: 68px;
     background-color: grey;
 }
 
@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     border: 2px solid grey;
-    margin-left: 15px;
+    /* margin-left: 15px; */
 }
 
 .event-section{
@@ -17,7 +17,8 @@
 
 .show-list ul {
     list-style-type: none;
-    text-align: left
+    text-align: left;
+    padding: 0;
 }
 
 .show-list-items{
@@ -43,7 +44,7 @@
     padding-top: 90px;
     width: 96vw;
     height: 100vh;
-    border: 2px solid green;
+    border: 2px solid red;
     padding-left: 68px;
     display: flex;
     flex-direction: row;
@@ -54,6 +55,30 @@
         linear-gradient(336deg, rgb(16 16 70), rgba(0,0,255,0) 70.71%);
 }
 
+.main-detail-wrapper{
+    border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.event-details-container{
+    border: 2px solid yellow;
+    display: flex;
+    /* width: 100%; */
+    padding-left: 20px;
+    height: 45%;
+}
+
+.event-details-left{
+    /* border: 2px solid green; */
+    width: 50%;
+}
+.event-details-right{
+    border: 2px solid orange;
+    width: 50%;
+    padding-left: 20px;
+}
 
 .event-todo-list{
     width: 300px;
