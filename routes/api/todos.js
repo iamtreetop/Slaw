@@ -25,11 +25,24 @@ router.post("/",
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        Todo.findByIdAndUpdate(req.params.id, { title: req.body.title, status: req.body.status }, {new: true})
+
+        if(req.body.title){
+            Todo.findByIdAndUpdate(req.params.id, { title: req.body.title }, {new: true})
             .then((model) => {
             (res.json(model))
             return model.save();})
             .catch((err) => res.status(400).json(err));
+        }
+
+        if(req.body.status){
+            Todo.findByIdAndUpdate(req.params.id, { status: req.body.status }, {new: true})
+            .then((model) => {
+            (res.json(model))
+            return model.save();})
+            .catch((err) => res.status(400).json(err));
+        }
+
+
     })
 
 router.delete("/:id",

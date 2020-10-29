@@ -10,12 +10,13 @@ import SignupFormContainer from './session/signup_form_container';
 import ChannelIndexContainer from './channels/channel_index_container';
 import EventFormContainer from './events/event_form_container';
 import EventShowContainer from './events/event_show_container';
-import EventFormContainer from "../components/events/event_form_container";
 
 import Modal from "../components/modal/modal"
 
+import "./app_main.css"
+
 const App = () => (
-  <div>
+  <div className="app-main">
       <NavBarContainer />
       <Modal />
       <ProtectedRoute exact path="/channels" component={SideBarContainer} />

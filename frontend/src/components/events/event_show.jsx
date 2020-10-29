@@ -3,6 +3,8 @@ import React from "react";
 class EventShow extends React.Component {
     constructor(props) {
         super(props);
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount(){
@@ -11,6 +13,11 @@ class EventShow extends React.Component {
                 this.setState(action.event.data);
             }
         );
+    }
+
+    handleClick(e, todoId){
+        //debugger
+        this.props.updateTodo({status: e.target.checked, id: todoId});
     }
 
     render() {
@@ -23,7 +30,13 @@ class EventShow extends React.Component {
 
         let todoList = this.state.todo.map(
             (todo) => {
-                return <li>{todo.title}</li>
+                //debugger
+                return (
+                    <li className="todo-list-item">
+                        {todo.title}
+                        <input type="checkbox" onClick={(e)=>this.handleClick(e, todo._id)}/>
+                    </li>
+                )
             }
         )
 
