@@ -1,0 +1,96 @@
+.add-picture {
+    width: 48px;
+    height: 48px;
+    border-radius: 30px;
+    margin-top: 20px;
+    align-self: center;
+}
+
+.channel-form-box {
+    height: 60px;
+    width: 300px;
+    /* font-size: 10px; */
+    margin-bottom: 30px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.channel-form-box {
+    height: 300px;
+    width: 300px;
+    background-color: white;
+    
+}
+
+.close-x {
+  font-family: 'Helvetica', sans-serif;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 1.3em;
+  margin-top: 27px;
+  margin-right: 5px;
+  color: grey;
+  cursor: pointer;
+}
+
+.close-x:hover {
+    color: black;
+    font-weight: bolder;
+    transition: .5s;
+}
+
+.channel-form-header p {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+
+.channel-form-input-box {
+    display: flex;
+    align-self: center;
+    
+}
+
+
+.channel-form-input {
+    width: 200px;
+    height: 25px;
+    align-items: center;
+}
+
+input[type="text"]{  
+    text-align: center; 
+} 
+
+.photo-input-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.photo-input-box p {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+
+.file-input {
+    align-items: center;
+    margin-left: 35px;
+}
+
+.channel-submit-button {
+    width: 175px;
+    height: 40px;
+    align-self: center;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+
+.channel-submit-button:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    transition: .5s;
+}
