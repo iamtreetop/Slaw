@@ -79,13 +79,22 @@ router.post(("/"),
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        if (req.body.members) {
+        if (req.body.members && !req.body.removeCurrentUser) {
             Channel.findByIdAndUpdate(req.params.id, { $push: {members: req.body.members.id} }, {new: true})
                 .then((model) => {
                 (res.json(model))
                 return model.save();})
                 .catch((err) => res.status(400).json(err));
         }
+        else if (req.body.removeCurrentUser){
+            Channel.findByIdAndUpdate(req.params.id, { $pull: {members: req.body.members.id} }, {new: true})
+            .then((model) => {
+            (res.json(model))
+            return model.save();})
+            .catch((err) => res.status(400).json(err));
+        }
+
+
         if (req.body.events) {
             Channel.findByIdAndUpdate(req.params.id, { $push: { events: req.body.events } }, { new: true })
                 .then((model) => {
