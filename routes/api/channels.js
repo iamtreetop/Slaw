@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
     Channel
         .find()
         .populate('members events')
-        .sort({ title: -1 })
+        .sort({ date: -1 })
         .then(channels => res.json(channels))
         .catch(err => res.status(400).json(err));
 })
