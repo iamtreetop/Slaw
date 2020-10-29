@@ -11,6 +11,10 @@ class SideBar extends React.Component {
         this.props.fetchChannels();
     }
 
+    // componentDidUpdate() {
+    //     this.props.fetchChannels();   
+    // }
+
     render() {
 
         // if (!this.props.channel) return null;

@@ -31,6 +31,9 @@ const App = () => (
       <ProtectedRoute exact path="/events/new" component={EventFormContainer} />
       <ProtectedRoute exact path="/channels/:channelId/:eventId" component={EventShowContainer} />
       
+      {/* <ProtectedRoute exact path="/events/new" component={EventFormContainer} /> */}
+      <ProtectedRoute exact path="/channels/:channelId/:eventId" component={EventShowContainer} />
+
       <Redirect to="/"></Redirect>
     </Switch>
   </div>

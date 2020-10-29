@@ -11,6 +11,13 @@ class ChannelShow extends React.Component {
         this.props.fetchChannel();
     }
 
+    componentDidUpdate(prevProps) {
+
+        if(prevProps !== this.props){
+            this.props.fetchChannel();
+        }
+    }
+
     render() {
         if (!this.props.channel) {
             return null
@@ -38,13 +45,13 @@ class ChannelShow extends React.Component {
                                 {this.props.channel.events.map((event, idx) => {
                                     return (<li key={idx}>
                                         <h5>
-                                            {event.title}
+                                            <Link to={`/channels/${this.props.channel._id}/${event._id}`}>{event.title}</Link>
                                         </h5>
                                     </li>
                                     )
                                 })}
                                 <li className="create-event">
-                                    <Link classname="create-event-button" to='/events/new'>
+                                    <Link className="create-event-button" to='/events/new'>
                                         Start your next event 
                                     </Link>
                                 </li>
