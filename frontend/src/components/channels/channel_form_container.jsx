@@ -8,7 +8,6 @@ import { updatePicture } from "../../util/channel_api_util"
 
 
 const mstp = (state) =>{
-    //debugger
     return {
         user: state.session.user,
         channel: {
@@ -18,6 +17,7 @@ const mstp = (state) =>{
             members: [],
             events: [],
             imageFile: null,
+            imageUrl: null,
             channelForm: ""
         }
     }
