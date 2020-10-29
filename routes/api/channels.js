@@ -79,14 +79,14 @@ router.post(("/"),
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        if (req.body.members && !req.body.events) {
+        if (req.body.members) {
             Channel.findByIdAndUpdate(req.params.id, { $push: {members: req.body.members.id} }, {new: true})
                 .then((model) => {
                 (res.json(model))
                 return model.save();})
                 .catch((err) => res.status(400).json(err));
         }
-        else if (req.body.events && !req.body.members) {
+        if (req.body.events) {
             Channel.findByIdAndUpdate(req.params.id, { $push: { events: req.body.events } }, { new: true })
                 .then((model) => {
                     (res.json(model))
@@ -94,13 +94,16 @@ router.patch("/:id",
                 })
                 .catch((err) => res.status(400).json(err));
         }
-        else {
-            Channel.findByIdAndUpdate(req.params.id, { $push: { members: req.body.members.id, events: req.body.events.id} }, {new: true})
-                .then((model) => {
+
+        if (req.body.title){
+            Channel.findByIdAndUpdate(req.params.id, { title: req.body.title }, { new: true })
+            .then((model) => {
                 (res.json(model))
-                return model.save();})
-                .catch((err) => res.status(400).json(err));
+                return model.save();
+            })
+            .catch((err) => res.status(400).json(err));
         }
+
     })
 
 router.delete("/:id",
