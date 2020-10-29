@@ -31,17 +31,14 @@ class ChannelForm extends React.Component{
                 this.setState({
                     events: [action.event.data._id]
                 })
-            this.props.createChannel(this.state).then(
+                let channel = new FormData();
+                channel.append("userId", this.props.user.id)
+                channel.append("title", this.state.title)
+                channel.append("events", this.state.events)
+                channel.append("image", this.state.imageFile)
+
+                this.props.createChannel(channel).then(
                 (action) => {
-                    if (this.state.imageFile) {
-                        this.setState({
-                            channelForm: action.channel.data._id
-                        })
-                        let image = new FormData();
-                        image.append("channelForm", this.state.channelForm)
-                        image.append("image", this.state.imageFile)
-                        this.props.updatePicture(image)
-                    }
                     this.props.history.push(`/channels/${action.channel.data._id}`)
                     this.props.closeModal()
                 }

@@ -8,9 +8,9 @@ import { updatePicture } from "../../util/channel_api_util"
 
 
 const mstp = (state) =>{
-    // debugger
+    debugger
     return {
-        // user: state.session.user,
+        user: state.session.user,
         channel: {
             admin: "",
             date: "",
