@@ -18,6 +18,7 @@ const mstp = (state) =>{
             members: [],
             events: [],
             imageFile: null,
+            imageUrl: null,
             channelForm: ""
         }
     }
