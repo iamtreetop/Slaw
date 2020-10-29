@@ -3,10 +3,7 @@ import React from 'react';
 class ChannelForm extends React.Component{
     constructor(props){
         super(props)
-        this.fileInput = React.createRef();
-
         this.state = this.props.channel;
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleFiles = this.handleFiles.bind(this);
