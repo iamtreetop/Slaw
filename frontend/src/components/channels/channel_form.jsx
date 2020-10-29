@@ -49,7 +49,6 @@ class ChannelForm extends React.Component{
                     this.props.closeModal()
                 }
             ).catch((res) => console.log(res))
-        // })
         })
     }
 
