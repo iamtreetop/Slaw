@@ -13,8 +13,10 @@ import EventFormContainer from "../components/events/event_form_container";
 
 import Modal from "../components/modal/modal"
 
+import "./app_main.css"
+
 const App = () => (
-  <div>
+  <div className="app-main">
       <NavBarContainer />
       <Modal />
       <ProtectedRoute exact path="/channels" component={SideBarContainer} />
