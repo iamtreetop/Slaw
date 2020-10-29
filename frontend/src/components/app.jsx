@@ -20,19 +20,19 @@ const App = () => (
       <NavBarContainer />
       <Modal />
       <ProtectedRoute exact path="/channels" component={SideBarContainer} />
-      <ProtectedRoute exact path="/channels/:channelId" component={SideBarContainer} />
+      {/* <ProtectedRoute exact path="/channels/:channelId" component={SideBarContainer} /> */}
       <ProtectedRoute exact path="/channels/:channelId/:eventId" component={SideBarContainer} />
-      <ProtectedRoute exact path="/channels/:channelId/:eventId" component={ChannelShowContainer} />
     <Switch>
       <AuthRoute exact path="/" component={MainPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/channels" component={ChannelIndexContainer} />
-      <ProtectedRoute exact path="/channels/:channelId" component={ChannelShowContainer} />
+      {/* <ProtectedRoute exact path="/channels/:channelId" component={ChannelShowContainer} /> */}
       <ProtectedRoute exact path="/channels/:channelId/:eventId" component={EventShowContainer} />
       <ProtectedRoute exact path="/events/:channelId/new" component={EventFormContainer} />
       <Redirect to="/"></Redirect>
     </Switch>
+      {/* <ProtectedRoute exact path="/channels/:channelId/:eventId" component={ChannelShowContainer} /> */}
   </div>
 );
 

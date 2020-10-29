@@ -1,4 +1,5 @@
 import React from 'react';
+import './event_form.css'
 
 class EventForm extends React.Component {
     constructor(props) {
@@ -36,36 +37,33 @@ class EventForm extends React.Component {
 
     render() {
         return (
-            <div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <h1>Set Up Your Next Event</h1>
-                <form onSubmit={this.handleSubmit}>
-                        <label>Event Name
-                            <input type="text"
+            <div className="event-form-container">
+                <form className="event-form" onSubmit={this.handleSubmit}>
+                        <h1>Set Up Your Next Event</h1>
+                        <label>Event Name<br/>
+                            <input className="event-text-field" 
+                                type="text"
                                 value={this.state.title}
                                 onChange={this.handleChange("title")}
                                 placeholder="Wednesday Leg Days"
                             />
                         </label>
-                        <label>Event Details
+                    <br/>
+                        <label>Event Details<br/>
                             <textarea
                                 value={this.state.description}
                                 onChange={this.handleChange("description")}
                                 placeholder="6:30pm at LA Fitness"
                             />
                         </label>
-                        <label>Event End Date(if applicable)
+                    <br/>
+                        <label>Event End Date(if applicable)<br/>
                             <input type="date"
                                 value={!this.state.date ? "" : this.state.date}
                                 min={Date.now} onChange={this.handleChange("date")} 
                             />
                         </label>
+                    <br/>
                         <input type="submit" value="Submit" />
                 </form>
 

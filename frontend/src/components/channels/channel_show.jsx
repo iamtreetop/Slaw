@@ -70,6 +70,15 @@ class ChannelShow extends React.Component {
                          </div>
                     </div>
 
+                    <div className="channel-show-container">
+                        <h1>Welcome to {this.props.channel.title}</h1>
+                        <h2>{this.state.currentEvent.description}</h2>
+                        <button onClick={() => this.props.openModal('todo',this.props.eventId)}>Create New Todo</button>
+
+                        {/* <ul>{todoList}</ul> */}
+                    </div>
+
+
                     <div className="members-section">
                         <div className="section-heading">
                             Members
