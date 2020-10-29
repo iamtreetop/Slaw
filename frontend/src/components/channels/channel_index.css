@@ -87,3 +87,10 @@
     font-weight: bolder;
     box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
 }
+
+.channel-form-box {
+    height: 300px;
+    width: 300px;
+    background-color: white;
+    
+}
