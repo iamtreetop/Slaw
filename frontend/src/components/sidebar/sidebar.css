@@ -1,15 +1,15 @@
 .sidebar-container {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: flex;
     flex-direction: column;
     padding: 12px 0 0;
     background-color: var(--background-tertiary);
     background-color: transparent;
-    height: 99vh;
+    height: 85vh;
     width: max-content;
     position: absolute;
-    /* top: 79px; */
     z-index: 1;
+    padding-top: 100px;
 }
 
 .sidebar-channel-items {

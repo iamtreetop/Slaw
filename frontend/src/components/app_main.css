@@ -1,5 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Syne+Tactile&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap');
 .app-main{
-    font-family: 'Roboto', sans-serif;
-    font-family: 'Syne Tactile', cursive;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+body{
+    margin: 0;
 }
