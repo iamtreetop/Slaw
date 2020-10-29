@@ -24,18 +24,13 @@ class ChannelShow extends React.Component {
         return (
             !projectCheck ? <div></div> : (
                 <div className="channel-show-container">
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
+                    
                     <div className="events-section">
-
                         <div className="section-heading">
                             <h3>Events</h3>
                         </div>
                         <div className="show-list">
-                            <ul>
+                            <ul className="show-list-items">
                                 {this.props.channel.events.map((event, idx) => {
                                     return (<li key={idx}>
                                         <h5>
@@ -52,6 +47,22 @@ class ChannelShow extends React.Component {
                             </ul>
                         </div>
                     </div>
+
+                    <div className="event-detail-container">
+                         <div className="event-left-wrapper">
+                            <div className="left-text-wrapper">
+                                <h3>TITLE</h3>
+                                <h4>DESCRIPTION</h4>
+                            </div>
+                            <div className="event-todo-list">TODO-List</div>
+                         </div>
+                         <div className="event-right-wrapper">
+                             <div className="comment-container">
+                                 <ul>COMMENTS</ul>
+                             </div>
+                         </div>
+                    </div>
+
                     <div className="members-section">
                         <div className="section-heading">
                             Members
