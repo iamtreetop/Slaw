@@ -8,6 +8,8 @@ import MainPage from './main/main_page';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import ChannelIndexContainer from './channels/channel_index_container';
+import EventFormContainer from './events/event_form_container';
+
 
 import Modal from "../components/modal/modal"
 
@@ -23,6 +25,7 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/channels" component={ChannelIndexContainer} />
       <ProtectedRoute exact path="/channels/:channelId" component={ChannelShowContainer} />
+      <ProtectedRoute exact path="/events/new" component={EventFormContainer} />
       <Redirect to="/"></Redirect>
     </Switch>
   </div>

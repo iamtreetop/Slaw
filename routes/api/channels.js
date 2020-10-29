@@ -11,6 +11,7 @@ const singleUpload = upload.single("image");
 router.get("/", (req, res) => {
     Channel
         .find()
+        .populate('members events')
         .sort({ title: -1 })
         .then(channels => res.json(channels))
         .catch(err => res.status(400).json(err));
@@ -52,10 +53,9 @@ router.patch("/:id",
                 (res.json(model))
                 return model.save();})
                 .catch((err) => res.status(400).json(err));
-
         }
         else if (req.body.events && !req.body.members) {
-            Channel.findByIdAndUpdate(req.params.id, { $push: { events: req.body.events.id } }, { new: true })
+            Channel.findByIdAndUpdate(req.params.id, { $push: { events: req.body.events } }, { new: true })
                 .then((model) => {
                     (res.json(model))
                     return model.save();

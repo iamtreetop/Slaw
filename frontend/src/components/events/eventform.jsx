@@ -3,8 +3,8 @@ import React from 'react';
 class EventForm extends React.Component {
     constructor(props) {
         super(props)
-
-        this.state = this.props.channel;
+        // debugger
+        this.state = this.props.event;
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,7 +22,7 @@ class EventForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        this.props.createChannel(this.state).then(
+        this.props.createEvent(this.state).then(
             (action) => {
                 this.props.history.push(`/channels/${action.channel.data._id}`)
                 this.props.closeModal()
@@ -32,22 +32,40 @@ class EventForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <input type="text"
-                        value={this.state.title}
-                        onChange={this.handleChange("title")}
-                        placeholder="Enter your new channel's title"
-                    />
-                    <input type="date"
-                        value={this.state.title}
-                        onChange={this.handleChange("title")}
-                        placeholder="Enter your new channel's title"
-                    />
-                    <input type="submit" value="Submit" />
+            <div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <h1>Set Up Your Next Event</h1>
+                <form onSubmit={this.handleSubmit}>
+                        <label>Event Name
+                            <input type="text"
+                                value={this.state.title}
+                                onChange={this.handleChange("title")}
+                                placeholder="Wednesday Leg Days"
+                            />
+                        </label>
+                        <label>Event Details
+                            <textarea
+                                value={this.state.description}
+                                onChange={this.handleChange("description")}
+                                placeholder="6:30pm at LA Fitness"
+                            />
+                        </label>
+                        <label>Event End Date(if applicable)
+                            <input type="date"
+                                value={!this.state.date ? "" : this.state.date}
+                                min={Date.now} onChange={this.handleChange("date")} 
+                            />
+                        </label>
+                        <input type="submit" value="Submit" />
+                </form>
 
-                </div>
-            </form>
+            </div>
         )
     }
 }
