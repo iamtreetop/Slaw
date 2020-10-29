@@ -51,7 +51,7 @@ class ChannelShow extends React.Component {
                                     )
                                 })}
                                 <li className="create-event">
-                                    <Link className="create-event-button" to='/events/new'>
+                                    <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
                                         Start your next event 
                                     </Link>
                                 </li>

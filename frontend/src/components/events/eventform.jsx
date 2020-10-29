@@ -24,10 +24,14 @@ class EventForm extends React.Component {
 
         this.props.createEvent(this.state).then(
             (action) => {
-                this.props.history.push(`/channels/${action.channel.data._id}`)
-                this.props.closeModal()
-            }
-        )
+                debugger
+                this.setState({
+                    events: [action.event.data._id]
+                })
+                this.props.updateChannel({events: this.state.events, id: this.props.match.params.channelId}).catch
+                ((res) => console.log(res))
+                this.props.history.push(`/channels/${this.props.match.params.channelId}`)
+            })
     }
 
     render() {
