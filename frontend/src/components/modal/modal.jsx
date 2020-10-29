@@ -2,6 +2,7 @@ import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import ChannelFormContainer from '../channels/channel_form_container';
+import TodoFormContainer from "../todos/todo_form_container";
 import "./modal.css"
 
 
@@ -14,6 +15,9 @@ const Modal = ({ modal, closeModal }) => {
         case 'channel':
             component = <ChannelFormContainer />;
             break;
+        case 'todo':
+            component = <TodoFormContainer id={modal.id} />;
+            break;    
         default:
             return null;
     }

@@ -14,14 +14,16 @@ export const createEvent = (event) => {
 }
 
 export const updateEvent = (event) => {
-    let newDetails = { 
-        title: event.title, 
-        description: event.description,
-        date: event.date,
-        todo: event.todo,
-        participants: event.participants
-    };
-    return axios.patch('/api/events/' + event.id, newDetails);
+    //debugger
+
+    // let newDetails = { 
+    //     title: event.title, 
+    //     description: event.description,
+    //     date: event.date,
+    //     todo: event.todo,
+    //     participants: event.participants
+    // };
+    return axios.patch('/api/events/' + event.id, event);
 }
 
 export const deleteEvent = (eventId) => {

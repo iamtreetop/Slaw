@@ -24,7 +24,13 @@ class ChannelShow extends React.Component {
         return (
             !projectCheck ? <div></div> : (
                 <div className="channel-show-container">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                     <div className="events-section">
+
                         <div className="section-heading">
                             <h3>Events</h3>
                         </div>
@@ -33,7 +39,7 @@ class ChannelShow extends React.Component {
                                 {this.props.channel.events.map((event, idx) => {
                                     return (<li key={idx}>
                                         <h5>
-                                            {event.title}
+                                            <Link to={`/channels/${this.props.channel._id}/${event._id}`}>{event.title}</Link>
                                         </h5>
                                     </li>
                                     )
