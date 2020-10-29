@@ -35,7 +35,6 @@ router.get("/:id", (req, res) => {
 router.post(("/"),
     passport.authenticate("jwt", { session: false }),
     function (req, res) {
-        debugger
         singleUpload(req, res, function (err) {
         if (err) {
             return res.json({
@@ -51,15 +50,29 @@ router.post(("/"),
         if (!isValid) {
             return res.status(400).json(errors)
         }
-        debugger
-        const newChannel = new Channel({
-            admin: req.body.userId,
-            title: req.body.title,
-            events: req.body.events,
-            channelPicture: req.file.location,
+        let newChannel;
+        if (!req.file) {
+            newChannel = new Channel({
+                admin: req.body.userId,
+                title: req.body.title,
+                events: req.body.events,
+            })
+        } else {
+            newChannel = new Channel({
+                admin: req.body.userId,
+                title: req.body.title,
+                events: req.body.events,
+                channelPicture: req.file.location,
+            })
+        }
 
-        })
         newChannel.save().then(channel => res.json(channel)).catch((err) => res.status(400).json({ success: false, error: err }))
+        // Channel.findById(newChannel.doc._id)
+        //     .populate("events")
+        //     .exec(function (err, channel) {
+        //         if (err) return console.log(err)
+        //         res.json(channel)
+        //     }) 
     });
 });
 
