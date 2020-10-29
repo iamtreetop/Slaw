@@ -11,18 +11,16 @@ class SideBar extends React.Component {
         this.props.fetchChannels();
     }
 
-    // componentDidUpdate() {
-    //     this.props.fetchChannels();   
-    // }
 
     render() {
 
-        // if (!this.props.channel) return null;
+        if (!this.props.channels) return null;
 
         let channelList = this.props.channels.map((channel, index) => {
+            debugger
             return (
                 <li key={index} className="tooltip">
-                    <Link to={"/channels/" + channel._id}>
+                    <Link to={`/channels/${channel._id}/${channel.events[0]._id}`}>
                         <img src={channel.channelPicture} className="sidebar-channel-items"/>
                         <p className="channel-text">{channel.title}</p>
                     </Link>
