@@ -3,6 +3,7 @@ import EventShow from "../events/event_show";
 import { withRouter } from 'react-router-dom';
 import { openModal } from '../../actions/modal_actions';
 import { fetchEvent } from '../../actions/event_actions';
+import { fetchTodo } from '../../util/todo_api_util';
 
 const mstp = (state, ownProps) => {
     //debugger
@@ -14,6 +15,7 @@ const mstp = (state, ownProps) => {
 const mdtp = (dispatch) => {
     return {
         fetchEvent: (eventId) => dispatch(fetchEvent(eventId)),
+       // fetchTodo: (todoId) => fetchTodo(todoId),
         openModal: (modal, id) => (dispatch(openModal(modal, id)))
     }
 }
