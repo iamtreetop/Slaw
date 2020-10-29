@@ -47,7 +47,7 @@ class ChannelShow extends React.Component {
                                     )
                                 })}
                                 <li className="create-event">
-                                    <Link className="create-event-button" to='/events/new'>
+                                    <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
                                         Start your next event 
                                     </Link>
                                 </li>
@@ -69,6 +69,15 @@ class ChannelShow extends React.Component {
                              </div>
                          </div>
                     </div>
+
+                    <div className="channel-show-container">
+                        <h1>Welcome to {this.props.channel.title}</h1>
+                        <h2>{this.state.currentEvent.description}</h2>
+                        <button onClick={() => this.props.openModal('todo',this.props.eventId)}>Create New Todo</button>
+
+                        {/* <ul>{todoList}</ul> */}
+                    </div>
+
 
                     <div className="members-section">
                         <div className="section-heading">

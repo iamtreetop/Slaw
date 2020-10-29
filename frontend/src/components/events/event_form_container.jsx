@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { createEvent } from '../../actions/event_actions';
+import { updateChannel } from '../../actions/channel_actions'
 import EventForm from "../events/eventform";
 import { withRouter } from 'react-router-dom';
 
@@ -15,7 +16,8 @@ const mstp = (state, ownProps) => {
 
 const mdtp = (dispatch) => {
     return {
-        createEvent: (event) => dispatch(createEvent(event))
+        createEvent: (event) => dispatch(createEvent(event)),
+        updateChannel: (channel) => dispatch(updateChannel(channel))
     }
 }
 

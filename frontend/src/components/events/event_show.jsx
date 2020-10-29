@@ -1,40 +1,129 @@
 import React from "react";
+import "../channels/channel_show.css"
+import { Link } from 'react-router-dom';
 
 class EventShow extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {currentEvent: null};
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount(){
         this.props.fetchEvent(this.props.eventId).then( (action) => {
                 //debugger
-                this.setState(action.event.data);
+                this.setState({currentEvent: action.event.data});
             }
         );
+        // this.props.fetchChannel(this.props.match.params.channelId)
+        //     .then((action) => {
+        //         debugger
+        //         this.setState({
+        //             currentEvent: this.props.channel.events[this.props.eventId]
+        //         });
+        //     });
+        
+    }
+
+    handleClick(e, todoId){
+        //debugger
+        this.props.updateTodo({status: e.target.checked, id: todoId});
     }
 
     render() {
 
-        if(!this.state){
+        if(this.state.currentEvent === null){
             return null;
         }
 
-        //debugger
+        debugger
 
-        let todoList = this.state.todo.map(
+        let todoList = this.state.currentEvent.todo.map(
             (todo) => {
-                return <li>{todo.title}</li>
+                //debugger
+                return (
+                    <li className="todo-list-item">
+                        {todo.title}
+                        <input type="checkbox" onClick={(e)=>this.handleClick(e, todo._id)}/>
+                    </li>
+                )
             }
         )
 
         return (
-            <div>
-                <h1>Welcome to {this.state.title}</h1>
-                <h2>{this.state.description}</h2>
-                <button onClick={() => this.props.openModal('todo',this.props.eventId)}>Create New Todo</button>
+            // <div className="channel-show-container">
+            //     <h1>Welcome to {this.props.channel.title}</h1>
+            //     <h2>{this.state.currentEvent.description}</h2>
+            //     <button onClick={() => this.props.openModal('todo',this.props.eventId)}>Create New Todo</button>
 
-                <ul>{todoList}</ul>
-            </div>
+            //     <ul>{todoList}</ul>
+            // </div>
+            <div className="channel-show-container">
+                    
+                    <div className="events-section">
+                        <div className="section-heading">
+                            <h3>Events</h3>
+                        </div>
+                        <div className="show-list">
+                            <ul className="show-list-items">
+                                {this.props.channel.events.map((event, idx) => {
+                                    return (<li key={idx}>
+                                        <h5>
+                                            <Link to={`/channels/${this.props.channel._id}/${event._id}`}>{event.title}</Link>
+                                        </h5>
+                                    </li>
+                                    )
+                                })}
+                                <li className="create-event">
+                                    <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
+                                        Start your next event 
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/* <div className="event-detail-container">
+                         <div className="event-left-wrapper">
+                            <div className="left-text-wrapper">
+                                <h3>TITLE</h3>
+                                <h4>DESCRIPTION</h4>
+                            </div>
+                            <div className="event-todo-list">TODO-List</div>
+                         </div>
+                         <div className="event-right-wrapper">
+                             <div className="comment-container">
+                                 <ul>COMMENTS</ul>
+                             </div>
+                         </div>
+                    </div> */}
+
+                    <div className="channel-show-container">
+                        <h1>Welcome to {this.props.channel.title}</h1>
+                        <h2>{this.state.currentEvent.description}</h2>
+                        <button onClick={() => this.props.openModal('todo',this.props.eventId)}>Create New Todo</button>
+
+                        <ul>{todoList}</ul>
+                    </div>
+
+
+                    <div className="members-section">
+                        <div className="section-heading">
+                            Members
+                        </div>
+                        <div className="show-list">
+                            <ul>
+                                {this.props.channel.members.map((member, idx)=>{
+                                    return (<li key={idx}>
+                                        <h5>
+                                            {member.handle}
+                                        </h5>
+                                    </li>
+                                )})}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
         )
     }
 }
