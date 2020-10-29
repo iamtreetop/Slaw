@@ -25,7 +25,7 @@ class EventForm extends React.Component {
 
         this.props.createEvent(this.state).then(
             (action) => {
-                debugger
+                // debugger
                 this.setState({
                     events: [action.event.data._id]
                 })

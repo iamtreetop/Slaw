@@ -40,8 +40,8 @@ class ChannelForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-
-        this.props.createEvent({title: "General", description: `Welcome to ${this.state.title}`})
+        let descriptionText = "SOME FANCY DESCRIPTION"
+        this.props.createEvent({title: "General", description: descriptionText})
             .then((action) => {
                 this.setState({
                     events: [action.event.data._id]
