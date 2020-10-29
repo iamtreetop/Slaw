@@ -11,6 +11,13 @@ class ChannelShow extends React.Component {
         this.props.fetchChannel();
     }
 
+    // componentDidUpdate(prevProps) {
+
+    //     if(prevProps !== this.props){
+    //         this.props.fetchChannel();
+    //     }
+    // }
+
     render() {
         if (!this.props.channel) {
             return null
@@ -45,7 +52,7 @@ class ChannelShow extends React.Component {
                                     )
                                 })}
                                 <li className="create-event">
-                                    <Link classname="create-event-button" to='/events/new'>
+                                    <Link className="create-event-button" to='/events/new'>
                                         Start your next event 
                                     </Link>
                                 </li>
