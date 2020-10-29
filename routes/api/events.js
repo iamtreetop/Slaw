@@ -65,12 +65,9 @@ router.patch("/:id",
         //         .catch((err) => res.status(400).json(err));
 
 
-        if (req.body.participants && !req.body.todo) {
+        if (req.body.participants) {
             Event.findByIdAndUpdate(req.params.id,
                 {            
-                    title: req.body.title, 
-                    description: req.body.description,
-                    date: req.body.date,
                     $push: {participants: req.body.participants.id},
                 },  
                 {new: true})
@@ -80,13 +77,11 @@ router.patch("/:id",
                 .catch((err) => res.status(400).json(err));
 
         }
-        else if (req.body.todo && !req.body.participants) {
+        
+        if (req.body.todo) {
             Event.findByIdAndUpdate(req.params.id,
                 {            
-                    title: req.body.title, 
-                    description: req.body.description,
-                    date: req.body.date,
-                    $push: {todo: req.body.todo.id},
+                    $push: {todo: req.body.todo},
                 },  
                 {new: true})
                 .then((model) => {
@@ -95,19 +90,43 @@ router.patch("/:id",
                 })
                 .catch((err) => res.status(400).json(err));
         }
-        else {
+
+        if (req.body.title){
             Event.findByIdAndUpdate(req.params.id,
                 {            
-                    title: req.body.title, 
-                    description: req.body.description,
-                    date: req.body.date,
-                    $push: {participants: req.body.participants.id},
-                    $push: {todo: req.body.todo.id},
-                },
+                    title: req.body.title,
+                },  
                 {new: true})
                 .then((model) => {
-                (res.json(model))
-                return model.save();})
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
+        }
+
+        if (req.body.description){
+            Event.findByIdAndUpdate(req.params.id,
+                {            
+                    description: req.body.description,
+                },  
+                {new: true})
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
+        }
+
+        if (req.body.date){
+            Event.findByIdAndUpdate(req.params.id,
+                {            
+                    date: req.body.date,
+                },  
+                {new: true})
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
                 .catch((err) => res.status(400).json(err));
         }
     })

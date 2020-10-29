@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { updateEvent } from '../../actions/event_actions';
+import { updateEvent, fetchEvent } from '../../actions/event_actions';
 import { createTodo } from "../../util/todo_api_util";
 import TodoForm from "../todos/todo_form";
 import { withRouter } from 'react-router-dom';
@@ -22,6 +22,7 @@ const mdtp = (dispatch) => {
     return {
         createTodo: (todo) => createTodo(todo),
         updateEvent: (event) => dispatch(updateEvent(event)),
+        fetchEvent: (eventId) => dispatch(fetchEvent(eventId)),
         closeModal: () => dispatch(closeModal())
     }
 }

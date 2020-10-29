@@ -7,7 +7,8 @@ class EventShow extends React.Component {
 
     componentDidMount(){
         this.props.fetchEvent(this.props.eventId).then( (action) => {
-                this.setState(action.event);
+                //debugger
+                this.setState(action.event.data);
             }
         );
     }

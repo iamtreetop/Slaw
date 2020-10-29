@@ -11,6 +11,10 @@ class TodoForm extends React.Component{
 
     }
 
+    componentDidMount(){
+        this.props.fetchEvent(this.props.eventId);
+    }
+
     handleChange(type){
         return e => {
             this.setState({
@@ -30,7 +34,11 @@ class TodoForm extends React.Component{
                     todo: todo.data._id
                 }
                 //debugger
-                this.props.updateEvent(newEventState);
+                this.props.updateEvent(newEventState).then(
+                    (action) => {
+                        //debugger
+                    }
+                );
                 this.props.closeModal();
             }
         )
