@@ -50,7 +50,7 @@ app.use("/api/comments", comments);
 
 app.use(passport.initialize());
 
-const port = process.env.PORT || 5200;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)

@@ -17,6 +17,7 @@ const mstp = (state) =>{
             members: [],
             events: [],
             imageFile: null,
+            imageUrl: null,
             channelForm: ""
         }
     }
@@ -27,7 +28,6 @@ const mdtp = (dispatch) => {
         createChannel: (channel) => dispatch(createChannel(channel)),
         createEvent: (event) => dispatch(createEvent(event)),
         closeModal: () => dispatch(closeModal()),
-        createEvent: (event) => dispatch(createEvent(event)),
         updatePicture: (image) => updatePicture(image)
         // Would have something to clear eerrors?
     }
