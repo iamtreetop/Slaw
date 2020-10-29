@@ -32,7 +32,7 @@ class EventShow extends React.Component {
 
     render() {
 
-        if(this.state.currentEvent === null){
+        if(this.state.currentEvent === null || !this.props.channel) {
             return null;
         }
 
