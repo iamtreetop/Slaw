@@ -8,6 +8,10 @@ const Event = require("../../models/Event")
 const upload = require("../../services/image_upload");
 const singleUpload = upload.single("image");
 
+// const formidable = require('express-formidable');
+
+// router.use(formidable())
+
 router.get("/", (req, res) => {
     Channel
         .find()
@@ -26,23 +30,51 @@ router.get("/:id", (req, res) => {
         }) 
         // .then(channel => res.json(channel))
         // .catch(err => res.status(400).json(err));
-})
-
-router.post("/",
+    })
+    
+router.post(("/"),
     passport.authenticate("jwt", { session: false }),
-    (req, res) => {
+    function (req, res) {
+        singleUpload(req, res, function (err) {
+        if (err) {
+            return res.json({
+                success: false,
+                errors: {
+                    title: "Image Upload Error",
+                    detail: err.message,
+                    error: err,
+                },
+            });
+        }
         const { isValid, errors } = validateChannelInput(req.body);
-
         if (!isValid) {
             return res.status(400).json(errors)
         }
-        const newChannel = new Channel({
-            admin: req.user.id,
-            title: req.body.title,
-            events: req.body.events
-        })
-        newChannel.save().then(channel => res.json(channel))
-    })
+        let newChannel;
+        if (!req.file) {
+            newChannel = new Channel({
+                admin: req.body.userId,
+                title: req.body.title,
+                events: req.body.events,
+            })
+        } else {
+            newChannel = new Channel({
+                admin: req.body.userId,
+                title: req.body.title,
+                events: req.body.events,
+                channelPicture: req.file.location,
+            })
+        }
+
+        newChannel.save().then(channel => res.json(channel)).catch((err) => res.status(400).json({ success: false, error: err }))
+        // Channel.findById(newChannel.doc._id)
+        //     .populate("events")
+        //     .exec(function (err, channel) {
+        //         if (err) return console.log(err)
+        //         res.json(channel)
+        //     }) 
+    });
+});
 
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
@@ -84,9 +116,7 @@ router.delete("/:id",
 
 
 
-router.post("/:id/add-channel-picture", function (req, res) {
-    const channelId = req.params.id;
-
+router.post("/add-channel-picture", function (req, res) {
     singleUpload(req, res, function (err) {
         if (err) {
             return res.json({
@@ -98,9 +128,7 @@ router.post("/:id/add-channel-picture", function (req, res) {
                 },
             });
         }
-
-        // let update = ;
-        Channel.findByIdAndUpdate(channelId, { $set: { channelPicture: req.file.location } }, { new: true })
+        Channel.findByIdAndUpdate(req.body.channelForm, { $set: { channelPicture: req.file.location } }, { new: true })
             .then((channel) => res.status(200).json({ success: true, channel: channel }))
             .catch((err) => res.status(400).json({ success: false, error: err }));
     });
