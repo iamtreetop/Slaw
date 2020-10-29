@@ -34,19 +34,34 @@ router.get("/:id", (req, res) => {
     
 router.post(("/"),
     passport.authenticate("jwt", { session: false }),
-    (req, res) => {
-
+    function (req, res) {
+        debugger
+        singleUpload(req, res, function (err) {
+        if (err) {
+            return res.json({
+                success: false,
+                errors: {
+                    title: "Image Upload Error",
+                    detail: err.message,
+                    error: err,
+                },
+            });
+        }
         const { isValid, errors } = validateChannelInput(req.body);
         if (!isValid) {
             return res.status(400).json(errors)
         }
+        debugger
         const newChannel = new Channel({
-            admin: req.user.id,
+            admin: req.body.userId,
             title: req.body.title,
             events: req.body.events,
+            channelPicture: req.file.location,
+
         })
-            newChannel.save().then(channel => res.json(channel)).catch((err) => res.status(400).json({ success: false, error: err }))
-    })
+        newChannel.save().then(channel => res.json(channel)).catch((err) => res.status(400).json({ success: false, error: err }))
+    });
+});
 
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
