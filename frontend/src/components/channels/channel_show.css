@@ -1,24 +1,66 @@
 .channel-show-container {
-    position: absolute;
-    margin-top: 100px;
-    margin-left: 50px;
+    width: 96vw;
+    height: 100vh;
+    border: 2px solid green;
+    padding-left: 68px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100vw;
-    position: fixed;
-    z-index: 1;
+    background: linear-gradient(217deg, rgba(6, 39, 43,.9), rgba(6,39,43,.9) 70.71%), linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgb(16 16 70), rgba(0,0,255,0) 70.71%);
 }
+
 
 .members-section {
     margin-right: 98px;
+        width: 68px;
+    background-color: grey;
 }
 
 .events-section, .members-section {
     display: flex;
     flex-direction: column;
+    border: 2px solid grey;
+    margin-left: 15px;
+}
+
+.event-section{
+    width: 200px;
 }
 
 .show-list ul {
     list-style-type: none;
+    text-align: left
+}
+
+.show-list-items{
+    padding: 0;
+    text-align: left;
+}
+
+.event-left-wrapper{
+    width: 66vw;
+    border: 2px solid yellow;
+    height: 401px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.left-text-wrapper{
+    display: flex;
+    border: 2px solid blue;
+    flex-direction: column;
+}
+
+.event-todo-list{
+    width: 300px;
+    border: 2px solid red;
+    height: 398px;
+    display: flex;
+    justify-content: center;
+}
+
+.comment-container{
+    width: 66vw;
+    height: 48vh;
+    border: 2px solid white;
 }
