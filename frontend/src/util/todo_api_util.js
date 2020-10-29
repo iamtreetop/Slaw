@@ -9,6 +9,7 @@ export const fetchTodo = (todoId) => {
 };
 
 export const createTodo = (todo) => {
+    // debugger
     return axios.post('/api/todos/', todo)
 }
 
@@ -22,5 +23,6 @@ export const updateTodo = (todo) => {
 }
 
 export const deleteTodo = (todoId) => {
-    return axios.delete('/api/todos' + todoId)
+    // debugger
+    return axios.delete('/api/todos/' + todoId)
 }

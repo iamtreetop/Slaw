@@ -24,6 +24,11 @@ class ChannelShow extends React.Component {
         return (
             !projectCheck ? <div></div> : (
                 <div className="channel-show-container">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                     <div className="events-section">
                         <div className="section-heading">
                             <h3>Events</h3>
