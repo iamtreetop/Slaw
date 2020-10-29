@@ -13,7 +13,7 @@ class ChannelShow extends React.Component {
 
     componentDidUpdate(prevProps) {
 
-        if(prevProps !== this.props){
+        if(!this.props.channel){
             this.props.fetchChannel();
         }
     }
