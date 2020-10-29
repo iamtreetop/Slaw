@@ -25,20 +25,26 @@ class ChannelShow extends React.Component {
         return (
             !projectCheck ? <div></div> : (
                 <div className="channel-show-container">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                     <div className="events-section">
                         <ul>
                             {this.props.channel.events.map((event, idx) => {
+                                //debugger
                                 return (<li key={idx}>
                                     <h4>
-                                        {event.handle}
+                                        <Link to={`/channels/${this.props.channel._id}/${event._id}`}>{event.title}</Link>
                                     </h4>
                                 </li>
                                 )
                             })}
                             <li className="create-event">
-                                <Link classname="create-event-button">
+                                {/* <Link className="create-event-button">
                                     Start your next event 
-                                </Link>
+                                </Link> */}
                             </li>
                         </ul>
                     </div>
