@@ -4,14 +4,15 @@ import { withRouter } from 'react-router-dom';
 import { openModal } from '../../actions/modal_actions';
 import { fetchEvent } from '../../actions/event_actions';
 import { updateTodo } from '../../util/todo_api_util';
-import { fetchChannel } from '../../actions/channel_actions';
+import { fetchChannel, updateChannel } from '../../actions/channel_actions';
 
 
 const mstp = (state, ownProps) => {
-    // debugger
+    //debugger
     return {
         eventId: ownProps.match.params.eventId,
-        channel: state.channels[ownProps.match.params.channelId]
+        channel: state.channels[ownProps.match.params.channelId],
+        userId: state.session.user.id
     }
 }
 
@@ -20,7 +21,8 @@ const mdtp = (dispatch, ownProps) => {
         fetchChannel: () => dispatch(fetchChannel(ownProps.match.params.channelId)),
         updateTodo: (todo) => updateTodo(todo),
         openModal: (modal, id) => (dispatch(openModal(modal, id))),
-        fetchEvent: (eventId) => dispatch(fetchEvent(eventId))
+        fetchEvent: (eventId) => dispatch(fetchEvent(eventId)),
+        updateChannel: (channel) => dispatch(updateChannel(channel))
     }
 }
 

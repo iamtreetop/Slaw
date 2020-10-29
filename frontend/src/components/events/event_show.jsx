@@ -5,8 +5,16 @@ import { Link } from 'react-router-dom';
 class EventShow extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {currentEvent: null};
+        this.state = {
+            currentEvent: null,
+            editingChannelTitle: false,
+            channelTitle: ""
+        };
         this.handleClick = this.handleClick.bind(this);
+        this.leaveChannel = this.leaveChannel.bind(this);
+        this.updateChannelTitle = this.updateChannelTitle.bind(this);
+        this.openEditChannelTitle = this.openEditChannelTitle.bind(this);
+        this.setChannelTitle = this.setChannelTitle.bind(this);
     }
 
     componentDidMount(){
@@ -22,12 +30,37 @@ class EventShow extends React.Component {
         //             currentEvent: this.props.channel.events[this.props.eventId]
         //         });
         //     });
-        
     }
 
     handleClick(e, todoId){
         //debugger
         this.props.updateTodo({status: e.target.checked, id: todoId});
+    }
+
+    openEditChannelTitle(){
+        this.setState({editingChannelTitle: true, channelTitle: this.props.channel.title}); 
+    }
+
+    setChannelTitle(){
+        return e => {
+            this.setState({
+                channelTitle: e.currentTarget.value
+            })
+        }
+    }
+
+    updateChannelTitle(e){
+        if(e.key === "Enter"){
+            this.props.updateChannel({title: this.state.channelTitle, id: this.props.channel._id }).then(
+                (action) => {
+                    this.setState({editingChannelTitle: false})
+                }
+            )
+        }
+    }
+
+    leaveChannel(){
+        
     }
 
     render() {
@@ -36,7 +69,7 @@ class EventShow extends React.Component {
             return null;
         }
 
-        // debugger
+        //debugger
 
         let todoList = this.state.currentEvent.todo.map(
             (todo) => {
@@ -59,8 +92,22 @@ class EventShow extends React.Component {
             //     <ul>{todoList}</ul>
             // </div>
             <div className="event-show-container">
-                    
                     <div className="events-section">
+                        <div>
+                            <button onClick={() => this.leaveChannel()}>Leave Channel</button>
+                            {
+                                this.props.channel.admin === this.props.userId ? 
+                                <button onClick={() => this.openEditChannelTitle()}>Edit Channel Name</button> :
+                                ""
+                            }
+                            {
+                                this.state.editingChannelTitle ?
+                                    <input type="text"
+                                        value={this.state.channelTitle}
+                                        onChange={this.setChannelTitle()}
+                                        onKeyDown={this.updateChannelTitle}/> : ""
+                            }
+                        </div>
                         <div className="section-heading">
                             <h3>Events</h3>
                         </div>
