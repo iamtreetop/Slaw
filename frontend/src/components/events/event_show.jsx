@@ -227,7 +227,7 @@ class EventShow extends React.Component {
                             <div className="event-details-left">
                                 <h1>{this.props.event[this.props.eventId].title}</h1>
                                 <h2>Welcome to {this.props.channel.title} Channel</h2>
-                                <p>`Description: {this.props.event[this.props.eventId].description}</p>
+                                <p>Description: {this.props.event[this.props.eventId].description}</p>
                             </div>
                             <div className="event-details-right">
                                 <h1>Workout List</h1>

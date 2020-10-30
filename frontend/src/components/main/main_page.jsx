@@ -13,9 +13,9 @@ class MainPage extends React.Component {
             <h2  className="sub-header">Workout together.</h2>
           </div>
         </div>  
-        <footer>
+        {/* <footer>
           Copyright &copy; 2020 SlawApp
-        </footer>
+        </footer> */}
       </div>
     );
   }
