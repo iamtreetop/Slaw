@@ -16,6 +16,7 @@ class EventForm extends React.Component {
         if (this.props.formType === "edit") {
             this.props.fetchEvent(this.props.match.params.eventId)
         }
+        this.setState({ participants: [this.props.userId] })
     }
 
     handleChange(type) {
@@ -28,8 +29,8 @@ class EventForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
         if (this.props.formType === "create") {
+            this.setState({ participants: [this.props.userId] })
             this.props.createEvent(this.state).then(
                 (action) => {
                     // debugger
