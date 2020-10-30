@@ -34,7 +34,8 @@ class ChannelIndex extends React.Component{
 
 
     render(){
-        if(this.props.channels.length === 0 || !this.props.user){
+
+        if(this.props.channels.length === 0 || Object.keys(this.props.user).length === 0) {
             return null;
         }
 
