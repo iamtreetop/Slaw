@@ -3,7 +3,7 @@
     background-repeat:no-repeat;
     background-size:cover;
     backdrop-filter: grayscale(1);
-    height: 100vh;
+    height: 110vh;
     filter: saturate(0.4);
 }
 
@@ -12,8 +12,8 @@
     display: block;
     padding-left: 68px;
     background: linear-gradient(217deg, rgb(6 39 43 / 25%), rgb(6 39 43 / 41%) 70.71%), linear-gradient(127deg, rgb(8 96 5 / 56%), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgb(74 74 153 / 58%), rgba(0,0,255,0) 70.71%);
-    height: 100vh;
-    width: 95vw;
+    /* height: 100vh;
+    width: 95vw; */
     /* top: 79px; */
     position: relative;
     padding-top: 90px;
@@ -29,7 +29,7 @@
     display: flex;
     justify-content: center;
     /* border: 2px solid blue; */
-    height: 95vh;
+    height: 99vh;
 }
 
 .channel-index-list{
