@@ -56,6 +56,7 @@ router.post(("/"),
                 admin: req.body.userId,
                 title: req.body.title,
                 events: req.body.events,
+                members: [req.body.userId]
             })
         } else {
             newChannel = new Channel({
@@ -63,6 +64,7 @@ router.post(("/"),
                 title: req.body.title,
                 events: req.body.events,
                 channelPicture: req.file.location,
+                members: [req.body.userId]
             })
         }
 
