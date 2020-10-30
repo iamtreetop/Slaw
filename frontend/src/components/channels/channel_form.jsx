@@ -47,7 +47,7 @@ class ChannelForm extends React.Component{
                     events: [action.event.data._id]
                 })
                 let channel = new FormData();
-                channel.append("userId", this.props.user.id)
+                channel.append("id", this.props.user.id)
                 channel.append("title", this.state.title)
                 channel.append("events", this.state.events)
                 channel.append("image", this.state.imageFile)
@@ -55,7 +55,7 @@ class ChannelForm extends React.Component{
                 this.props.createChannel(channel).then(
                 (action) => {
 
-                    this.props.updateUser1({channels: action.channel.data, userId: this.props.user.id});
+                    this.props.updateUser({channels: action.channel.data._id, id: this.props.user.id});
 
                     this.props.history.push(`/channels/${action.channel.data._id}`)
                     this.props.closeModal()
