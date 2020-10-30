@@ -4,28 +4,36 @@ import "./sidebar.css"
 
 class SideBar extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+
+        this.state = {
+            fetching: false
+        }
     }
 
     componentDidMount() {
-        this.props.fetchChannels();
+        this.props.fetchChannels().then(
+                (action) => {
+                    this.setState({fetching: true})
+                } 
+            );
+        this.props.fetchUser()
     }
 
 
     render() {
 
-        if (!this.props.channels) return null;
+        if (!this.state.fetching || !this.props.user) return null;
+       
 
-        let userChannels = this.props.channels.filter(channel => channel.members.includes(this.props.userId));
-
-        //debugger
-
-        let channelList = userChannels.map((channel, index) => {
+        let channelList = this.props.user.channels.map((channel, index) => {
+            let channelEvent = this.props.channels[channel];
+            // debugger
             return (
                 <li key={index} className="tooltip">
-                    <Link to={`/channels/${channel._id}/${channel.events[0]._id}`}>
-                        <img src={channel.channelPicture} className="sidebar-channel-items"/>
-                        <p className="channel-text">{channel.title}</p>
+                    <Link to={`/channels/${channelEvent._id}/${channelEvent.events[0]._id}`}>
+                        <img src={channelEvent.channelPicture} className="sidebar-channel-items"/>
+                        <p className="channel-text">{channelEvent.title}</p>
                     </Link>
                 </li>
             )

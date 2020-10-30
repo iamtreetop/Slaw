@@ -9,7 +9,6 @@ import { createComment } from "../../util/comment_api_util"
 
 
 const mstp = (state, ownProps) => {
-    debugger
     return {
         eventId: ownProps.match.params.eventId,
         event: state.events,
