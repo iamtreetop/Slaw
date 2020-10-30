@@ -11,6 +11,7 @@ const mstp = (state, ownProps) => {
     // debugger
     return {
         eventId: ownProps.match.params.eventId,
+        event: state.events,
         channel: state.channels[ownProps.match.params.channelId]
     }
 }
