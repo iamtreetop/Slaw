@@ -6,7 +6,8 @@ import SideBar from './sidebar';
 
 const mstp = (state) => {
     return {
-        channels: Object.values(state.channels)
+        channels: Object.values(state.channels),
+        userId: state.session.user.id
     }
 }
 
