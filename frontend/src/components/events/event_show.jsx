@@ -21,6 +21,9 @@ class EventShow extends React.Component {
         this.updateChannelTitle = this.updateChannelTitle.bind(this);
         this.openEditChannelTitle = this.openEditChannelTitle.bind(this);
         this.setChannelTitle = this.setChannelTitle.bind(this);
+        this.handleLeave = this.handleLeave.bind(this);
+        this.handleJoin = this.handleJoin.bind(this);
+
         // this.handleDelete = this.handleDelete.bind(this);
     }
 
@@ -33,7 +36,7 @@ class EventShow extends React.Component {
         if (prevProps.match.params.channelId !== this.props.match.params.channelId) {
             this.props.fetchEvent(this.props.eventId)
             .then((action) => {
-                this.setState({ currentEvent: action.event.data, todo: action.event.data.todo });
+                this.setState({ currentEvent: action.event.data, todo: action.event.data.todo, participants: action.event.data.participants });
             }
             );
         }
@@ -41,7 +44,7 @@ class EventShow extends React.Component {
         if (prevProps.eventId !== this.props.match.params.eventId) {
             this.props.fetchEvent(this.props.eventId)
                 .then((action) => {
-                    this.setState({ currentEvent: action.event.data, todo: action.event.data.todo });
+                    this.setState({ currentEvent: action.event.data, todo: action.event.data.todo, participants: action.event.data.participants });
                 }
                 );
         }
@@ -135,6 +138,21 @@ class EventShow extends React.Component {
             })
     }
 
+    handleLeave(e) {
+        this.props.updateEvent({removeParticipant: true, id: this.props.match.params.eventId, participants: {id: this.props.userId}})
+        .then((action)=>{
+            this.props.history.push(`/channels/${this.props.channel._id}/${this.props.channel.events[0]._id}`)
+        })
+    }
+
+    handleJoin(e) {
+        this.props.updateEvent({ id: this.props.match.params.eventId, participants: { id: this.props.userId } })
+            .then((action) => {
+                this.props.history.push(`/channels/${this.props.channel._id}/${this.props.match.params.eventId}`)
+            })
+    }
+
+
     render() {
         if(!this.props.channel || this.props.event === null){
             return null;
@@ -166,7 +184,26 @@ class EventShow extends React.Component {
                 )
             }
         )
-        //debugger
+
+        let participants = this.props.event[this.props.eventId] ? this.props.event[this.props.eventId].participants.map(
+            (participants) => {
+                return (
+                    <li className="todo-list-item">
+                        {participants.handle}
+                    </li>
+                )
+            }
+        ) : this.state.currentEvent[this.props.eventId].participants.map(
+            (participants) => {
+                return (
+                    <li className="todo-list-item">
+                        {participants.handle}
+                    </li>
+                )
+            }
+        )
+
+
         let comments =
         (this.props.event[this.props.eventId].comments.length > 0) ? this.props.event[this.props.eventId].comments.map(
             (comment) => {
@@ -179,7 +216,29 @@ class EventShow extends React.Component {
             }
         ) : <p>Comment Add here</p>;
 
-        let editDelete = (this.props.userId === this.props.event[this.props.eventId].author) ?
+        let leave = (this.props.userId !== this.props.event[this.props.eventId].author) && this.props.event[this.props.match.params.eventId].title !== "General" ?
+            <div className="participants-dashboard">
+                <div className="leave-event">
+                    <button onClick={() => this.handleLeave()}>Decommit From This Event</button>
+                </div>
+            </div> : <div></div>;
+        // debugger
+        
+        // let join = (!(this.props.event[this.props.eventId].participants.includes(this.props.userId))) && this.props.event[this.props.match.params.eventId].title !== "General" ? 
+        let exists = false;
+        this.props.event[this.props.eventId].participants.forEach(participant=>{
+            if (participant._id === this.props.userId) {
+                exists = true;
+            }
+        })
+        let join = (!exists) && this.props.event[this.props.match.params.eventId].title !== "General" ?
+           <div className="potential-participant-dashboard">
+                <div className="join-event">
+                    <button onClick={() => this.handleJoin()}>Commit to This Event</button>
+                </div>
+            </div> : <div></div>
+
+        let editDelete = (this.props.userId === this.props.event[this.props.eventId].author) && this.props.event[this.props.match.params.eventId].title !== "General" ?
             <div className="authors-dashboard">
                 <div className="delete-event">
                     <button onClick={() => this.handleDelete(this.props.eventId)}>Delete This Event</button>
@@ -191,7 +250,6 @@ class EventShow extends React.Component {
                 </Link>
                 </div>
             </div> : <div></div>;
-
         return (
             <div className="event-show-container">
                     <div className="events-section">
@@ -248,15 +306,23 @@ class EventShow extends React.Component {
                     <div className="main-detail-wrapper">
                         <div className="event-details-container">
                             <div className="event-details-left">
-                                <h1>{this.props.event[this.props.eventId].title}</h1>
+                                <h1>#{this.props.event[this.props.eventId].title}</h1>
                                 <h2>Welcome to {this.props.channel.title} Channel</h2>
                                 <p>`Description: {this.props.event[this.props.eventId].description}</p>
+                                {join}
+                                {leave}
                                 {editDelete}
                             </div>
                             <div className="event-details-right">
-                                <h1>Workout List</h1>
-                                <button onClick={() => this.handleModal()}>Create New Todo</button>
-                                <ul>{todoList}</ul>
+                                <div className="workout-list">
+                                    <h1>Workout List</h1>
+                                    <button onClick={() => this.handleModal()}>Create New Todo</button>
+                                    <ul>{todoList}</ul>
+                                </div>
+                                <div className="participants-list">
+                                    <h1>Participants</h1>
+                                    <ul>{participants}</ul> 
+                                </div>
                             </div>
                         </div>
 

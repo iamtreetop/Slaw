@@ -40,6 +40,7 @@ router.post("/create",
             participants: req.body.participants,
             todo: req.body.todo
         })
+        
         newEvent.save().then(event => res.json(event))
     })
 
@@ -66,18 +67,27 @@ router.patch("/:id",
         //         .catch((err) => res.status(400).json(err));
 
 
-        if (req.body.participants) {
+        if (req.body.participants && !req.body.removeParticipant) {
             Event.findByIdAndUpdate(req.params.id,
-                {            
-                    $push: {participants: req.body.participants.id},
-                },  
-                {new: true})
+                {
+                    $push: { participants: req.body.participants.id },
+                },
+                { new: true })
                 .populate('comments todo participants')
                 .then((model) => {
-                (res.json(model))
-                return model.save();})
+                    (res.json(model))
+                    return model.save();
+                })
                 .catch((err) => res.status(400).json(err));
-
+        }
+        else if (req.body.removeParticipant) {
+            Event.findByIdAndUpdate(req.params.id, { $pull: { participants: req.body.participants.id} }, { new: true })
+                .populate('comments todo participants')
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
         }
         
         if (req.body.todo) {
