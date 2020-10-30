@@ -25,24 +25,24 @@ class SideBar extends React.Component {
 
         if (!this.state.fetching) return null;
        
-        let channelList; 
-        if (this.props.user.channels.length === 0) {
-            channelList = null
-        } else {
-            channelList = this.props.user.channels.map((channel, index) => {
-                let channelEvent = this.props.channels[channel];
-                // debugger
-                return (
-                    <li key={index} className="tooltip">
-                        <Link to={`/channels/${channelEvent._id}/${channelEvent.events[0]._id}`}>
-                            <img src={channelEvent.channelPicture} className="sidebar-channel-items"/>
-                            <p className="channel-text">{channelEvent.title}</p>
-                        </Link>
-                    </li>
-                )
-            })
+        // let channelList; 
+        // if (this.props.user.channels.length === 0) {
+        //     channelList = null
+        // } else {
+        //     channelList = this.props.user.channels.map((channel, index) => {
+        //         let channelEvent = this.props.channels[channel];
+        //         // debugger
+        //         return (
+        //             <li key={index} className="tooltip">
+        //                 <Link to={`/channels/${channelEvent._id}/${channelEvent.events[0]._id}`}>
+        //                     <img src={channelEvent.channelPicture} className="sidebar-channel-items"/>
+        //                     <p className="channel-text">{channelEvent.title}</p>
+        //                 </Link>
+        //             </li>
+        //         )
+        //     })
 
-        }
+        // }
 
         const channelForm = (
             <>
@@ -67,7 +67,7 @@ class SideBar extends React.Component {
                         </button>
                     </div>
                     <div className="guild-separator"></div>
-                    {channelList}
+                    {/* {channelList} */}
                     <div className="guild-separator"></div>
                     {channelForm}
                 </div>
