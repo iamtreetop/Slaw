@@ -1,6 +1,8 @@
 import React from "react";
 import "./event_show.css"
 import { Link } from 'react-router-dom';
+import EventMap from "../map/map";
+
 
 class EventShow extends React.Component {
     constructor(props) {
@@ -22,6 +24,10 @@ class EventShow extends React.Component {
         //             currentEvent: this.props.channel.events[this.props.eventId]
         //         });
         //     });
+        
+    }
+
+    initMap(){
         
     }
 
@@ -83,6 +89,9 @@ class EventShow extends React.Component {
                         </div>
                     </div>
 
+                    <div id="map">
+                        
+                    </div>
                     {/* <div className="event-detail-container">
                          <div className="event-left-wrapper">
                             <div className="left-text-wrapper">
