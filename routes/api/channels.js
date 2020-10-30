@@ -83,6 +83,7 @@ router.patch("/:id",
     (req, res) => {
         if (req.body.members && !req.body.removeCurrentUser) {
             Channel.findByIdAndUpdate(req.params.id, { $push: {members: req.body.members.id} }, {new: true})
+                .populate('events members')
                 .then((model) => {
                 (res.json(model))
                 return model.save();})
@@ -90,6 +91,7 @@ router.patch("/:id",
         }
         else if (req.body.removeCurrentUser){
             Channel.findByIdAndUpdate(req.params.id, { $pull: {members: req.body.members.id} }, {new: true})
+            .populate('events members')
             .then((model) => {
             (res.json(model))
             return model.save();})
@@ -99,6 +101,7 @@ router.patch("/:id",
 
         if (req.body.events) {
             Channel.findByIdAndUpdate(req.params.id, { $push: { events: req.body.events } }, { new: true })
+                .populate('events members')
                 .then((model) => {
                     (res.json(model))
                     return model.save();
@@ -108,11 +111,12 @@ router.patch("/:id",
 
         if (req.body.title){
             Channel.findByIdAndUpdate(req.params.id, { title: req.body.title }, { new: true })
-            .then((model) => {
-                (res.json(model))
-                return model.save();
-            })
-            .catch((err) => res.status(400).json(err));
+                .populate('events members')
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
         }
 
     })
