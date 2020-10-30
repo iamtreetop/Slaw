@@ -18,8 +18,8 @@ class NavBar extends React.Component {
   getLinks() {
       if (this.props.loggedIn) {
         return (
-            <div>
-                <Link to={'/profile'}>Profile</Link>
+            <div className="logout-wrapper">
+                {/* <Link to={'/profile'}>Profile</Link> */}
                 <button className="session-button" onClick={this.logoutUser}>Logout</button>
             </div>
         );
