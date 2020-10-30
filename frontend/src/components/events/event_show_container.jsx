@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import EventShow from "../events/event_show";
 import { withRouter } from 'react-router-dom';
 import { openModal } from '../../actions/modal_actions';
-import { fetchEvent, updateEvent } from '../../actions/event_actions';
+import { fetchEvent, updateEvent, deleteEvent } from '../../actions/event_actions';
 import { updateTodo } from '../../util/todo_api_util';
 import { fetchChannel, updateChannel } from '../../actions/channel_actions';
 import { createComment } from "../../util/comment_api_util"
@@ -27,6 +27,7 @@ const mdtp = (dispatch, ownProps) => {
         updateChannel: (channel) => dispatch(updateChannel(channel)),
         createComment: (comment) => createComment(comment),
         updateEvent: (event) => dispatch(updateEvent(event)),
+        deleteEvent: (eventId) => dispatch(deleteEvent(eventId))
     }
 }
 

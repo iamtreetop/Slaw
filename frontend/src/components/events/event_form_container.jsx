@@ -10,7 +10,8 @@ const mstp = (state, ownProps) => {
             title: "",
             description: "",
             participants: []
-        }
+        },
+        formType: "create"
     }
 }
 
