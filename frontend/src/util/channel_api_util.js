@@ -18,8 +18,7 @@ export const createChannel = channel => {
 }
 
 export const updateChannel = (channel) => {
-  let updatedChannel = { members: channel.members, events: channel.events };
-  return axios.patch('/api/channels/' + channel.id, updatedChannel);
+  return axios.patch('/api/channels/' + channel.id, channel);
 }
 
 export const deleteChannel = (channelId) => {

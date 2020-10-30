@@ -39,13 +39,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", users)
-
 app.use("/api/channels", channels)
-
 app.use("/api/events", events)
-
 app.use("/api/todos", todos)
-
 app.use("/api/comments", comments);
 
 app.use(passport.initialize());

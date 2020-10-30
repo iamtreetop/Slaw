@@ -4,10 +4,10 @@ const validText = require('./valid-text');
 module.exports = function validateCommentInput(data) {
     let errors = {};
 
-    data.title = validText(data.title) ? data.title : ""
+    data.comment = validText(data.comment) ? data.comment : ""
 
-    if (Validator.isEmpty(data.title)) {
-        errors.title = "Title field is required"
+    if (Validator.isEmpty(data.comment)) {
+        errors.comment = "Comment field is required"
     }
 
     return {

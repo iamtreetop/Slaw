@@ -17,3 +17,19 @@ export const updateUser = (user) => {
         }).catch(err => console.log(err))
     }
 }
+
+export const updateUser1 = (user) => {
+    return (dispatch) => {
+        return UserAPIUtil.updateUser1(user).then((user) => {
+            return dispatch(receiveUser(user))
+        }).catch(err => console.log(err))
+    }
+}
+
+export const fetchUser = () => {
+    return (dispatch) => {
+        return UserAPIUtil.fetchUser().then((user) => {
+            return dispatch(receiveUser(user))
+        }).catch(err => console.log(err))
+    }
+}

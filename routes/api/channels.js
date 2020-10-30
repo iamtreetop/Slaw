@@ -56,6 +56,7 @@ router.post(("/"),
                 admin: req.body.userId,
                 title: req.body.title,
                 events: req.body.events,
+                members: [req.body.userId]
             })
         } else {
             newChannel = new Channel({
@@ -63,6 +64,7 @@ router.post(("/"),
                 title: req.body.title,
                 events: req.body.events,
                 channelPicture: req.file.location,
+                members: [req.body.userId]
             })
         }
 
@@ -79,14 +81,23 @@ router.post(("/"),
 router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        if (req.body.members && !req.body.events) {
+        if (req.body.members && !req.body.removeCurrentUser) {
             Channel.findByIdAndUpdate(req.params.id, { $push: {members: req.body.members.id} }, {new: true})
                 .then((model) => {
                 (res.json(model))
                 return model.save();})
                 .catch((err) => res.status(400).json(err));
         }
-        else if (req.body.events && !req.body.members) {
+        else if (req.body.removeCurrentUser){
+            Channel.findByIdAndUpdate(req.params.id, { $pull: {members: req.body.members.id} }, {new: true})
+            .then((model) => {
+            (res.json(model))
+            return model.save();})
+            .catch((err) => res.status(400).json(err));
+        }
+
+
+        if (req.body.events) {
             Channel.findByIdAndUpdate(req.params.id, { $push: { events: req.body.events } }, { new: true })
                 .then((model) => {
                     (res.json(model))
@@ -94,13 +105,16 @@ router.patch("/:id",
                 })
                 .catch((err) => res.status(400).json(err));
         }
-        else {
-            Channel.findByIdAndUpdate(req.params.id, { $push: { members: req.body.members.id, events: req.body.events.id} }, {new: true})
-                .then((model) => {
+
+        if (req.body.title){
+            Channel.findByIdAndUpdate(req.params.id, { title: req.body.title }, { new: true })
+            .then((model) => {
                 (res.json(model))
-                return model.save();})
-                .catch((err) => res.status(400).json(err));
+                return model.save();
+            })
+            .catch((err) => res.status(400).json(err));
         }
+
     })
 
 router.delete("/:id",
