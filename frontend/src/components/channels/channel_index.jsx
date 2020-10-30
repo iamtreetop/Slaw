@@ -12,21 +12,24 @@ class ChannelIndex extends React.Component{
     }
 
     handleClick(channelId){
-        let newMembers = {
-            id: channelId,
-            members: this.props.user
-        }
-
-        this.props.updateChannel(newMembers).then( (action)=>{
-            // this.props.history.push(`/channels/${action.channel.id}`)
-        })
-
         let newChannels = {
             id: this.props.user.id,
             channels: channelId
         }
 
-        this.props.updateUser(newChannels);
+        this.props.updateUser(newChannels).then((unused)=>{
+            let newMembers = {
+                id: channelId,
+                members: this.props.user
+            }
+    
+            this.props.updateChannel(newMembers).then( (action)=>{
+                //debugger
+                this.props.history.push(`/channels/${action.channel.data._id}/${action.channel.data.events[0]._id}`);
+            })
+        });
+
+
     }
 
     render(){

@@ -53,6 +53,7 @@ export const createEvent = (event) => {
 export const updateEvent = (event) => {
     return (dispatch) => {
         return EventAPIUtil.updateEvent(event).then((event) => {
+            
             return dispatch(receiveEvent(event))
         }).catch(err => console.log(err))
     }

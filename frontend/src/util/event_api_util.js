@@ -9,7 +9,6 @@ export const fetchEvent = (eventId) => {
 }
 
 export const createEvent = (event) => {
-  //debugger
   return axios.post('/api/events/create', event)
 }
 
