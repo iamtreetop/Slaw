@@ -17,6 +17,11 @@
 .events-section{
     width: 150px;
     padding-top: 11px;
+    align-items: center;
+}
+
+.members-section{
+    padding-top: 30px;
 }
 
 .channel-edit-button > button{
