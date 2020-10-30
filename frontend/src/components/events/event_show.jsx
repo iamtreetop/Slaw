@@ -98,8 +98,11 @@ class EventShow extends React.Component {
     leaveChannel(){
         this.props.updateUser({removeChannel: true, channels: this.props.channel._id, id: this.props.userId }).then(
             (action) => {
-                this.props.updateChannel({removeCurrentUser: true, members: {id: this.props.userId}, id: this.props.channel._id})
-                this.props.history.push(`/channels/`)
+                this.props.updateChannel({removeCurrentUser: true, members: {id: this.props.userId}, id: this.props.channel._id}).then(
+                    (action) => {
+                        this.props.history.push(`/channels/`);
+                    }
+                )
         });
     }
 
