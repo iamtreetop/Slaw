@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
     Event.findById(req.params.id)
-        .populate("todo")
+        .populate("todo comments")
         .then(event => res.json(event))
         .catch(err => res.status(400).json(err));
     })
@@ -91,7 +91,18 @@ router.patch("/:id",
                 })
                 .catch((err) => res.status(400).json(err));
         }
-
+        if (req.body.comment) {
+            Event.findByIdAndUpdate(req.params.id,
+                {
+                    $push: { comments: req.body.comment },
+                },
+                { new: true })
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
+        }
         if (req.body.title){
             Event.findByIdAndUpdate(req.params.id,
                 {            
