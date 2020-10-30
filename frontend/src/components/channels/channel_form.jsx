@@ -47,17 +47,17 @@ class ChannelForm extends React.Component{
                     events: [action.event.data._id]
                 })
                 let channel = new FormData();
-                channel.append("userId", this.props.user.id)
+                channel.append("id", this.props.user.id)
                 channel.append("title", this.state.title)
                 channel.append("events", this.state.events)
                 channel.append("image", this.state.imageFile)
 
                 this.props.createChannel(channel).then(
                 (action) => {
+                    //debugger
+                    this.props.updateUser({channels: action.channel.data._id, id: this.props.user.id});
 
-                    this.props.updateUser1({channels: action.channel.data, userId: this.props.user.id});
-
-                    this.props.history.push(`/channels/${action.channel.data._id}`)
+                    this.props.history.push(`/channels/${action.channel.data._id}/${action.channel.data.events[0]}`)
                     this.props.closeModal()
                 }
             ).catch((res) => console.log(res))
@@ -84,6 +84,7 @@ class ChannelForm extends React.Component{
                         onChange={this.handleChange("title")}
                         className="channel-form-input"
                         placeholder="Slaw Channel Title"
+                        required={true}
                     />
                     </div>
 

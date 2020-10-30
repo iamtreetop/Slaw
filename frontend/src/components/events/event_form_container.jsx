@@ -10,7 +10,9 @@ const mstp = (state, ownProps) => {
             title: "",
             description: "",
             participants: []
-        }
+        },
+        formType: "create",
+        userId: state.session.user.id
     }
 }
 
