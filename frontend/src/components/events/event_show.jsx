@@ -5,27 +5,28 @@ import { Link } from 'react-router-dom';
 class EventShow extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { currentEvent: null};
+        this.state = {currentEvent: null, comment: ""};
         this.handleClick = this.handleClick.bind(this);
-        this.handleModal = this.handleModal.bind(this);
+        this.handleChangeComment = this.handleChangeComment.bind(this);
+        this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
     }
 
     componentDidMount(){
-
         this.props.fetchEvent(this.props.eventId)
-        // .then((action) => {
-        //         //debugger
-        //         this.setState({currentEvent: action.event.data, todo: action.event.data.todo});
-        //     }
-        // );
-        // this.props.fetchChannel(this.props.match.params.channelId)
-        //     .then((action) => {
-        //         debugger
-        //         this.setState({
-        //             currentEvent: this.props.channel.events[this.props.eventId]
-        //         });
-        //     });
-        
+
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.channelId !== this.props.match.params.channelId) {
+            this.props.fetchEvent(this.props.eventId).then((action) => {
+                this.setState({ currentEvent: action.event.data });
+            }
+            );
+        }
+        // if (this.state.comment === "") {
+        //     debugger
+        //     this.props.fetchEvent(this.props.eventId)
+        // } 
     }
 
     componentDidUpdate(prevProps) {
@@ -37,11 +38,11 @@ class EventShow extends React.Component {
             );
         }
         // debugger
-        if ((prevProps.match.params.channelId === this.props.match.params.channelId) && prevProps.event[this.props.eventId]) {
-            if (prevProps.event[this.props.eventId].todo.length < (this.props.event[this.props.eventId]).todo.length) {
-                this.props.fetchEvent(this.props.eventId)
-            }
-        }
+        // if ((prevProps.match.params.channelId === this.props.match.params.channelId) && prevProps.event[this.props.eventId]) {
+        //     if (prevProps.event[this.props.eventId].todo.length < (this.props.event[this.props.eventId]).todo.length) {
+        //         this.props.fetchEvent(this.props.eventId)
+        //     }
+        // }
     }
 
     handleModal(e) {
@@ -56,6 +57,31 @@ class EventShow extends React.Component {
         this.props.updateTodo({status: e.target.checked, id: todoId});
     }
     
+
+    handleCommentSubmit(e) {
+        e.preventDefault();
+        this.props.createComment({comment: this.state.comment, handle: this.props.handle})
+            .then((comment) => {
+                let newEventState = {
+                    id: this.props.eventId,
+                    comment: comment.data._id
+                }
+                this.props.updateEvent(newEventState).then(
+                    (action) => {
+                        console.log("SUCCESS")
+                    }
+                )
+                this.setState({comment: ""})
+            })
+    }
+
+    handleChangeComment(comment) {
+        return (e) => {
+            this.setState({
+                [comment]: e.currentTarget.value
+            })
+        }
+    }
 
     render() {
         if(!this.props.channel || this.props.event === null){
@@ -88,15 +114,20 @@ class EventShow extends React.Component {
                 )
             }
         )
+        debugger
+        let comments =
+        (this.props.event[this.props.eventId].comments.length > 0) ? this.props.event[this.props.eventId].comments.map(
+            (comment) => {
+                return (
+                    <li >
+                        {comment.comment}
+                        {comment.author}
+                    </li>
+                )
+            }
+        ) : <p>Comment Add here</p>
 
         return (
-            // <div className="channel-show-container">
-            //     <h1>Welcome to {this.props.channel.title}</h1>
-            //     <h2>{this.state.currentEvent.description}</h2>
-            //     <button onClick={() => this.props.openModal('todo',this.props.eventId)}>Create New Todo</button>
-
-            //     <ul>{todoList}</ul>
-            // </div>
             <div className="event-show-container">
                     
                     <div className="events-section">
@@ -122,20 +153,6 @@ class EventShow extends React.Component {
                         </div>
                     </div>
 
-                    {/* <div className="event-detail-container">
-                         <div className="event-left-wrapper">
-                            <div className="left-text-wrapper">
-                                <h3>TITLE</h3>
-                                <h4>DESCRIPTION</h4>
-                            </div>
-                            <div className="event-todo-list">TODO-List</div>
-                         </div>
-                         <div className="event-right-wrapper">
-                             <div className="comment-container">
-                                 <ul>COMMENTS</ul>
-                             </div>
-                         </div>
-                    </div> */}
                     <div className="main-detail-wrapper">
                         <div className="event-details-container">
                             <div className="event-details-left">
@@ -149,8 +166,18 @@ class EventShow extends React.Component {
                                 <ul>{todoList}</ul>
                             </div>
                         </div>
+
                         <div className="comment-section">
-                            <h1>Comments go here</h1>
+                            <div className="comment-boxs">
+                                {comments}
+                            </div>
+                            <form onSubmit={this.handleCommentSubmit}>
+                                <textarea name="" id="" cols="30" rows="10" 
+                                    onChange={this.handleChangeComment("comment")} 
+                                    value={this.state.comment}
+                                ></textarea>
+                                <input type="submit" value="Add Comment"/>
+                            </form>
                         </div>
                     </div>
 
