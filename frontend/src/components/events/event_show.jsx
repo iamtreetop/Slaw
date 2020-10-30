@@ -174,11 +174,10 @@ class EventShow extends React.Component {
             <div className="event-show-container">
                     <div className="events-section">
                         <div>
-                            <button onClick={() => this.leaveChannel()}>Leave Channel</button>
                             {
                                 this.props.channel.admin === this.props.userId ? 
                                 <button onClick={() => this.openEditChannelTitle()}>Edit Channel Name</button> :
-                                ""
+                                <button onClick={() => this.leaveChannel()}>Leave Channel</button>
                             }
                             {
                                 this.state.editingChannelTitle ?
