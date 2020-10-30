@@ -13,11 +13,7 @@ class EventShow extends React.Component {
 
     componentDidMount(){
         this.props.fetchEvent(this.props.eventId)
-        // .then( (action) => {
-        //         //debugger
-        //         this.setState({currentEvent: action.event.data});
-        //     }
-        // );
+
     }
 
     componentDidUpdate(prevProps) {
@@ -33,10 +29,34 @@ class EventShow extends React.Component {
         // } 
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.channelId !== this.props.match.params.channelId) {
+            this.props.fetchEvent(this.props.eventId)
+            .then((action) => {
+                this.setState({ currentEvent: action.event.data, todo: action.event.data.todo });
+            }
+            );
+        }
+        // debugger
+        // if ((prevProps.match.params.channelId === this.props.match.params.channelId) && prevProps.event[this.props.eventId]) {
+        //     if (prevProps.event[this.props.eventId].todo.length < (this.props.event[this.props.eventId]).todo.length) {
+        //         this.props.fetchEvent(this.props.eventId)
+        //     }
+        // }
+    }
+
+    handleModal(e) {
+        this.props.openModal('todo', this.props.eventId)
+        // this.props.fetchEvent(this.props.eventId).then((action) => {
+        //     this.setState({ currentEvent: action.event.data, todo: action.event.data.todo });
+        // })
+    }
+
     handleClick(e, todoId){
         //debugger
         this.props.updateTodo({status: e.target.checked, id: todoId});
     }
+    
 
     handleCommentSubmit(e) {
         e.preventDefault();
@@ -64,49 +84,50 @@ class EventShow extends React.Component {
     }
 
     render() {
-        debugger
-
-        if(!this.props.channel) {
+        if(!this.props.channel || this.props.event === null){
             return null;
         }
+        if (Object.keys(this.props.event).length === 0) {
+            return null;
+        }
+        if (!this.props.event[this.props.eventId]) {
+            return null;
+        }
+        let todoList = this.props.event[this.props.eventId] ? this.props.event[this.props.eventId].todo.map(
+            (todo) => {
+                //debugger
+                return (
+                    <li className="todo-list-item">
+                        {todo.title}
+                        <input type="checkbox" onClick={(e)=>this.handleClick(e, todo._id)}/>
+                    </li>
+                )
+            }
+        ) : this.state.currentEvent[this.props.eventId].todo.map(
+            (todo) => {
+                //debugger
+                return (
+                    <li className="todo-list-item">
+                        {todo.title}
+                        <input type="checkbox" onClick={(e) => this.handleClick(e, todo._id)} />
+                    </li>
+                )
+            }
+        )
+        debugger
+        let comments =
+        (this.props.event[this.props.eventId].comments.length > 0) ? this.props.event[this.props.eventId].comments.map(
+            (comment) => {
+                return (
+                    <li >
+                        {comment.comment}
+                        {comment.author}
+                    </li>
+                )
+            }
+        ) : <p>Comment Add here</p>
 
-        // let todoList = this.state.currentEvent.todo.map(
-        //     (todo) => {
-        //         //debugger
-        //         return (
-        //             <li className="todo-list-item">
-        //                 {todo.title}
-        //                 <input type="checkbox" onClick={(e)=>this.handleClick(e, todo._id)}/>
-        //             </li>
-        //         )
-        //     }
-        // )
-        // debugger
-        let comments = <h2>Comment on this event!</h2>;
-        debugger
-        if (this.props.event[this.props.eventId].comments.length > 0) {
-            comments = this.props.event.comment.map(
-                (comment) => {
-                    return (
-                        <p>
-                            {comment.comment}
-                            {comment.author}
-                        </p>
-                    )
-                }
-            )}
-        
-        debugger
-        
-        
         return (
-            // <div className="channel-show-container">
-            //     <h1>Welcome to {this.props.channel.title}</h1>
-            //     <h2>{this.state.currentEvent.description}</h2>
-            //     <button onClick={() => this.props.openModal('todo',this.props.eventId)}>Create New Todo</button>
-
-            //     <ul>{todoList}</ul>
-            // </div>
             <div className="event-show-container">
                     
                     <div className="events-section">
@@ -135,14 +156,14 @@ class EventShow extends React.Component {
                     <div className="main-detail-wrapper">
                         <div className="event-details-container">
                             <div className="event-details-left">
-                                <h1>{this.state.currentEvent.title}</h1>
+                                <h1>{this.props.event[this.props.eventId].title}</h1>
                                 <h2>Welcome to {this.props.channel.title} Channel</h2>
-                                <p>`Description: {this.state.currentEvent.description}</p>
+                                <p>`Description: {this.props.event[this.props.eventId].description}</p>
                             </div>
                             <div className="event-details-right">
                                 <h1>Workout List</h1>
-                                <button onClick={() => this.props.openModal('todo',this.props.eventId)}>Create New Todo</button>
-                                {/* <ul>{todoList}</ul> */}
+                                <button onClick={() => this.handleModal()}>Create New Todo</button>
+                                <ul>{todoList}</ul>
                             </div>
                         </div>
 
@@ -152,7 +173,8 @@ class EventShow extends React.Component {
                             </div>
                             <form onSubmit={this.handleCommentSubmit}>
                                 <textarea name="" id="" cols="30" rows="10" 
-                                    onChange={this.handleChangeComment("comment")}
+                                    onChange={this.handleChangeComment("comment")} 
+                                    value={this.state.comment}
                                 ></textarea>
                                 <input type="submit" value="Add Comment"/>
                             </form>

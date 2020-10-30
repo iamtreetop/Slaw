@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
     Event.findById(req.params.id)
-        .populate("todo comments")
+        .populate("todo comments participants")
         .then(event => res.json(event))
         .catch(err => res.status(400).json(err));
     })
@@ -72,6 +72,7 @@ router.patch("/:id",
                     $push: {participants: req.body.participants.id},
                 },  
                 {new: true})
+                .populate('comments todo participants')
                 .then((model) => {
                 (res.json(model))
                 return model.save();})
@@ -85,6 +86,7 @@ router.patch("/:id",
                     $push: {todo: req.body.todo},
                 },  
                 {new: true})
+                .populate('comments todo participants')
                 .then((model) => {
                     (res.json(model))
                     return model.save();
@@ -97,6 +99,7 @@ router.patch("/:id",
                     $push: { comments: req.body.comment },
                 },
                 { new: true })
+                .populate('comments todo participants')
                 .then((model) => {
                     (res.json(model))
                     return model.save();
@@ -109,6 +112,7 @@ router.patch("/:id",
                     title: req.body.title,
                 },  
                 {new: true})
+                .populate('comments todo participants')
                 .then((model) => {
                     (res.json(model))
                     return model.save();
@@ -122,6 +126,7 @@ router.patch("/:id",
                     description: req.body.description,
                 },  
                 {new: true})
+                .populate('comments todo participants')
                 .then((model) => {
                     (res.json(model))
                     return model.save();
@@ -135,6 +140,7 @@ router.patch("/:id",
                     date: req.body.date,
                 },  
                 {new: true})
+                .populate('comments todo participants')
                 .then((model) => {
                     (res.json(model))
                     return model.save();

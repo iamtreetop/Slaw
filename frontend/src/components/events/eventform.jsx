@@ -31,7 +31,7 @@ class EventForm extends React.Component {
                 })
                 this.props.updateChannel({events: this.state.events, id: this.props.match.params.channelId}).catch
                 ((res) => console.log(res))
-                this.props.history.push(`/channels/${this.props.match.params.channelId}`)
+                this.props.history.push(`/channels/${this.props.match.params.channelId}/${this.state.events}`)
             })
     }
 
