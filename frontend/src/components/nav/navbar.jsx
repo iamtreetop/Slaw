@@ -24,20 +24,39 @@ class NavBar extends React.Component {
             </div>
         );
       } else {
-        return (
+        let button;
+        debugger
+        if (this.props.location.pathname === "/") {
+          return (
             <div>
-                <Link className="session-button" to={'/signup'}>Signup</Link>
-                <Link className="session-button" to={'/login'}>Login</Link>
+              <Link className="session-button" to={'/signup'}>Signup</Link>
+              <Link className="session-button" to={'/login'}>Login</Link>
             </div>
-        );
-      }
+          )
+        } else if (this.props.location.pathname === "/signup") {
+          return (
+            <div>
+              <Link className="session-button" to={'/login'}>Login</Link>
+            </div>
+          )
+        } else {
+          return (
+            <div>
+              <Link className="session-button" to={'/signup'}>Signup</Link>
+            </div>
+          )
+  
+       }
+    }
   }
 
   render() {
       return (
         <div className="navbar-container">
             <div className="navbar-wrapper">
-              <h1>Slaw 🥊</h1>
+              <Link to={'/'} className="navbar-header-text">
+                <h1>Slaw 🥊</h1>
+              </Link>
               { this.getLinks() }
             </div>
         </div>

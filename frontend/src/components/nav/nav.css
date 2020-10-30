@@ -18,6 +18,17 @@
     width: 80%;
 }
 
+.navbar-header-text:link {
+    text-decoration: none;
+}
+
+.navbar-header-text:hover {
+    color: #8acbb6;
+    font-weight: bolder;
+    transition: background-color .4s ease-out;
+    cursor: pointer;
+}
+
 
 .session-button{
     color: black;
