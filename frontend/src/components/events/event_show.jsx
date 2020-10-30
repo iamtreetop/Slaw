@@ -95,6 +95,8 @@ class EventShow extends React.Component {
     leaveChannel(){
         this.props.updateChannel({removeCurrentUser: true, members: {id: this.props.userId}, id: this.props.channel._id}).then(
             (action) => {
+                this.props.updateUser({removeChannel: true, channels: this.props.channel._id, id: this.props.userId });
+                
                 this.props.history.push(`/channels/`)
             }
         );
@@ -194,11 +196,10 @@ class EventShow extends React.Component {
             <div className="event-show-container">
                     <div className="events-section">
                         <div>
-                            <button onClick={() => this.leaveChannel()}>Leave Channel</button>
                             {
                                 this.props.channel.admin === this.props.userId ? 
                                 <button onClick={() => this.openEditChannelTitle()}>Edit Channel Name</button> :
-                                ""
+                                <button onClick={() => this.leaveChannel()}>Leave Channel</button>
                             }
                             {
                                 this.state.editingChannelTitle ?

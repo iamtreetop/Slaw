@@ -102,12 +102,21 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
 router.patch("/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-      //User.findByIdAndUpdate(req.params.id, { $push: {channels: req.body.channels.id} }, {new: true})
-      User.findByIdAndUpdate(req.params.id, { $push: {channels: req.body.channels} }, {new: true})
+      if (req.body.channels && !req.body.removeChannel) {
+        User.findByIdAndUpdate(req.params.id, { $push: {channels: req.body.channels} }, {new: true})
+          .then((model) => {
+            (res.json(model))
+            return model.save();})
+            .catch((err) => res.status(400).json(err));
+      }
+      else if (req.body.removeChannel){
+        User.findByIdAndUpdate(req.params.id, { $pull: {channels: req.body.channels} }, {new: true})
         .then((model) => {
           (res.json(model))
           return model.save();})
           .catch((err) => res.status(400).json(err));
+      }
+
 })
 
 
