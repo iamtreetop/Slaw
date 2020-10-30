@@ -109,7 +109,7 @@ router.patch("/:id",
             return model.save();})
             .catch((err) => res.status(400).json(err));
       }
-      else if (req.body.removeCurrentUser){
+      else if (req.body.removeChannel){
         User.findByIdAndUpdate(req.params.id, { $pull: {channels: req.body.channels} }, {new: true})
         .then((model) => {
           (res.json(model))
