@@ -4,10 +4,11 @@ const Schema = mongoose.Schema;
 const CommentSchema = new Schema({
 
     author: {
-        type: Schema.Types.ObjectId,
-        ref: 'users'
+        type: String,
+        // ref: 'User'
+        required: true
     },
-    title: {
+    comment: {
         type: String,
         required: true
     },

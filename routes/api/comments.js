@@ -15,14 +15,16 @@ router.post("/",
         if (!isValid) {
             return res.status(400).json(errors)
         }
-
+     
         const newComment = new Comment({
-            author: req.user.id,
-            title: req.body.title,
+            author: req.body.handle,
+            comment: req.body.comment,
             date: req.body.date
         })
-        newComment.save().then(comment => res.json(comment))
-    })
+        newComment.save().then((comment) => res.json(comment))
+        
+    })   
+
 
 router.delete("/:id",
     passport.authenticate("jwt", { session: false }),
