@@ -96,8 +96,8 @@ class ChannelForm extends React.Component{
                             />
                         </div>
                         {preview}
-                        <button type="submit" value="Submit" className="channel-submit-button">Create your channel</button>
                     </div>
+                    <button type="submit" value="Submit" className="channel-submit-button">Create your channel</button>
                 </div>
             </form>
         )
