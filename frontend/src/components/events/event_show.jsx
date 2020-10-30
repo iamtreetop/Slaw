@@ -21,6 +21,7 @@ class EventShow extends React.Component {
         this.updateChannelTitle = this.updateChannelTitle.bind(this);
         this.openEditChannelTitle = this.openEditChannelTitle.bind(this);
         this.setChannelTitle = this.setChannelTitle.bind(this);
+        // this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount(){
@@ -128,6 +129,14 @@ class EventShow extends React.Component {
         }
     }
 
+    handleDelete(eventId) {
+        this.props.deleteEvent(eventId)
+            .then((action) => {
+                this.props.fetchChannel()
+                this.props.history.push(`/channels/${this.props.channel._id}/${this.props.channel.events[0]._id}`)
+            })
+    }
+
     render() {
         if(!this.props.channel || this.props.event === null){
             return null;
@@ -181,7 +190,23 @@ class EventShow extends React.Component {
                 )
             }
         ) : <p className="comment-holder-text">Post Here</p>
+
         let eventTitle = `Post on #${this.props.event[this.props.eventId].title}`
+
+
+        let editDelete = (this.props.userId === this.props.event[this.props.eventId].author) ?
+            <div className="authors-dashboard">
+                <div className="delete-event">
+                    <button onClick={() => this.handleDelete(this.props.eventId)}>Delete This Event</button>
+                    <span>This cannot be undone</span>
+                </div>
+                <div className="edit-event">
+                    <Link className="create-event-button" to={`/events/${this.props.channel._id}/${this.props.match.params.eventId}/edit`}>
+                        Edit This Event
+                </Link>
+                </div>
+            </div> : <div></div>;
+
         return (
             <div className="event-show-container">
                     <div className="events-section">
@@ -241,6 +266,7 @@ class EventShow extends React.Component {
                                 <h1>{this.props.event[this.props.eventId].title}</h1>
                                 <h2>Welcome to {this.props.channel.title} Channel</h2>
                                 <p>`Description: {this.props.event[this.props.eventId].description}</p>
+                                {editDelete}
                             </div>
                             <div className="event-details-right">
                                 <h1>Workout List</h1>
@@ -257,6 +283,7 @@ class EventShow extends React.Component {
                                 <textarea name="" id=""
                                     onChange={this.handleChangeComment("comment")} 
                                     placeHolder={eventTitle}
+                                    value={this.state.comment}
                                     onKeyDown={this.handleCommentSubmit}
                                     className="comment-text-box"
                                 ></textarea>
