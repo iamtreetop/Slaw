@@ -29,7 +29,7 @@ class EventShow extends React.Component {
 
     componentDidMount(){
         this.props.fetchEvent(this.props.eventId)
-
+        window.scrollTo(0, 0);
     }
 
     componentDidUpdate(prevProps) {
@@ -96,13 +96,11 @@ class EventShow extends React.Component {
     }
 
     leaveChannel(){
-        this.props.updateChannel({removeCurrentUser: true, members: {id: this.props.userId}, id: this.props.channel._id}).then(
+        this.props.updateUser({removeChannel: true, channels: this.props.channel._id, id: this.props.userId }).then(
             (action) => {
-                this.props.updateUser({removeChannel: true, channels: this.props.channel._id, id: this.props.userId });
-                
+                this.props.updateChannel({removeCurrentUser: true, members: {id: this.props.userId}, id: this.props.channel._id})
                 this.props.history.push(`/channels/`)
-            }
-        );
+        });
     }
 
     handleCommentSubmit(e) {

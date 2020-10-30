@@ -7,7 +7,8 @@ import { updateUser } from "../../actions/user_actions";
 const mstp = (state) =>{
     return {
         channels: Object.values(state.channels),
-        user: state.session.user
+        user: state.users,
+        channelObjects: state.channels
     }
 }
 

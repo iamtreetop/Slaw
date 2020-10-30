@@ -25,6 +25,11 @@ class SideBar extends React.Component {
         );
     }
 
+    // componentDidUpdate() {
+    //     if ()
+    //     this.props.fetchUser()
+    // }
+
 
     render() {
 
