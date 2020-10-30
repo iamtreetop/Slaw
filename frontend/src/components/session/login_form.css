@@ -66,6 +66,7 @@ body {
     color: #ebebf7;
     font-size: 12px;
     outline: none;
+    text-align: center;
 }
 
 .login-button{
