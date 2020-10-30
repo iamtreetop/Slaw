@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import EventMap from "../map/map";
 
 
+
 class EventShow extends React.Component {
     constructor(props) {
         super(props);
@@ -13,6 +14,7 @@ class EventShow extends React.Component {
             channelTitle: "",
             comment: ""
         };
+
         this.handleClick = this.handleClick.bind(this);
         this.handleChangeComment = this.handleChangeComment.bind(this);
         this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
