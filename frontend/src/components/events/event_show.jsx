@@ -5,10 +5,20 @@ import { Link } from 'react-router-dom';
 class EventShow extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {currentEvent: null, comment: ""};
+        this.state = {
+            currentEvent: null,
+            editingChannelTitle: false,
+            channelTitle: "",
+            comment: ""
+        };
         this.handleClick = this.handleClick.bind(this);
         this.handleChangeComment = this.handleChangeComment.bind(this);
         this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
+
+        this.leaveChannel = this.leaveChannel.bind(this);
+        this.updateChannelTitle = this.updateChannelTitle.bind(this);
+        this.openEditChannelTitle = this.openEditChannelTitle.bind(this);
+        this.setChannelTitle = this.setChannelTitle.bind(this);
     }
 
     componentDidMount(){
@@ -52,6 +62,36 @@ class EventShow extends React.Component {
         this.props.updateTodo({status: e.target.checked, id: todoId});
     }
     
+
+    openEditChannelTitle(){
+        this.setState({editingChannelTitle: true, channelTitle: this.props.channel.title}); 
+    }
+
+    setChannelTitle(){
+        return e => {
+            this.setState({
+                channelTitle: e.currentTarget.value
+            })
+        }
+    }
+
+    updateChannelTitle(e){
+        if(e.key === "Enter"){
+            this.props.updateChannel({title: this.state.channelTitle, id: this.props.channel._id }).then(
+                (action) => {
+                    this.setState({editingChannelTitle: false})
+                }
+            )
+        }
+    }
+
+    leaveChannel(){
+        this.props.updateChannel({removeCurrentUser: true, members: {id: this.props.userId}, id: this.props.channel._id}).then(
+            (action) => {
+                this.props.history.push(`/channels/`)
+            }
+        );
+    }
 
     handleCommentSubmit(e) {
         e.preventDefault();
@@ -109,6 +149,7 @@ class EventShow extends React.Component {
                 )
             }
         )
+        //debugger
         let comments =
         (this.props.event[this.props.eventId].comments.length > 0) ? this.props.event[this.props.eventId].comments.map(
             (comment) => {
@@ -123,8 +164,22 @@ class EventShow extends React.Component {
 
         return (
             <div className="event-show-container">
-                    
                     <div className="events-section">
+                        <div>
+                            <button onClick={() => this.leaveChannel()}>Leave Channel</button>
+                            {
+                                this.props.channel.admin === this.props.userId ? 
+                                <button onClick={() => this.openEditChannelTitle()}>Edit Channel Name</button> :
+                                ""
+                            }
+                            {
+                                this.state.editingChannelTitle ?
+                                    <input type="text"
+                                        value={this.state.channelTitle}
+                                        onChange={this.setChannelTitle()}
+                                        onKeyDown={this.updateChannelTitle}/> : ""
+                            }
+                        </div>
                         <div className="section-heading">
                             <h3>Events</h3>
                         </div>

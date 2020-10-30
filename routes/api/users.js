@@ -30,7 +30,7 @@ const { errors, isValid } = validateRegisterInput(req.body);
                 handle: req.body.handle,
                 email: req.body.email,
                 password: req.body.password,
-                zipcode: req.body.zipcode
+                // zipcode: req.body.zipcode
             })
 
             bcrypt.genSalt(10, (err, salt) => {
@@ -69,6 +69,7 @@ router.post('/login', (req, res) => {
               id: user.id,
               handle: user.handle,
               email: user.email,
+              channels: user.channels
               // zipcode: user.zipcode
             }
             jwt.sign(
@@ -93,7 +94,8 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
   res.json({
     id: req.user.id,
     handle: req.user.handle,
-    email: req.user.email
+    email: req.user.email,
+    channels: req.user.channels
   });
 })
 
@@ -102,7 +104,7 @@ router.patch("/:id",
   (req, res) => {
       //User.findByIdAndUpdate(req.params.id, { $push: {channels: req.body.channels.id} }, {new: true})
       User.findByIdAndUpdate(req.params.id, { $push: {channels: req.body.channels} }, {new: true})
-          .then((model) => {
+        .then((model) => {
           (res.json(model))
           return model.save();})
           .catch((err) => res.status(400).json(err));
