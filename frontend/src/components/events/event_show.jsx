@@ -17,25 +17,20 @@ class EventShow extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.match.params.channelId !== this.props.match.params.channelId) {
-            this.props.fetchEvent(this.props.eventId).then((action) => {
-                this.setState({ currentEvent: action.event.data });
-            }
-            );
-        }
-        // if (this.state.comment === "") {
-        //     debugger
-        //     this.props.fetchEvent(this.props.eventId)
-        // } 
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.match.params.channelId !== this.props.match.params.channelId) {
+        if (prevProps.channelId !== this.props.match.params.channelId) {
             this.props.fetchEvent(this.props.eventId)
             .then((action) => {
                 this.setState({ currentEvent: action.event.data, todo: action.event.data.todo });
             }
             );
+        }
+
+        if (prevProps.eventId !== this.props.match.params.eventId) {
+            this.props.fetchEvent(this.props.eventId)
+                .then((action) => {
+                    this.setState({ currentEvent: action.event.data, todo: action.event.data.todo });
+                }
+                );
         }
         // debugger
         // if ((prevProps.match.params.channelId === this.props.match.params.channelId) && prevProps.event[this.props.eventId]) {
@@ -114,7 +109,6 @@ class EventShow extends React.Component {
                 )
             }
         )
-        debugger
         let comments =
         (this.props.event[this.props.eventId].comments.length > 0) ? this.props.event[this.props.eventId].comments.map(
             (comment) => {

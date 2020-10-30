@@ -41,6 +41,14 @@ module.exports = function validateRegisterInput(data) {
     errors.password2 = 'Passwords must match';
   }
 
+  // if(!Validator.isNumeric(data.zipcode)) {
+  //   errors.zipcode = "Must be an integer!"
+  // }
+
+  // if (!Validator.isLength(data.zipcode, {min: 5, max: 5})) {
+  //   errors.zipcode = "Must be valid zipcode! (5 digits)"
+  // }
+
   return {
     errors,
     isValid: Object.keys(errors).length === 0

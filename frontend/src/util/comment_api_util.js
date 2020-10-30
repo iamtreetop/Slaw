@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const createComment = (comment) => {
-    debugger
     return axios.post('/api/comments/', comment)
 }
 

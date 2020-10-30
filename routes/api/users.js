@@ -29,7 +29,8 @@ const { errors, isValid } = validateRegisterInput(req.body);
             const newUser = new User ({
                 handle: req.body.handle,
                 email: req.body.email,
-                password: req.body.password
+                password: req.body.password,
+                zipcode: req.body.zipcode
             })
 
             bcrypt.genSalt(10, (err, salt) => {
@@ -67,7 +68,8 @@ router.post('/login', (req, res) => {
             const payload = {
               id: user.id,
               handle: user.handle,
-              email: user.email
+              email: user.email,
+              // zipcode: user.zipcode
             }
             jwt.sign(
               payload,
