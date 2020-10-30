@@ -5,8 +5,7 @@ import ChannelForm from "./channel_form";
 import { closeModal } from '../../actions/modal_actions';
 import { withRouter } from 'react-router-dom';
 import { updatePicture } from "../../util/channel_api_util"
-import { updateUser1 } from "../../actions/user_actions"
-
+import { updateUser } from "../../actions/user_actions";
 
 const mstp = (state) =>{
     return {
@@ -30,7 +29,7 @@ const mdtp = (dispatch) => {
         createEvent: (event) => dispatch(createEvent(event)),
         closeModal: () => dispatch(closeModal()),
         updatePicture: (image) => updatePicture(image),
-        updateUser1: (user) => dispatch(updateUser1(user))
+        updateUser: (user) => dispatch(updateUser(user)),
         // Would have something to clear eerrors?
     }
 }

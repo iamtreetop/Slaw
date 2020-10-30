@@ -6,7 +6,7 @@ import { fetchEvent, updateEvent } from '../../actions/event_actions';
 import { updateTodo } from '../../util/todo_api_util';
 import { fetchChannel, updateChannel } from '../../actions/channel_actions';
 import { createComment } from "../../util/comment_api_util"
-
+import { updateUser } from '../../actions/user_actions';
 
 const mstp = (state, ownProps) => {
     return {
@@ -27,6 +27,7 @@ const mdtp = (dispatch, ownProps) => {
         updateChannel: (channel) => dispatch(updateChannel(channel)),
         createComment: (comment) => createComment(comment),
         updateEvent: (event) => dispatch(updateEvent(event)),
+        updateUser: (user) => dispatch(updateUser(user))
     }
 }
 
