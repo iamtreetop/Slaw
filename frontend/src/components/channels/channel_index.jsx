@@ -38,7 +38,7 @@ class ChannelIndex extends React.Component{
             return null;
         }
 
-        debugger
+        // debugger
 
         let joinedChannels = [];
 

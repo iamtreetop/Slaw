@@ -25,7 +25,7 @@ class NavBar extends React.Component {
         );
       } else {
         let button;
-        debugger
+        // debugger
         if (this.props.location.pathname === "/") {
           return (
             <div>
