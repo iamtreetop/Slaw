@@ -5,16 +5,19 @@ import { Link } from 'react-router-dom';
 class EventShow extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {currentEvent: null};
+        this.state = { currentEvent: null};
         this.handleClick = this.handleClick.bind(this);
+        this.handleModal = this.handleModal.bind(this);
     }
 
     componentDidMount(){
-        this.props.fetchEvent(this.props.eventId).then( (action) => {
-                //debugger
-                this.setState({currentEvent: action.event.data});
-            }
-        );
+
+        this.props.fetchEvent(this.props.eventId)
+        // .then((action) => {
+        //         //debugger
+        //         this.setState({currentEvent: action.event.data, todo: action.event.data.todo});
+        //     }
+        // );
         // this.props.fetchChannel(this.props.match.params.channelId)
         //     .then((action) => {
         //         debugger
@@ -25,26 +28,62 @@ class EventShow extends React.Component {
         
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.channelId !== this.props.match.params.channelId) {
+            this.props.fetchEvent(this.props.eventId)
+            .then((action) => {
+                this.setState({ currentEvent: action.event.data, todo: action.event.data.todo });
+            }
+            );
+        }
+        // debugger
+        if ((prevProps.match.params.channelId === this.props.match.params.channelId) && prevProps.event[this.props.eventId]) {
+            if (prevProps.event[this.props.eventId].todo.length < (this.props.event[this.props.eventId]).todo.length) {
+                this.props.fetchEvent(this.props.eventId)
+            }
+        }
+    }
+
+    handleModal(e) {
+        this.props.openModal('todo', this.props.eventId)
+        // this.props.fetchEvent(this.props.eventId).then((action) => {
+        //     this.setState({ currentEvent: action.event.data, todo: action.event.data.todo });
+        // })
+    }
+
     handleClick(e, todoId){
         //debugger
         this.props.updateTodo({status: e.target.checked, id: todoId});
     }
+    
 
     render() {
-
-        if(this.state.currentEvent === null || !this.props.channel) {
+        if(!this.props.channel || this.props.event === null){
             return null;
         }
-
-        // debugger
-
-        let todoList = this.state.currentEvent.todo.map(
+        if (Object.keys(this.props.event).length === 0) {
+            return null;
+        }
+        if (!this.props.event[this.props.eventId]) {
+            return null;
+        }
+        let todoList = this.props.event[this.props.eventId] ? this.props.event[this.props.eventId].todo.map(
             (todo) => {
                 //debugger
                 return (
                     <li className="todo-list-item">
                         {todo.title}
                         <input type="checkbox" onClick={(e)=>this.handleClick(e, todo._id)}/>
+                    </li>
+                )
+            }
+        ) : this.state.currentEvent[this.props.eventId].todo.map(
+            (todo) => {
+                //debugger
+                return (
+                    <li className="todo-list-item">
+                        {todo.title}
+                        <input type="checkbox" onClick={(e) => this.handleClick(e, todo._id)} />
                     </li>
                 )
             }
@@ -100,13 +139,13 @@ class EventShow extends React.Component {
                     <div className="main-detail-wrapper">
                         <div className="event-details-container">
                             <div className="event-details-left">
-                                <h1>{this.state.currentEvent.title}</h1>
+                                <h1>{this.props.event[this.props.eventId].title}</h1>
                                 <h2>Welcome to {this.props.channel.title} Channel</h2>
-                                <p>`Description: {this.state.currentEvent.description}</p>
+                                <p>`Description: {this.props.event[this.props.eventId].description}</p>
                             </div>
                             <div className="event-details-right">
                                 <h1>Workout List</h1>
-                                <button onClick={() => this.props.openModal('todo',this.props.eventId)}>Create New Todo</button>
+                                <button onClick={() => this.handleModal()}>Create New Todo</button>
                                 <ul>{todoList}</ul>
                             </div>
                         </div>
