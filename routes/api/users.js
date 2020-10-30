@@ -67,7 +67,8 @@ router.post('/login', (req, res) => {
             const payload = {
               id: user.id,
               handle: user.handle,
-              email: user.email
+              email: user.email,
+              channels: user.channels
             }
             jwt.sign(
               payload,
@@ -91,7 +92,8 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
   res.json({
     id: req.user.id,
     handle: req.user.handle,
-    email: req.user.email
+    email: req.user.email,
+    channels: req.user.channels
   });
 })
 
@@ -100,7 +102,8 @@ router.patch("/:id",
   (req, res) => {
       //User.findByIdAndUpdate(req.params.id, { $push: {channels: req.body.channels.id} }, {new: true})
       User.findByIdAndUpdate(req.params.id, { $push: {channels: req.body.channels} }, {new: true})
-          .then((model) => {
+        .populate("channels")
+        .then((model) => {
           (res.json(model))
           return model.save();})
           .catch((err) => res.status(400).json(err));

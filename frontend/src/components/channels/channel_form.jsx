@@ -54,6 +54,9 @@ class ChannelForm extends React.Component{
 
                 this.props.createChannel(channel).then(
                 (action) => {
+
+                    this.props.updateUser({channels: action.channel.data});
+
                     this.props.history.push(`/channels/${action.channel.data._id}`)
                     this.props.closeModal()
                 }

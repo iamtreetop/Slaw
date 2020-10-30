@@ -154,7 +154,7 @@ class EventShow extends React.Component {
                 )
             }
         )
-        debugger
+        //debugger
         let comments =
         (this.props.event[this.props.eventId].comments.length > 0) ? this.props.event[this.props.eventId].comments.map(
             (comment) => {
