@@ -9,32 +9,57 @@ class ChannelIndex extends React.Component{
 
     componentDidMount(){
         this.props.fetchChannels();
+        window.scrollTo(0, 0);
     }
 
     handleClick(channelId){
-        let newMembers = {
-            id: channelId,
-            members: this.props.user
-        }
-
-        this.props.updateChannel(newMembers).then( (action)=>{
-            // this.props.history.push(`/channels/${action.channel.id}`)
-        })
-
         let newChannels = {
             id: this.props.user.id,
             channels: channelId
         }
+        this.props.updateUser(newChannels).then((unused)=>{
+            let newMembers = {
+                id: channelId,
+                members: this.props.user
+            }
+            
+            this.props.updateChannel(newMembers).then( (action)=>{
+                //debugger
+                this.props.history.push(`/channels/${action.channel.data._id}/${action.channel.data.events[0]._id}`);
+            })
+        });
+        
 
-        this.props.updateUser(newChannels);
     }
 
+
     render(){
-        if(!this.props.channels){
+
+        if(this.props.channels.length === 0 || Object.keys(this.props.user).length === 0) {
             return null;
         }
 
-        let channelList = this.props.channels.map((channel, index) => {
+        let joinedChannels = [];
+
+        if (this.props.user.channels.length > 0) {
+            this.props.user.channels.forEach((channel, index) => {
+                joinedChannels.push(this.props.channelObjects[channel]._id)
+            })
+        }
+
+        let notJoined = [];
+
+        if (joinedChannels.length === 0) {
+            notJoined = this.props.channels
+        } else {
+            this.props.channels.forEach((channel, index) => {
+                if (!joinedChannels.includes((channel._id))) {
+                    notJoined.push(channel)
+                }
+            })
+        }
+
+        let channelList = notJoined.map((channel, index) => {
             return(
                 <li key={index} className="channel-list-item">
                     <Link className="channel-link" to={"/channels/" + channel._id}>{channel.title}</Link>
@@ -47,11 +72,14 @@ class ChannelIndex extends React.Component{
                 // </div>
 
         return (
-            <div className="channel-index-container">
-                <div className="channel-index-list-block">
-                    <ul className="channel-index-list">
-                        {channelList}
-                    </ul>
+            <div className="signup-bg-image">
+
+                <div className="channel-index-container">
+                    <div className="channel-index-list-block">
+                        <ul className="channel-index-list">
+                            {channelList}
+                        </ul>
+                    </div>
                 </div>
             </div>
         )

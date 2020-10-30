@@ -18,6 +18,17 @@
     width: 80%;
 }
 
+.navbar-header-text:link {
+    text-decoration: none;
+}
+
+.navbar-header-text:hover {
+    color: #8acbb6;
+    font-weight: bolder;
+    transition: background-color .4s ease-out;
+    cursor: pointer;
+}
+
 
 .session-button{
     color: black;
@@ -27,9 +38,11 @@
     border-radius: 25px;
     padding: 8px 15px;
     text-decoration: none;
-    background-color: white;
+    background-color: #ebebf7;
     cursor: pointer;
     border: none;
+    outline: none;
+    font-family: 'Titillium Web', sans-serif;
 }
 
 .session-button:hover{

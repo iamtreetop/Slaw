@@ -8,14 +8,15 @@ class MainPage extends React.Component {
       <div className="main-bg-image">
         <div className="main-container" >
           <div className="main-message-wrapper">
-            <h1  className="main-header">Your Place to Slaw </h1>
-            <h2  className="sub-header">Organize your activities with friends</h2>
-            <h2  className="sub-header">Workout together.</h2>
+            <h2  className="main-header">Community</h2>
+            <h4  className="sub-header">stop working out alone</h4>
+            <h4  className="sub-header">we can achieve more TOGETHER with SLAW 
+            </h4>
           </div>
         </div>  
-        <footer>
+        {/* <footer>
           Copyright &copy; 2020 SlawApp
-        </footer>
+        </footer> */}
       </div>
     );
   }

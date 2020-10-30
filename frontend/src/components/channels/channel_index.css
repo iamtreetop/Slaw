@@ -1,10 +1,19 @@
+.signup-bg-image{
+    background-image:url('../../images/signup-bg.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
+    backdrop-filter: grayscale(1);
+    height: 110vh;
+    filter: saturate(0.4);
+}
+
 .channel-index-container {
-    border: 2px solid red;
+    /* border: 2px solid red; */
     display: block;
     padding-left: 68px;
-    background: linear-gradient(217deg, rgba(6, 39, 43,.9), rgba(6,39,43,.9) 70.71%), linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgb(16 16 70), rgba(0,0,255,0) 70.71%);
-    height: 100vh;
-    width: 95vw;
+    background: linear-gradient(217deg, rgb(6 39 43 / 25%), rgb(6 39 43 / 41%) 70.71%), linear-gradient(127deg, rgb(8 96 5 / 56%), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgb(74 74 153 / 58%), rgba(0,0,255,0) 70.71%);
+    /* height: 100vh;
+    width: 95vw; */
     /* top: 79px; */
     position: relative;
     padding-top: 90px;
@@ -20,13 +29,14 @@
     display: flex;
     justify-content: center;
     /* border: 2px solid blue; */
-    height: 95vh;
+    height: 97vh;
 }
 
 .channel-index-list{
     display: flex;
     flex-direction: column;
-        border-radius: 6px;
+    background-color: #0c3b3b;
+    border-radius: 6px;
     box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
     /* border: 2px solid green; */
     overflow: auto;
@@ -62,8 +72,8 @@
 
 .join-button{
     display: block;
-    background-color: #a7e0ce;
-    /* background-color: #ebebf7; */
+    /* background-color: #a7e0ce; */
+    background-color: #ebebf7;
     font-size: 14px;
     font-weight: bold;
     border-radius: 6px;
@@ -77,6 +87,8 @@
 
 .join-button:hover{
     background-color: #8acbb6;
+    color: #ebebf7;
+    font-weight: bolder;
     transition: background-color .4s ease-out;
 }
 
@@ -85,5 +97,6 @@
     color: black;
     font-weight: bolder;
     box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+    border: none;
 }
 
