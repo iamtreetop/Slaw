@@ -102,20 +102,22 @@ class EventShow extends React.Component {
     }
 
     handleCommentSubmit(e) {
-        e.preventDefault();
-        this.props.createComment({comment: this.state.comment, handle: this.props.handle})
-            .then((comment) => {
-                let newEventState = {
-                    id: this.props.eventId,
-                    comment: comment.data._id
-                }
-                this.props.updateEvent(newEventState).then(
-                    (action) => {
-                        console.log("SUCCESS")
+        // e.preventDefault();
+        if(e.key === "Enter") {
+            this.props.createComment({comment: this.state.comment, handle: this.props.handle})
+                .then((comment) => {
+                    let newEventState = {
+                        id: this.props.eventId,
+                        comment: comment.data._id
                     }
-                )
-                this.setState({comment: ""})
-            })
+                    this.props.updateEvent(newEventState).then(
+                        (action) => {
+                            console.log("SUCCESS")
+                        }
+                    )
+                    this.setState({comment: ""})
+                })
+        }
     }
 
     handleChangeComment(comment) {
@@ -161,15 +163,25 @@ class EventShow extends React.Component {
         let comments =
         (this.props.event[this.props.eventId].comments.length > 0) ? this.props.event[this.props.eventId].comments.map(
             (comment) => {
+                let month = comment.date.slice(5,7)
+                let day = comment.date.slice(8,10)
+                let time = comment.date.slice(12,19)
                 return (
-                    <li >
-                        {comment.comment}
-                        {comment.author}
-                    </li>
+                    <>  
+                        <div className="comment-header-text-box">
+                            <div className="comment-header-text">
+                                <p className="comment-author">{comment.author}</p>
+                                <p className="comment-date">({month}/{day})</p>
+                                <p className="comment-time">{time}</p>
+                            </div>
+                            <p className="comment-comment" >{comment.comment} </p>
+
+                        </div>
+                    </>
                 )
             }
-        ) : <p>Comment Add here</p>
-
+        ) : <p className="comment-holder-text">Post Here</p>
+        let eventTitle = `Post on #${this.props.event[this.props.eventId].title}`
         return (
             <div className="event-show-container">
                     <div className="events-section">
@@ -241,13 +253,15 @@ class EventShow extends React.Component {
                             <div className="comment-boxs">
                                 {comments}
                             </div>
-                            <form onSubmit={this.handleCommentSubmit}>
-                                <textarea name="" id="" cols="30" rows="10" 
+                            {/* <form onSubmit={this.handleCommentSubmit}> */}
+                                <textarea name="" id=""
                                     onChange={this.handleChangeComment("comment")} 
-                                    value={this.state.comment}
+                                    placeHolder={eventTitle}
+                                    onKeyDown={this.handleCommentSubmit}
+                                    className="comment-text-box"
                                 ></textarea>
-                                <input type="submit" value="Add Comment"/>
-                            </form>
+                                {/* <input type="submit" value="Add Comment"/> */}
+                            {/* </form> */}
                         </div>
                     </div>
 
