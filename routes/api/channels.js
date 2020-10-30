@@ -53,18 +53,18 @@ router.post(("/"),
         let newChannel;
         if (!req.file) {
             newChannel = new Channel({
-                admin: req.body.userId,
+                admin: req.body.id,
                 title: req.body.title,
                 events: req.body.events,
-                members: [req.body.userId]
+                members: [req.body.id]
             })
         } else {
             newChannel = new Channel({
-                admin: req.body.userId,
+                admin: req.body.id,
                 title: req.body.title,
                 events: req.body.events,
                 channelPicture: req.file.location,
-                members: [req.body.userId]
+                members: [req.body.id]
             })
         }
 
