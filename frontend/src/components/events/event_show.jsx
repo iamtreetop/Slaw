@@ -268,7 +268,7 @@ class EventShow extends React.Component {
         return (
             <div className="event-show-container">
                     <div className="events-section">
-                        <div>
+                        <div className="channel-edit-button">
                             {
                                 this.props.channel.admin === this.props.userId ? 
                                 <button onClick={() => this.openEditChannelTitle()}>Edit Channel Name</button> :
@@ -297,7 +297,7 @@ class EventShow extends React.Component {
                                 })}
                                 <li className="create-event">
                                     <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
-                                        New SLAP
+                                        New SLAW
                                     </Link>
                                 </li>
                             </ul>
@@ -323,7 +323,7 @@ class EventShow extends React.Component {
                             <div className="event-details-left">
                                 <h1>#{this.props.event[this.props.eventId].title}</h1>
                                 <h2>Welcome to {this.props.channel.title} Channel</h2>
-                                <p>`Description: {this.props.event[this.props.eventId].description}</p>
+                                <p>Description: <br/> {this.props.event[this.props.eventId].description}</p>
                                 {join}
                                 {leave}
                                 {editDelete}
@@ -338,11 +338,28 @@ class EventShow extends React.Component {
                                     <h1>Participants</h1>
                                     <ul>{participants}</ul> 
                                 </div>
+                                <div className="members-section">
+                                    <div className="section-heading">
+                                        Members
+                                    </div>
+                                    <div className="show-list">
+                                        <ul>
+                                            {this.props.channel.members.map((member, idx)=>{
+                                                return (<li key={idx}>
+                                                    <h5>
+                                                        {member.handle}
+                                                    </h5>
+                                                </li>
+                                            )})}
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
 
                         <div className="comment-section">
-                            <div className="comment-boxs">
+                            <div className="comment-box-wrapper">
                                 {comments}
                             </div>
                             {/* <form onSubmit={this.handleCommentSubmit}> */}
@@ -359,7 +376,7 @@ class EventShow extends React.Component {
                     </div>
 
 
-                    <div className="members-section">
+                    {/* <div className="members-section">
                         <div className="section-heading">
                             Members
                         </div>
@@ -374,7 +391,7 @@ class EventShow extends React.Component {
                                 )})}
                             </ul>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
         )
     }

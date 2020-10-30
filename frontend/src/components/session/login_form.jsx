@@ -96,7 +96,8 @@ class LoginForm extends React.Component {
               <div className="login-inputs-wrapper">
                   <label className="login-label">EMAIL</label>
                   <input className="login-input-field"
-                    type="text"
+                    type="email"
+                    required={true}
                     value={this.state.email}
                     onChange={this.update('email')}
                   />
@@ -104,6 +105,7 @@ class LoginForm extends React.Component {
                   <label className="login-label">PASSWORD</label>
                   <input className="login-input-field" 
                     type="password"
+                    required={true}
                     value={this.state.password}
                     onChange={this.update('password')}
                   />
@@ -111,7 +113,7 @@ class LoginForm extends React.Component {
                 <input className="login-button"
                     type="submit" 
                     value="Submit" />
-                {this.renderErrors()}
+                {/* {this.renderErrors()} */}
 
               {demoButton}
               </div>

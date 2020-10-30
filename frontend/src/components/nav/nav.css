@@ -27,9 +27,11 @@
     border-radius: 25px;
     padding: 8px 15px;
     text-decoration: none;
-    background-color: white;
+    background-color: #ebebf7;
     cursor: pointer;
     border: none;
+    outline: none;
+    font-family: 'Titillium Web', sans-serif;
 }
 
 .session-button:hover{

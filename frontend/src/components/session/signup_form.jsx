@@ -65,7 +65,8 @@ class SignupForm extends React.Component {
                 <div className="signup-inputs-wrapper">
                   <label className="signup-label">EMAIL</label>
                   <input className="signup-input-field"  
-                    type="text"
+                    type="email"
+                    required={true}
                     value={this.state.email}
                     onChange={this.update('email')}
                     // placeholder="Email"
@@ -74,6 +75,7 @@ class SignupForm extends React.Component {
                   <label className="signup-label">HANDLE</label>
                   <input className="signup-input-field" 
                     type="text"
+                    required={true}
                     value={this.state.handle}
                     onChange={this.update('handle')}
                     // placeholder="Handle"
@@ -82,6 +84,7 @@ class SignupForm extends React.Component {
                   <label className="signup-label">PASSWORD</label>
                   <input className="signup-input-field"  
                     type="password"
+                    required={true}
                     value={this.state.password}
                     onChange={this.update('password')}
                     // placeholder="Password"
@@ -90,6 +93,7 @@ class SignupForm extends React.Component {
                   <label className="signup-label">CONFIRM PASSWORD</label>
                   <input className="signup-input-field"  
                     type="password"
+                    required={true}
                     value={this.state.password2}
                     onChange={this.update('password2')}
                     // placeholder="Confirm Password"

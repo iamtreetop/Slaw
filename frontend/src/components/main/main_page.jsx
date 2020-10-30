@@ -9,7 +9,7 @@ class MainPage extends React.Component {
         <div className="main-container" >
           <div className="main-message-wrapper">
             <h2  className="main-header">Community</h2>
-            <h4  className="sub-header">Never workout alone again</h4>
+            <h4  className="sub-header">stop working out alone</h4>
             <h4  className="sub-header">We can achieve more TOGETHER with SLAW 
             </h4>
           </div>

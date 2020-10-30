@@ -8,11 +8,12 @@
 
 .channel-form-box {
     border-radius: 6px;
-    box-shadow: 0 2px 10px 0 rgba(12,59,59,.2);
-    padding-top: 20px;
-    background-color: #ebebf7;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+    padding-top: 2ß0px;
+    /* background: linear-gradient(217deg, rgba(6, 39, 43,.9), rgba(6,39,43,.9) 70.71%), linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%); */
+    background-color: #0c3b3b;
     display: flex;
-    /* justify-content: center; */
+    text-align: center;
     align-items: center;
     flex-direction: column;
     height: 400px;
@@ -39,7 +40,8 @@
 
 .channel-form-header p {
     text-align: center;
-    color: black;
+    color: #ebebf7;
+    font-size: 26px;;
     font-weight: bold;
 }
 
@@ -58,7 +60,7 @@
 } */
 
 .channel-form-input {
-    width: 300px;
+    width: 354px;
     border-radius: 6px;
     border: none;
     box-shadow: 0 2px 5px 0 rgba(12,59,59,1);
@@ -72,15 +74,20 @@ input[type="text"]{
 } 
 
 .photo-input-box {
+    margin-left: 20px;
+    margin-right: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    width: 90%;
+    height: 180px;
+    /* align-items: center; */
 }
 
 .photo-input-box p {
-    text-align: center;
-    color: black;
+    /* text-align: center; */
+    text-align: left;
+    color: #ebebf7;
     font-weight: bold;
 }
 
@@ -89,11 +96,28 @@ input[type="text"]{
     display: flex;
     align-items: center;
     /* margin-left: 35px; */
+    outline: none;
 }
 
-#file-input-button{
-    width: 100%
+.file-input:focus{
+    outline: none;
 }
+
+.file-input > input:focus{
+    outline: none;
+}
+
+#file-input-button {
+    width: 100%;
+    outline: none;
+}
+
+#file-input-button > input:focus{
+    outline: none;
+}
+
+
+
 
 .channel-submit-button {
     /* background-color: #a7e0ce; */
@@ -108,11 +132,21 @@ input[type="text"]{
     border: none;
     outline: none;
     cursor: pointer;
+    width: 90%;
 }
 
 .channel-submit-button:hover {
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: #a7e0ce;
     cursor: pointer;
     transition: .5s;
+}
+.channel-submit-button:active {
+    text-decoration: underline;
+    cursor: pointer;
+    transition: .5s;
+}
+
+input:focus {
+    outline:none;
 }
