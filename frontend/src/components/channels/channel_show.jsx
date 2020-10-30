@@ -37,18 +37,16 @@ class ChannelShow extends React.Component {
                             <h3>Events</h3>
                         </div>
                         <div className="show-list">
-                            <ul className="show-list-items">
+                            <ul>
                                 {this.props.channel.events.map((event, idx) => {
                                     return (<li key={idx}>
-                                        <h5>
-                                            <Link to={`/channels/${this.props.channel._id}/${event._id}`}>{event.title}</Link>
-                                        </h5>
+                                        <Link className="show-list-items" to={`/channels/${this.props.channel._id}/${event._id}`}>{event.title}</Link>
                                     </li>
                                     )
                                 })}
                                 <li className="create-event">
-                                    <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
-                                        Start your next event 
+                                    <Link to={`/events/${this.props.channel._id}/new`}>
+                                        <button className="create-event-button">New SLAW</button>
                                     </Link>
                                 </li>
                             </ul>

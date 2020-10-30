@@ -76,7 +76,7 @@ class ChannelForm extends React.Component{
 
                     </div>
                     <div className="channel-form-input-box">
-                    <input type="text"
+                    <input className=".channel-text-input" type="text"
                         value={this.state.title}
                         onChange={this.handleChange("title")}
                         className="channel-form-input"
@@ -87,7 +87,7 @@ class ChannelForm extends React.Component{
                     <div className="photo-input-box">
                         <p>Add a Channel Profile Picture</p>
                         <div className="file-input">
-                            <input type="file" id="file-input" name="image" 
+                            <input type="file" id="file-input-button" name="image" 
                             onChange={this.handlePhotoInput}
                             />
                         </div>
