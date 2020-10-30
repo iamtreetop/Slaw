@@ -29,6 +29,8 @@ class EventShow extends React.Component {
 
     componentDidMount(){
         this.props.fetchEvent(this.props.eventId)
+
+        this.props.fetchChannel()
         window.scrollTo(0, 0);
     }
 

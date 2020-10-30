@@ -38,8 +38,6 @@ class ChannelIndex extends React.Component{
             return null;
         }
 
-        // debugger
-
         let joinedChannels = [];
 
         if (this.props.user.channels.length > 0) {
