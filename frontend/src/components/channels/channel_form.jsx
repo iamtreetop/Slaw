@@ -84,6 +84,7 @@ class ChannelForm extends React.Component{
                         onChange={this.handleChange("title")}
                         className="channel-form-input"
                         placeholder="Slaw Channel Title"
+                        required={true}
                     />
                     </div>
 
