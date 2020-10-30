@@ -27,7 +27,7 @@ class EventShow extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.channelId !== this.props.match.params.channelId) {
+        if (prevProps.match.params.channelId !== this.props.match.params.channelId) {
             this.props.fetchEvent(this.props.eventId)
             .then((action) => {
                 this.setState({ currentEvent: action.event.data, todo: action.event.data.todo });
