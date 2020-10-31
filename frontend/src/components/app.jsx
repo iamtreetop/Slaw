@@ -11,28 +11,7 @@ import ChannelIndexContainer from './channels/channel_index_container';
 import EventFormContainer from './events/event_form_container';
 import EventShowContainer from './events/event_show_container';
 import EventEditContainer from './events/event_edit_container';
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  InfoWindow,
-} from "@react-google-maps/api";
-
-import UsePlacesAutoComplete, {
-  getGeocode,
-  getLatLng,
-} from 'use-places-autocomplete';
-
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxPopover,
-  ComboboxList,
-  CombocboxOption,
-} from '@reach/combobox';
-// import "../@reach/comboboc/styles.css"
-// import "../@reach/comboboc/styles.css"
-import "../../../node_modules/@reach/combobox/styles.css"
+import Map from './map/map'
 
 import Modal from "../components/modal/modal"
 
@@ -51,6 +30,7 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/channels" component={ChannelIndexContainer} />
       {/* <ProtectedRoute exact path="/channels/:channelId" component={ChannelShowContainer} /> */}
+      <ProtectedRoute exact path="/events/:channelId/discover" component={Map} />
       <ProtectedRoute exact path="/channels/:channelId/:eventId" component={EventShowContainer} />
       <ProtectedRoute exact path="/events/:channelId/new" component={EventFormContainer} />
       <ProtectedRoute exact path="/events/:channelId/:eventId/edit" component={EventEditContainer} />
