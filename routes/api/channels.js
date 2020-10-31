@@ -77,7 +77,7 @@ router.patch("/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         if (req.body.members && !req.body.removeCurrentUser) {
-            Channel.findByIdAndUpdate(req.params.id, { $push: {members: req.body.members.id} }, {new: true})
+            Channel.findByIdAndUpdate(req.params.id, { $push: {members: req.body.members} }, {new: true})
                 .populate('events members')
                 .then((model) => {
                 (res.json(model))
@@ -85,7 +85,7 @@ router.patch("/:id",
                 .catch((err) => res.status(400).json(err));
         }
         else if (req.body.removeCurrentUser){
-            Channel.findByIdAndUpdate(req.params.id, { $pull: {members: req.body.members.id} }, {new: true})
+            Channel.findByIdAndUpdate(req.params.id, { $pull: {members: req.body.members} }, {new: true})
             .populate('events members')
             .then((model) => {
             (res.json(model))
