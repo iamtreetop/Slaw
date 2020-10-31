@@ -276,8 +276,8 @@ class EventShow extends React.Component {
                         <div className="channel-edit-button">
                             {
                                 this.props.channel.admin === this.props.userId ? 
-                                <button onClick={() => this.openEditChannelTitle()}>Edit Channel Name</button> :
-                                <button onClick={() => this.leaveChannel()}>Leave Channel</button>
+                                <button className="channel-button-edit"onClick={() => this.openEditChannelTitle()}>Edit Channel Name</button> :
+                                <button className="channel-button-edit" onClick={() => this.leaveChannel()}>Leave Channel</button>
                             }
                             {
                                 this.state.editingChannelTitle ?
@@ -288,25 +288,28 @@ class EventShow extends React.Component {
                             }
                         </div>
                         <div className="section-heading">
-                            <h3>Events</h3>
+                            <span className="events-header-text">Events</span>
                         </div>
                         <div className="show-list">
                             <ul className="show-list-items">
                                 {this.props.channel.events.map((event, idx) => {
                                     return (<li key={idx}>
-                                        <h5>
-                                            <Link to={`/channels/${this.props.channel._id}/${event._id}`}>{event.title}</Link>
-                                        </h5>
+                                        <Link to={`/channels/${this.props.channel._id}/${event._id}`}>
+                                            <span className="show-list-items-text">{event.title}</span>
+                                        </Link>
                                     </li>
                                     )
                                 })}
-                                <li className="create-event">
+                                {/* <li className="create-event">
                                     <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
-                                        New SLAW
+                                        Add an Event
                                     </Link>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
+                        <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
+                            Add an Event
+                        </Link>
                     </div>
 
                     {/* <div className="event-detail-container">
