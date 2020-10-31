@@ -19,6 +19,9 @@ import {
     CombocboxOption,
 } from '@reach/combobox';
 import "../../../node_modules/@reach/combobox/styles.css"
+import mapStyles from "./mapStyles";
+require('dotenv').config()
+
 
 const libraries = ["places"]
 
@@ -32,7 +35,13 @@ const center = {
     lng: -79.3832,
 };
 
-export default function Map() {
+const options = {
+    styles: mapStyles,
+    disableDefaultUI: true,
+    zoomControl: true,
+};
+
+export default function SlawMap() {
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
         libraries,
@@ -41,10 +50,17 @@ export default function Map() {
     if (!isLoaded) return "Loading...";
     return(
         <div>
+            <h1>
+                Bears{" "}
+                <span role="img" aria-label="tent">
+                    💪
+                </span>
+            </h1>
+
             <GoogleMap mapContainerStyle={mapContainerStyle}
             zoom={8}
-            center={center}>
-
+            center={center}
+            options={options}>
             </GoogleMap>
         </div>
     )

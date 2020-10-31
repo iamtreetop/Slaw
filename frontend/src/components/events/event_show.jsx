@@ -285,57 +285,40 @@ class EventShow extends React.Component {
 
         let display = !this.state.loading ? (
             <div className="event-show-container">
-                <div className="events-section">
-                    <div className="channel-edit-button">
-                        {
-                            this.props.channel.admin === this.props.userId ?
-                                <button onClick={() => this.openEditChannelTitle()}>Edit Channel Name</button> :
-                                <button onClick={() => this.leaveChannel()}>Leave Channel</button>
-                        }
-                        {
-                            this.state.editingChannelTitle ?
-                                <input type="text"
-                                    value={this.state.channelTitle}
-                                    onChange={this.setChannelTitle()}
-                                    onKeyDown={this.updateChannelTitle} /> : ""
-                        }
+                    <div className="events-section">
+                        <div className="channel-edit-button">
+                            {
+                                this.props.channel.admin === this.props.userId ? 
+                                <button className="channel-button-edit"onClick={() => this.openEditChannelTitle()}>Edit Channel Name</button> :
+                                <button className="channel-button-edit" onClick={() => this.leaveChannel()}>Leave Channel</button>
+                            }
+                            {
+                                this.state.editingChannelTitle ?
+                                    <input type="text"
+                                        value={this.state.channelTitle}
+                                        onChange={this.setChannelTitle()}
+                                        onKeyDown={this.updateChannelTitle}/> : ""
+                            }
+                        </div>
+                        <div className="section-heading">
+                            <span className="events-header-text">Events</span>
+                        </div>
+                        <div className="show-list">
+                            <ul className="show-list-items">
+                                {this.props.channel.events.map((event, idx) => {
+                                    return (<li key={idx}>
+                                        <Link to={`/channels/${this.props.channel._id}/${event._id}`}>
+                                            <span className="show-list-items-text">{event.title}</span>
+                                        </Link>
+                                    </li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
+                        <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
+                            Add an Event
+                        </Link>
                     </div>
-                    <div className="section-heading">
-                        <h3>Events</h3>
-                    </div>
-                    <div className="show-list">
-                        <ul className="show-list-items">
-                            {this.props.channel.events.map((event, idx) => {
-                                return (<li key={idx}>
-                                    <h5>
-                                        <Link to={`/channels/${this.props.channel._id}/${event._id}`}>{event.title}</Link>
-                                    </h5>
-                                </li>
-                                )
-                            })}
-                            <li className="create-event">
-                                <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
-                                    New SLAW
-                                    </Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                {/* <div className="event-detail-container">
-                         <div className="event-left-wrapper">
-                            <div className="left-text-wrapper">
-                                <h3>TITLE</h3>
-                                <h4>DESCRIPTION</h4>
-                            </div>
-                            <div className="event-todo-list">TODO-List</div>
-                         </div>
-                         <div className="event-right-wrapper">
-                             <div className="comment-container">
-                                 <ul>COMMENTS</ul>
-                             </div>
-                         </div>
-                    </div> */}
                 <div className="main-detail-wrapper">
                     <div className="event-details-container">
                         <div className="event-details-left">
@@ -393,24 +376,6 @@ class EventShow extends React.Component {
                         {/* </form> */}
                     </div>
                 </div>
-
-
-                {/* <div className="members-section">
-                        <div className="section-heading">
-                            Members
-                        </div>
-                        <div className="show-list">
-                            <ul>
-                                {this.props.channel.members.map((member, idx)=>{
-                                    return (<li key={idx}>
-                                        <h5>
-                                            {member.handle}
-                                        </h5>
-                                    </li>
-                                )})}
-                            </ul>
-                        </div>
-                    </div> */}
             </div>
         ) : 
         <div className="loading-parent">
