@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import './nav.css'
-
+import './nav.css';
+import backgroundImage from '../../images/532_-_Boxing-513.png';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -55,7 +55,7 @@ class NavBar extends React.Component {
         <div className="navbar-container">
             <div className="navbar-wrapper">
               <Link to={'/'} className="navbar-header-text">
-                <h1>Slaw 🥊</h1>
+              <img src={backgroundImage}/>
               </Link>
               { this.getLinks() }
             </div>
