@@ -49,10 +49,11 @@
     width: 400px;
     height: 100px;
     /* background-color: #0c3b3b; */
-    background-color: #1e9191;
+    /* background-color: #1e9191; */
     margin-bottom: 50px;
     border-radius: 5px;
     margin-right: 40px;
+    position: relative;
 }
 
 .channel-link {
@@ -60,7 +61,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 80%;
+    height: 100%;
     color: white;
     font-size: 30px;
     font-weight: bold;
@@ -68,8 +69,19 @@
     text-align: center;
     justify-content: center;
     text-decoration: none;
+    object-fit: cover;
+    z-index: -1;
+    opacity: .5;
+    /* position: relative; */
 }
 
+.channel-link-text {
+    z-index: 1;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 34px;
+    left:  166px;
+}
 .join-button{
     display: block;
     /* background-color: #a7e0ce; */
