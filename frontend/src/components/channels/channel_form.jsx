@@ -71,6 +71,7 @@ class ChannelForm extends React.Component{
                     //debugger
                     this.props.updateUser({channels: action.channel.data._id, id: this.props.user.id});
                     this.props.history.push(`/channels/${action.channel.data._id}/${action.channel.data.events[0]}`)
+                    this.props.fetchChannel(action.channel.data._id)
                     this.props.closeModal()
                 }
             ).catch((res) => console.log(res))

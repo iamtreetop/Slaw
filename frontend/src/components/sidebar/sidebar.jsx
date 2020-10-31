@@ -8,8 +8,9 @@ class SideBar extends React.Component {
 
         this.state = {
             fetching: false,
-            fetchChannels: false
+            fetchChannels: false,
         }
+        
     }
 
     componentDidMount() {
@@ -24,12 +25,6 @@ class SideBar extends React.Component {
             }
         );
     }
-
-    // componentDidUpdate() {
-    //     if ()
-    //     this.props.fetchUser()
-    // }
-
 
     render() {
 

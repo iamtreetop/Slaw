@@ -69,12 +69,7 @@ router.post(("/"),
         }
 
         newChannel.save().then(channel => res.json(channel)).catch((err) => res.status(400).json({ success: false, error: err }))
-        // Channel.findById(newChannel.doc._id)
-        //     .populate("events")
-        //     .exec(function (err, channel) {
-        //         if (err) return console.log(err)
-        //         res.json(channel)
-        //     }) 
+
     });
 });
 

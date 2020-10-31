@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import { fetchChannels } from '../../actions/channel_actions';
 import { fetchUser } from "../../actions/user_actions"
 import { openModal } from '../../actions/modal_actions';
@@ -22,4 +23,4 @@ const mdtp = (dispatch) => {
 }
 
 
-export default connect(mstp, mdtp)(SideBar);
+export default withRouter(connect(mstp, mdtp)(SideBar));
