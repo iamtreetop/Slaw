@@ -27,6 +27,7 @@
     "redux-thunk": "^2.3.0",
     "use-places-autocomplete": "^1.5.9",
     "web-vitals": "^0.2.4"
+
   },
   "scripts": {
     "start": "react-scripts start",

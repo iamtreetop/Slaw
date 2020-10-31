@@ -22,6 +22,8 @@ import "../../../node_modules/@reach/combobox/styles.css"
 import mapStyles from "./mapStyles";
 require('dotenv').config()
 
+// import Dashboard from 'app-b-dashboard/container'
+
 
 const libraries = ["places"]
 
@@ -43,7 +45,7 @@ const options = {
 
 export default function SlawMap() {
     const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+        googleMapsApiKey: "AIzaSyAde9a-WlLx6LKCOSBUQHgyPwjm55qPpQc",
         libraries,
     });
     if (loadError) return "Error";
