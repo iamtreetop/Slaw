@@ -111,7 +111,7 @@ class ChannelIndex extends React.Component{
                                     (channel, index) => {
                                         return (
                                             <li key={index} className="channel-list-item">
-                                                <Link className="channel-link" to={"/channels/" + channel._id}>{channel.title}</Link>
+                                                <span className="channel-link" >{channel.title}</span>
                                                 <button className="join-button" onClick={()=>this.handleClick(channel._id)}>JOIN</button>
                                             </li>
                                         )
@@ -120,7 +120,7 @@ class ChannelIndex extends React.Component{
                                     (channel, index) => {
                                         return (
                                             <li key={index} className="channel-list-item">
-                                                <Link className="channel-link" to={"/channels/" + channel._id}>{channel.title}</Link>
+                                                <span className="channel-link" >{channel.title}</span>
                                                 <button className="join-button" onClick={()=>this.handleClick(channel._id)}>JOIN</button>
                                             </li>
                                         )
