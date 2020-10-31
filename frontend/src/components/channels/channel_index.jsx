@@ -120,7 +120,8 @@ class ChannelIndex extends React.Component{
                                     (channel, index) => {
                                         return (
                                             <li key={index} className="channel-list-item">
-                                                <span className="channel-link" >{channel.title}</span>
+                                                <img src={channel.channelPicture} className="channel-link" alt="" />
+                                                <span className="channel-link-text" >{channel.title}</span>
                                                 <button className="join-button" onClick={()=>this.handleClick(channel._id)}>JOIN</button>
                                             </li>
                                         )
