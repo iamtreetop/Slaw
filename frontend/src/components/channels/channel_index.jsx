@@ -5,10 +5,49 @@ import './channel_index.css'
 class ChannelIndex extends React.Component{
     constructor(props){
         super(props);
+        this.state = {
+            query: "",
+            notJoinedChannels: [],
+            filteredChannels: [],
+            searchSubmitted: false
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
     }
 
     componentDidMount(){
-        this.props.fetchChannels();
+        this.props.fetchChannels().then(
+            (action) => {
+                this.props.fetchUser(this.props.user.id).then(
+                    (action) => {
+                        let joinedChannels = [];
+        
+                        if (this.props.user.channels.length > 0) {
+                            this.props.user.channels.forEach((channel, index) => {
+                                joinedChannels.push(this.props.channelObjects[channel]._id)
+                            })
+                        }
+        
+                        let notJoined = [];
+        
+                        if (joinedChannels.length === 0) {
+                            notJoined = this.props.channels
+                        } else {
+                            this.props.channels.forEach((channel, index) => {
+                                if (!joinedChannels.includes((channel._id))) {
+                                    notJoined.push(channel)
+                                }
+                            })
+                        }
+        
+                        this.setState({
+                            notJoinedChannels: notJoined
+                        });
+                    }
+                )
+            }
+        );
         window.scrollTo(0, 0);
     }
 
@@ -28,9 +67,27 @@ class ChannelIndex extends React.Component{
                 this.props.history.push(`/channels/${action.channel.data._id}/${action.channel.data.events[0]._id}`);
             })
         });
-        
-
     }
+
+    handleSearch(e){
+        e.preventDefault();
+
+        let filteredChannelsList = this.state.notJoinedChannels.filter( (channel)=>(channel.title.toLowerCase().includes(this.state.query.toLowerCase())) );
+
+        this.setState({
+            filteredChannels: filteredChannelsList,
+            searchSubmitted: true
+        })
+    }
+
+    handleChange(type){
+        return e => {
+            this.setState({
+                [type]: e.currentTarget.value
+            })
+        }
+    }
+
 
 
     render(){
@@ -39,45 +96,37 @@ class ChannelIndex extends React.Component{
             return null;
         }
 
-        let joinedChannels = [];
-
-        if (this.props.user.channels.length > 0) {
-            this.props.user.channels.forEach((channel, index) => {
-                joinedChannels.push(this.props.channelObjects[channel]._id)
-            })
-        }
-
-        let notJoined = [];
-
-        if (joinedChannels.length === 0) {
-            notJoined = this.props.channels
-        } else {
-            this.props.channels.forEach((channel, index) => {
-                if (!joinedChannels.includes((channel._id))) {
-                    notJoined.push(channel)
-                }
-            })
-        }
-
-        let channelList = notJoined.map((channel, index) => {
-            return(
-                <li key={index} className="channel-list-item">
-                    <Link className="channel-link" to={"/channels/" + channel._id}>{channel.title}</Link>
-                    <button className="join-button" onClick={()=>this.handleClick(channel._id)}>JOIN</button>
-                </li>
-            )
-        });
-                // <div className="channel-form-button-block">
-                //     {channelForm}
-                // </div>
-
         return (
             <div className="signup-bg-image">
 
                 <div className="channel-index-container">
                     <div className="channel-index-list-block">
+                        <form onSubmit={this.handleSearch}>
+                            <input type="text" placeholder="Search channels" value={this.state.query} onChange={this.handleChange("query")}/>
+                            <input type="submit" value="submit"/>
+                        </form>
                         <ul className="channel-index-list">
-                            {channelList}
+                            {
+                                this.state.searchSubmitted ? this.state.filteredChannels.map(
+                                    (channel, index) => {
+                                        return (
+                                            <li key={index} className="channel-list-item">
+                                                <Link className="channel-link" to={"/channels/" + channel._id}>{channel.title}</Link>
+                                                <button className="join-button" onClick={()=>this.handleClick(channel._id)}>JOIN</button>
+                                            </li>
+                                        )
+                                    }
+                                ): this.state.notJoinedChannels.map(
+                                    (channel, index) => {
+                                        return (
+                                            <li key={index} className="channel-list-item">
+                                                <Link className="channel-link" to={"/channels/" + channel._id}>{channel.title}</Link>
+                                                <button className="join-button" onClick={()=>this.handleClick(channel._id)}>JOIN</button>
+                                            </li>
+                                        )
+                                    }
+                                )
+                            }
                         </ul>
                     </div>
                 </div>
