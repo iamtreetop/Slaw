@@ -16,7 +16,6 @@ router.post("/",
 
         const newTodo = new Todo({
             title: req.body.title,
-            description: req.body.description,
             status: false
         })
         newTodo.save().then(todo => res.json(todo))

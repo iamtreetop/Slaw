@@ -11,7 +11,6 @@ const mstp = (state, ownProps) =>{
     return {
         todo: {
             title: "",
-            description: "",
             status: false
         },
         eventId: state.ui.modal.id

@@ -104,7 +104,7 @@ class ChannelIndex extends React.Component{
                     <div className="channel-index-list-block">
                         <form onSubmit={this.handleSearch}>
                             <input type="text" placeholder="Search channels" value={this.state.query} onChange={this.handleChange("query")}/>
-                            <input type="submit" value="submit"/>
+                            <input type="submit" value="Search"/>
                         </form>
                         <ul className="channel-index-list">
                             {
