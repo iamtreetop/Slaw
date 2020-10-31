@@ -1,9 +1,13 @@
 import React from "react";
+// import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "./event_show.css"
 import { Link } from 'react-router-dom';
 import EventMap from "../map/map";
-
-
+import FadeIn from "react-fade-in";
+import Lottie from "react-lottie";
+import ReactLoading from "react-loading";
+import * as legoData from "../../legoloading.json";
+import * as doneData from "../../doneloading.json";
 
 class EventShow extends React.Component {
     constructor(props) {
@@ -12,7 +16,8 @@ class EventShow extends React.Component {
             currentEvent: null,
             editingChannelTitle: false,
             channelTitle: "",
-            comment: ""
+            comment: "",
+            loading: false
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -32,7 +37,11 @@ class EventShow extends React.Component {
     componentDidMount(){
         this.props.fetchEvent(this.props.eventId)
 
-        this.props.fetchChannel()
+        this.props.fetchChannel();
+        this.setState({loading: true})
+        setTimeout(() => {
+            this.setState({ loading: false });
+        }, 500);
         window.scrollTo(0, 0);
     }
 
@@ -40,7 +49,10 @@ class EventShow extends React.Component {
         if (prevProps.match.params.channelId !== this.props.match.params.channelId) {
             this.props.fetchEvent(this.props.eventId)
             .then((action) => {
-                this.setState({ currentEvent: action.event.data, todo: action.event.data.todo, participants: action.event.data.participants });
+                this.setState({ currentEvent: action.event.data, todo: action.event.data.todo, participants: action.event.data.participants, loading: true });
+                setTimeout(() => {
+                    this.setState({ loading: false });
+                }, 500);
             }
             );
         }
@@ -270,46 +282,47 @@ class EventShow extends React.Component {
                 </Link>
                 </div>
             </div> : <div></div>;
-        return (
+
+        let display = !this.state.loading ? (
             <div className="event-show-container">
-                    <div className="events-section">
-                        <div className="channel-edit-button">
-                            {
-                                this.props.channel.admin === this.props.userId ? 
+                <div className="events-section">
+                    <div className="channel-edit-button">
+                        {
+                            this.props.channel.admin === this.props.userId ?
                                 <button onClick={() => this.openEditChannelTitle()}>Edit Channel Name</button> :
                                 <button onClick={() => this.leaveChannel()}>Leave Channel</button>
-                            }
-                            {
-                                this.state.editingChannelTitle ?
-                                    <input type="text"
-                                        value={this.state.channelTitle}
-                                        onChange={this.setChannelTitle()}
-                                        onKeyDown={this.updateChannelTitle}/> : ""
-                            }
-                        </div>
-                        <div className="section-heading">
-                            <h3>Events</h3>
-                        </div>
-                        <div className="show-list">
-                            <ul className="show-list-items">
-                                {this.props.channel.events.map((event, idx) => {
-                                    return (<li key={idx}>
-                                        <h5>
-                                            <Link to={`/channels/${this.props.channel._id}/${event._id}`}>{event.title}</Link>
-                                        </h5>
-                                    </li>
-                                    )
-                                })}
-                                <li className="create-event">
-                                    <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
-                                        New SLAW
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
+                        }
+                        {
+                            this.state.editingChannelTitle ?
+                                <input type="text"
+                                    value={this.state.channelTitle}
+                                    onChange={this.setChannelTitle()}
+                                    onKeyDown={this.updateChannelTitle} /> : ""
+                        }
                     </div>
+                    <div className="section-heading">
+                        <h3>Events</h3>
+                    </div>
+                    <div className="show-list">
+                        <ul className="show-list-items">
+                            {this.props.channel.events.map((event, idx) => {
+                                return (<li key={idx}>
+                                    <h5>
+                                        <Link to={`/channels/${this.props.channel._id}/${event._id}`}>{event.title}</Link>
+                                    </h5>
+                                </li>
+                                )
+                            })}
+                            <li className="create-event">
+                                <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
+                                    New SLAW
+                                    </Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-                    {/* <div className="event-detail-container">
+                {/* <div className="event-detail-container">
                          <div className="event-left-wrapper">
                             <div className="left-text-wrapper">
                                 <h3>TITLE</h3>
@@ -323,65 +336,66 @@ class EventShow extends React.Component {
                              </div>
                          </div>
                     </div> */}
-                    <div className="main-detail-wrapper">
-                        <div className="event-details-container">
-                            <div className="event-details-left">
-                                <h1>#{this.props.event[this.props.eventId].title}</h1>
-                                <h2>Welcome to {this.props.channel.title} Channel</h2>
-                                <p>Description: <br/> {this.props.event[this.props.eventId].description}</p>
-                                {join}
-                                {leave}
-                                {editDelete}
+                <div className="main-detail-wrapper">
+                    <div className="event-details-container">
+                        <div className="event-details-left">
+                            <h1>#{this.props.event[this.props.eventId].title}</h1>
+                            <h2>Welcome to {this.props.channel.title} Channel</h2>
+                            <p>Description: <br /> {this.props.event[this.props.eventId].description}</p>
+                            {join}
+                            {leave}
+                            {editDelete}
+                        </div>
+                        <div className="event-details-right">
+                            <div className="workout-list">
+                                <h1>Workout List</h1>
+                                <button onClick={() => this.handleModal()}>Create New Todo</button>
+                                <ul>{todoList}</ul>
                             </div>
-                            <div className="event-details-right">
-                                <div className="workout-list">
-                                    <h1>Workout List</h1>
-                                    <button onClick={() => this.handleModal()}>Create New Todo</button>
-                                    <ul>{todoList}</ul>
-                                </div>
-                                <div className="participants-list">
-                                    <h1>Participants</h1>
-                                    <ul>{participants}</ul> 
-                                </div>
-                                <div className="members-section">
-                                    <div className="section-heading">
-                                        Members
+                            <div className="participants-list">
+                                <h1>Participants</h1>
+                                <ul>{participants}</ul>
+                            </div>
+                            <div className="members-section">
+                                <div className="section-heading">
+                                    Members
                                     </div>
-                                    <div className="show-list">
-                                        <ul>
-                                            {this.props.channel.members.map((member, idx)=>{
-                                                return (<li key={idx}>
-                                                    <h5>
-                                                        {member.handle}
-                                                    </h5>
-                                                </li>
-                                            )})}
-                                        </ul>
-                                    </div>
+                                <div className="show-list">
+                                    <ul>
+                                        {this.props.channel.members.map((member, idx) => {
+                                            return (<li key={idx}>
+                                                <h5>
+                                                    {member.handle}
+                                                </h5>
+                                            </li>
+                                            )
+                                        })}
+                                    </ul>
                                 </div>
                             </div>
-
                         </div>
 
-                        <div className="comment-section">
-                            <div className="comment-box-wrapper">
-                                {comments}
-                            </div>
-                            {/* <form onSubmit={this.handleCommentSubmit}> */}
-                                <textarea name="" id=""
-                                    onChange={this.handleChangeComment("comment")} 
-                                    placeHolder={eventTitle}
-                                    value={this.state.comment}
-                                    onKeyDown={this.handleCommentSubmit}
-                                    className="comment-text-box"
-                                ></textarea>
-                                {/* <input type="submit" value="Add Comment"/> */}
-                            {/* </form> */}
-                        </div>
                     </div>
 
+                    <div className="comment-section">
+                        <div className="comment-box-wrapper">
+                            {comments}
+                        </div>
+                        {/* <form onSubmit={this.handleCommentSubmit}> */}
+                        <textarea name="" id=""
+                            onChange={this.handleChangeComment("comment")}
+                            placeHolder={eventTitle}
+                            value={this.state.comment}
+                            onKeyDown={this.handleCommentSubmit}
+                            className="comment-text-box"
+                        ></textarea>
+                        {/* <input type="submit" value="Add Comment"/> */}
+                        {/* </form> */}
+                    </div>
+                </div>
 
-                    {/* <div className="members-section">
+
+                {/* <div className="members-section">
                         <div className="section-heading">
                             Members
                         </div>
@@ -397,7 +411,15 @@ class EventShow extends React.Component {
                             </ul>
                         </div>
                     </div> */}
-                </div>
+            </div>
+        ) : 
+        <div className="loading-parent">
+            <ReactLoading type={"bars"} color={"white"} height={'20%'} width={'20%'} />
+        </div>
+        return (
+            <div>
+                {display}
+            </div>
         )
     }
 }
