@@ -31,7 +31,7 @@ class App extends React.Component {
                 chat: [...state.chat, ...msgReversed],
             }), this.scrollToBottom);
         });
-
+       
         // Update the chat if a new message is broadcasted.
         this.socket.on('push', (msg) => {
             this.setState((state) => ({
@@ -57,13 +57,18 @@ class App extends React.Component {
     handleSubmit(event) {
         // Prevent the form to reload the current page.
         event.preventDefault();
-
         // Send the new message to the server.
+
+
         this.socket.emit('message', {
             name: this.props.username,
             content: this.state.content,
-            // time: Date.now()
-        });
+            // eventId: this.props.eventId
+        })
+        // debugger
+        let newEvent = {id: this.props.eventId, message: {message: this.state.content, username:this.props.username}}
+        this.props.updateEvent(newEvent)
+        
 
         this.setState((state) => {
             // Update the chat with the user's message and remove the current message.
@@ -86,7 +91,6 @@ class App extends React.Component {
 
     
     render() {
-        debugger
         return (
             <div className="App">
                 <Paper id="chat" elevation={3}>

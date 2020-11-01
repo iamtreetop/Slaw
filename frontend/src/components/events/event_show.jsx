@@ -174,6 +174,7 @@ class EventShow extends React.Component {
 
 
     render() {
+        debugger
         if(!this.props.channel || this.props.event === null){
             return null;
         }
@@ -362,7 +363,8 @@ class EventShow extends React.Component {
                         </div>
 
                     </div>
-                    <Message username={username}/>
+                    <Message username={username} eventId={this.props.eventId}
+                    updateEvent={this.props.updateEvent} />
                     <div className="comment-section">
                         <div className="comment-box-wrapper">
                             {comments}

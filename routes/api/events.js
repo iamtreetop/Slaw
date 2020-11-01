@@ -157,6 +157,21 @@ router.patch("/:id",
                 })
                 .catch((err) => res.status(400).json(err));
         }
+
+        if (req.body.message) {
+            Event.findByIdAndUpdate(req.params.id,
+                {
+                    $push: { messages: req.body.message },
+                },
+                { new: true })
+                .populate('comments todo participants')
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
+        
+        }
     })
 
 router.delete("/:id",
