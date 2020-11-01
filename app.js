@@ -60,6 +60,7 @@ const http = require('http')
 const server = http.createServer(app);
 const io = socketio(server);
 const Message = require('./models/Message')
+const formatMessage = require('./util-message/message-format')
 // io.origins('*')
 
 io.on('connection', (socket) => {
@@ -68,7 +69,6 @@ io.on('connection', (socket) => {
   console.log("connected to websocket")
   Message.find().sort({ createdAt: -1 }).limit(10).exec((err, messages) => {
     if (err) return console.error(err);
-
     // Send the last messages to the user.
     socket.emit('init', messages);
   });
@@ -85,6 +85,8 @@ io.on('connection', (socket) => {
     message.save((err) => {
       if (err) return console.error(err);
     });
+
+    
 
     // Notify all other users about a new message.
     socket.broadcast.emit('push', msg);

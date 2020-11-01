@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const messageSchema = new Schema({
     content: String,
     name: String,
+    // time: String
 }, {
     timestamps: true,
 });

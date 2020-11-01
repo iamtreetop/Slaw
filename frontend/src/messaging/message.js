@@ -17,6 +17,7 @@ class App extends React.Component {
             chat: [],
             content: '',
             name: '',
+            time: ''
         };
     }
 
@@ -59,16 +60,18 @@ class App extends React.Component {
 
         // Send the new message to the server.
         this.socket.emit('message', {
-            name: this.state.name,
+            name: this.props.username,
             content: this.state.content,
+            // time: Date.now()
         });
 
         this.setState((state) => {
             // Update the chat with the user's message and remove the current message.
             return {
                 chat: [...state.chat, {
-                    name: state.name,
+                    name: this.props.username,
                     content: state.content,
+                    // time: Date.now()
                 }],
                 content: '',
             };
@@ -81,11 +84,16 @@ class App extends React.Component {
         chat.scrollTop = chat.scrollHeight;
     }
 
+    
     render() {
+        debugger
         return (
             <div className="App">
                 <Paper id="chat" elevation={3}>
                     {this.state.chat.map((el, index) => {
+                        // let month = el.createdAt.slice(5, 7)
+                        // let day = el.createdAt.slice(8, 10)
+                        // let time = el.createdAt.slice(12, 19)
                         return (
                             <div key={index}>
                                 <Typography variant="caption" className="name">
@@ -93,6 +101,10 @@ class App extends React.Component {
                                 </Typography>
                                 <Typography variant="body1" className="content">
                                     {el.content}
+                                </Typography>
+                                <Typography variant="body1" className="content">
+                                    {/* <p className="comment-date">({month}/{day})</p>
+                                    <p className="comment-time">{time}</p> */}
                                 </Typography>
                             </div>
                         );

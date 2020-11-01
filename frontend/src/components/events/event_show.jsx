@@ -284,6 +284,8 @@ class EventShow extends React.Component {
                 </div>
             </div> : <div></div>;
 
+        let username = this.props.user.handle
+
         let display = !this.state.loading ? (
             <div className="event-show-container">
                     <div className="events-section">
@@ -360,7 +362,7 @@ class EventShow extends React.Component {
                         </div>
 
                     </div>
-                    <Message />
+                    <Message username={username}/>
                     <div className="comment-section">
                         <div className="comment-box-wrapper">
                             {comments}
