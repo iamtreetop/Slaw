@@ -18,7 +18,7 @@ import {
     ComboboxList,
     ComboboxOption,
 } from '@reach/combobox';
-import "../../../node_modules/@reach/combobox/styles.css"
+// import "../../../node_modules/@reach/combobox/styles.css"
 import mapStyles from "./mapStyles";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import compass from '../../images/compass.svg';
@@ -69,7 +69,7 @@ export default function SlawMap() {
     }, []);
 
     const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: "AIzaSyB1_x5gxp3yYVk5wqOuCzxajSRfgZbhkFE",
+        googleMapsApiKey: process.env.GOOGLE_KEY,
         libraries,
     });
     if (loadError) return "Error";
