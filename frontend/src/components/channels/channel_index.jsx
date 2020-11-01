@@ -56,12 +56,13 @@ class ChannelIndex extends React.Component{
             id: this.props.user.id,
             channels: channelId
         }
+        //debugger
         this.props.updateUser(newChannels).then((unused)=>{
             let newMembers = {
                 id: channelId,
-                members: this.props.user
+                members: this.props.user._id
             }
-            
+            //debugger
             this.props.updateChannel(newMembers).then( (action)=>{
                 //debugger
                 this.props.history.push(`/channels/${action.channel.data._id}/${action.channel.data.events[0]._id}`);
@@ -103,7 +104,7 @@ class ChannelIndex extends React.Component{
                     <div className="channel-index-list-block">
                         <form onSubmit={this.handleSearch}>
                             <input type="text" placeholder="Search channels" value={this.state.query} onChange={this.handleChange("query")}/>
-                            <input type="submit" value="submit"/>
+                            <input type="submit" value="Search"/>
                         </form>
                         <ul className="channel-index-list">
                             {
