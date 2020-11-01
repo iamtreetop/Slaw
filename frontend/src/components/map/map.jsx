@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
     GoogleMap,
     useLoadScript,
@@ -22,10 +22,11 @@ import "../../../node_modules/@reach/combobox/styles.css"
 import mapStyles from "./mapStyles";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import compass from '../../images/compass.svg';
+// import fetchEvent from "../../util/map.api_util"
 require('dotenv').config()
 
-const libraries = ["places"]
 
+const libraries = ["places"]
 
 const mapContainerStyle = {
     height: "100vh",
@@ -42,6 +43,34 @@ const options = {
     disableDefaultUI: true,
     zoomControl: true,
 };
+
+// let map;
+
+// function initMap() {
+//   map = new google.maps.Map(document.getElementById("map"), {
+//     zoom: 2,
+//     center: new google.maps.LatLng(2.8, -187.3),
+//     mapTypeId: "terrain",
+//   });
+//   const script = document.createElement("script");
+//   script.src =
+//     "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
+//   document.getElementsByTagName("head")[0].appendChild(script);
+// }
+
+// // Loop through the results array and place a marker for each
+// // set of coordinates.
+// const eqfeed_callback = function (results) {
+//   for (let i = 0; i < results.features.length; i++) {
+//     const coords = results.features[i].geometry.coordinates;
+//     const latLng = new google.maps.LatLng(coords[1], coords[0]);
+//     new google.maps.Marker({
+//       position: latLng,
+//       map: map,
+//     });
+//   }
+// };
+
 
 export default function SlawMap() {
     // const onMapClick = React.useCallback((e) => {
@@ -69,15 +98,31 @@ export default function SlawMap() {
     }, []);
 
     const { isLoaded, loadError } = useLoadScript({
-<<<<<<< HEAD
         googleMapsApiKey: "AIzaSyAde9a-WlLx6LKCOSBUQHgyPwjm55qPpQc",
-=======
-        googleMapsApiKey: "AIzaSyB1_x5gxp3yYVk5wqOuCzxajSRfgZbhkFE",
->>>>>>> f1cd0cba270b23ee904b76358bf3e985ae0c0261
+        // googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
         libraries,
     });
+
+    useEffect(() => {
+        const apiUrl = `http://api.amp.active.com/v2/search/?lat_lon=43.2%2C-118&current_page=1&per_page=10&sort=distance&exclude_children=true&api_key=prkm4jcm6g6f68m625ecfv7u`;
+        // debugger
+        fetch(apiUrl, { method: 'GET', mode: 'no-cors'})
+            .then((res) => {
+                // debugger
+                return res.json()
+            })
+            .catch((res) => {
+                // debugger
+                console.log(res);
+            });
+        }
+    );
+
     if (loadError) return "Error";
     if (!isLoaded) return "Loading...";
+
+
+
     return(
         <div className="slaw-map">
             <h1>
@@ -98,11 +143,10 @@ export default function SlawMap() {
             onLoad={onMapLoad}
             >
 
-
             </GoogleMap>
         </div>
     )
-    }
+}
 
 function Locate({ panTo }) {
     return (

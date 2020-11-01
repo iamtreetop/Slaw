@@ -1,4 +1,5 @@
 const express = require("express");
+// const request = require('request');
 const app = express();
 const mongoose = require('mongoose');
 const db = require('./config/keys').mongoURI;
@@ -43,6 +44,10 @@ app.use("/api/channels", channels)
 app.use("/api/events", events)
 app.use("/api/todos", todos)
 app.use("/api/comments", comments);
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   next();
+// });
 
 app.use(passport.initialize());
 
