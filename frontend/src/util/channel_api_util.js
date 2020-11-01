@@ -9,15 +9,22 @@ export const fetchChannel = (channelId) => {
 }
 
 export const createChannel = channel => {
-  // debugger
-  return axios.post('/api/channels/', channel)
+
+  return axios({
+    method: 'post',
+    url:'/api/channels/', 
+    data: channel,
+  })
 }
 
 export const updateChannel = (channel) => {
-  let members = { members: channel.members };
-  return axios.patch('/api/channels/' + channel.id, members);
+  return axios.patch('/api/channels/' + channel.id, channel);
 }
 
 export const deleteChannel = (channelId) => {
   return axios.delete('/api/channels/' + channelId);
+}
+
+export const updatePicture = (image) => {
+  return axios.post(`/api/channels/add-channel-picture`, image)
 }

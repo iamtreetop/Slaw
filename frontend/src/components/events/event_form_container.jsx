@@ -1,21 +1,25 @@
 import { connect } from 'react-redux';
 import { createEvent } from '../../actions/event_actions';
-import EventForm from "../channels/channel_form";
+import { updateChannel } from '../../actions/channel_actions'
+import EventForm from "../events/eventform";
 import { withRouter } from 'react-router-dom';
 
-const mstp = (state) => {
+const mstp = (state, ownProps) => {
     return {
-        channel: {
+        event: {
             title: "",
             description: "",
             participants: []
-        }
+        },
+        formType: "create",
+        userId: state.session.user.id
     }
 }
 
 const mdtp = (dispatch) => {
     return {
-        createEvent: (event) => dispatch(createEvent(event))
+        createEvent: (event) => dispatch(createEvent(event)),
+        updateChannel: (channel) => dispatch(updateChannel(channel))
     }
 }
 

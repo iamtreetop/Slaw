@@ -4,23 +4,49 @@ import "./sidebar.css"
 
 class SideBar extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+
+        this.state = {
+            fetching: false,
+            fetchChannels: false,
+        }
+        
+    }
+
+    componentDidMount() {
+        this.props.fetchChannels().then(
+            (action) => {
+                this.setState({ fetchChannels: true})
+            }
+        )
+        this.props.fetchUser().then(
+            (action) => {
+                this.setState({ fetching: true })
+            }
+        );
     }
 
     render() {
 
-        // if (!this.props.channel) return null;
+        if (!this.state.fetching || !this.state.fetchChannels) return null;
+     
+        let channelList; 
+        if (this.props.user.channels.length === 0) {
+            channelList = null
+        } else {
+            channelList = this.props.user.channels.map((channel, index) => {
+                let channelEvent = this.props.channels[channel];
+                return (
+                    <li key={index} className="tooltip">
+                        <Link to={`/channels/${channelEvent._id}/${channelEvent.events[0]._id}`}>
+                            <img src={channelEvent.channelPicture} className="sidebar-channel-items"/>
+                            <p className="channel-text">{channelEvent.title}</p>
+                        </Link>
+                    </li>
+                )
+            })
 
-        let channelList = this.props.channels.map((channel, index) => {
-            return (
-                <li key={index} className="tooltip">
-                    <Link to={"/channels/" + channel._id}>
-                        <img src={channel.channelPicture} className="sidebar-channel-items"/>
-                        <p className="channel-text">{channel.title}</p>
-                    </Link>
-                </li>
-            )
-        })
+        }
 
         const channelForm = (
             <>

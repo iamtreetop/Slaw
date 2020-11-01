@@ -19,6 +19,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
     Event.findById(req.params.id)
+        .populate("todo comments participants")
         .then(event => res.json(event))
         .catch(err => res.status(400).json(err));
     })
@@ -39,6 +40,7 @@ router.post("/create",
             participants: req.body.participants,
             todo: req.body.todo
         })
+        
         newEvent.save().then(event => res.json(event))
     })
 
@@ -49,20 +51,112 @@ router.patch("/:id",
         // if (!participants.include(newParticipant)) {
         //     $push: {participants: newParticipant}
         // }
-        Event.findByIdAndUpdate(req.params.id, {   
-                title: req.body.title, 
-                description: req.body.description,
-                date: req.body.date,
-                $push: {participants: req.body.participants},
-                // todo: req.body.todo,
-                // participants: req.body.participants,
-                // todo: req.body.todo
-            },  
-            {new: true})
+        // Event.findByIdAndUpdate(req.params.id, {   
+        //         title: req.body.title, 
+        //         description: req.body.description,
+        //         date: req.body.date,
+        //         $push: {participants: req.body.participants},
+        //         // todo: req.body.todo,
+        //         // participants: req.body.participants,
+        //         // todo: req.body.todo
+        //     },  
+        //     {new: true})
+        //         .then((model) => {
+        //         (res.json(model))
+        //         return model.save();})
+        //         .catch((err) => res.status(400).json(err));
+
+
+        if (req.body.participants && !req.body.removeParticipant) {
+            Event.findByIdAndUpdate(req.params.id,
+                {
+                    $push: { participants: req.body.participants.id },
+                },
+                { new: true })
+                .populate('comments todo participants')
                 .then((model) => {
-                (res.json(model))
-                return model.save();})
+                    (res.json(model))
+                    return model.save();
+                })
                 .catch((err) => res.status(400).json(err));
+        }
+        else if (req.body.removeParticipant) {
+            Event.findByIdAndUpdate(req.params.id, { $pull: { participants: req.body.participants.id} }, { new: true })
+                .populate('comments todo participants')
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
+        }
+        
+        if (req.body.todo) {
+            Event.findByIdAndUpdate(req.params.id,
+                {            
+                    $push: {todo: req.body.todo},
+                },  
+                {new: true})
+                .populate('comments todo participants')
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
+        }
+        if (req.body.comment) {
+            Event.findByIdAndUpdate(req.params.id,
+                {
+                    $push: { comments: req.body.comment },
+                },
+                { new: true })
+                .populate('comments todo participants')
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
+        }
+        if (req.body.title){
+            Event.findByIdAndUpdate(req.params.id,
+                {            
+                    title: req.body.title,
+                },  
+                {new: true})
+                .populate('comments todo participants')
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
+        }
+
+        if (req.body.description){
+            Event.findByIdAndUpdate(req.params.id,
+                {            
+                    description: req.body.description,
+                },  
+                {new: true})
+                .populate('comments todo participants')
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
+        }
+
+        if (req.body.date){
+            Event.findByIdAndUpdate(req.params.id,
+                {            
+                    date: req.body.date,
+                },  
+                {new: true})
+                .populate('comments todo participants')
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
+        }
     })
 
 router.delete("/:id",
