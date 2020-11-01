@@ -8,6 +8,7 @@ import Lottie from "react-lottie";
 import ReactLoading from "react-loading";
 import * as legoData from "../../legoloading.json";
 import * as doneData from "../../doneloading.json";
+import Message from "../../messaging/message"
 
 class EventShow extends React.Component {
     constructor(props) {
@@ -359,7 +360,7 @@ class EventShow extends React.Component {
                         </div>
 
                     </div>
-
+                    <Message />
                     <div className="comment-section">
                         <div className="comment-box-wrapper">
                             {comments}

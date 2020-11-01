@@ -69,7 +69,7 @@ export default function SlawMap() {
     }, []);
 
     const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: "AIzaSyB1_x5gxp3yYVk5wqOuCzxajSRfgZbhkFE",
+        googleMapsApiKey: "AIzaSyAde9a-WlLx6LKCOSBUQHgyPwjm55qPpQc",
         libraries,
     });
     if (loadError) return "Error";
