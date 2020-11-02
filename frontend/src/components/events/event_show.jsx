@@ -271,8 +271,8 @@ class EventShow extends React.Component {
 
         let editDelete = (this.props.userId === this.props.event[this.props.eventId].author) && this.props.event[this.props.match.params.eventId].title !== "General" ?
             <div className="authors-dashboard">
-                <div className="delete-event">
-                    <button onClick={() => this.handleDelete(this.props.eventId)}>Delete This Event</button>
+                <div>
+                    <button className="delete-event-button" onClick={() => this.handleDelete(this.props.eventId)}>Delete Event</button>
                     <span>This cannot be undone</span>
                 </div>
                 <div className="edit-event">

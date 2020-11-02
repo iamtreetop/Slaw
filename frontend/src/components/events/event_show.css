@@ -269,14 +269,30 @@
     align-self: start;
 
 }
+.delete-event-button{
+    color: black;
+    font-size: 12px;
+    border-radius: 6px;
+    padding: 1px 26px;
+    text-decoration: none;
+    background-color: white;
+    cursor: pointer;
+    margin-top: 3px;
+    margin-left: 14px;
+    align-self: start;
+    outline: none;
+    border: none;
+    width: 128px;
+    font-family: 'Titillium Web', sans-serif;
+}
 
-.create-event-button:hover{
+.create-event-button:hover, .delete-event-button:hover{
     background-color: #8acbb6;
     font-weight: bolder;
     transition: background-color .4s ease-out;
 }
 
-.create-event-button:active{
+.create-event-button:active, .delete-event-button:active{
     text-decoration: underline;
     color: black;
     font-weight: bolder;
