@@ -14,7 +14,8 @@ const mstp = (state, ownProps) => {
         event: state.events,
         channel: state.channels[ownProps.match.params.channelId],
         handle: state.session.user.handle,
-        userId: state.session.user.id
+        userId: state.session.user.id,
+        user: state.users
     }
 }
 
