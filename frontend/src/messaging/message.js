@@ -14,23 +14,35 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            chat: [],
-            content: '',
-            name: '',
-            time: ''
+            chat: this.props.messages,
+            message: '',
+            username: '',
+
         };
     }
 
     componentDidMount() {
-        this.socket = io(config.endpoint, { transport: ['websocket'] });
+        this.socket = io(config.endpoint)
+        // this.socket = io(config.endpoint, {
+        //     transports: ['polling', 'websocket']
+        // })
+        // onfig.endpoint, { 
+        //     transports: ['websocket', 'polling'], 
+        //     // reconnectionDelay: 10000,
+        //     // reconnection: true,
+        //     // reconnectionAttempts: 10,
+        //     // agent: false, // [2] Please don't set this to true
+        //     // upgrade: false,
+        //     // rejectUnauthorized: false,
+        // });
 
         // Load the last 10 messages in the window.
-        this.socket.on('init', (msg) => {
-            let msgReversed = msg.reverse();
-            this.setState((state) => ({
-                chat: [...state.chat, ...msgReversed],
-            }), this.scrollToBottom);
-        });
+        // this.socket.on('init', (msg) => {
+        //     let msgReversed = msg.reverse();
+        //     this.setState((state) => ({
+        //         chat: [...state.chat, ...msgReversed],
+        //     }), this.scrollToBottom);
+        // });
        
         // Update the chat if a new message is broadcasted.
         this.socket.on('push', (msg) => {
@@ -40,17 +52,21 @@ class App extends React.Component {
         });
     }
 
+    componentWillUnmount() {
+        this.socket.disconnect()
+    }
+
     // Save the message the user is typing in the input field.
     handleContent(event) {
         this.setState({
-            content: event.target.value,
+            message: event.target.value,
         });
     }
 
     //
     handleName(event) {
         this.setState({
-            name: event.target.value,
+            username: event.target.value,
         });
     }
 
@@ -61,24 +77,26 @@ class App extends React.Component {
 
 
         this.socket.emit('message', {
-            name: this.props.username,
-            content: this.state.content,
+            username: this.props.username,
+            message: this.state.message,
             // eventId: this.props.eventId
         })
-        // debugger
-        let newEvent = {id: this.props.eventId, message: {message: this.state.content, username:this.props.username}}
-        this.props.updateEvent(newEvent)
+        let message = this.state.message
+        setTimeout(() => {
+            let newChannel = {id: this.props.channelId, message: {message: message, username:this.props.username}}
+            this.props.updateChannel(newChannel)
+        },1000)
         
 
         this.setState((state) => {
             // Update the chat with the user's message and remove the current message.
             return {
                 chat: [...state.chat, {
-                    name: this.props.username,
-                    content: state.content,
+                    username: this.props.username,
+                    message: this.state.message,
                     // time: Date.now()
                 }],
-                content: '',
+                message: '',
             };
         }, this.scrollToBottom);
     }
@@ -91,6 +109,7 @@ class App extends React.Component {
 
     
     render() {
+
         return (
             <div className="App">
                 <Paper id="chat" elevation={3}>
@@ -101,10 +120,10 @@ class App extends React.Component {
                         return (
                             <div key={index}>
                                 <Typography variant="caption" className="name">
-                                    {el.name}
+                                    {el.username}
                                 </Typography>
                                 <Typography variant="body1" className="content">
-                                    {el.content}
+                                    {el.message}
                                 </Typography>
                                 <Typography variant="body1" className="content">
                                     {/* <p className="comment-date">({month}/{day})</p>
@@ -115,11 +134,11 @@ class App extends React.Component {
                     })}
                 </Paper>
                 <BottomBar
-                    content={this.state.content}
+                    message={this.state.message}
                     handleContent={this.handleContent.bind(this)}
                     handleName={this.handleName.bind(this)}
                     handleSubmit={this.handleSubmit.bind(this)}
-                    name={this.state.name}
+                    username={this.state.username}
                 />
             </div>
         );

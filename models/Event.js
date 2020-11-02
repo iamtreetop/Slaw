@@ -27,11 +27,6 @@ const EventSchema = new Schema({
     comments: {
         type: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 
-    },
-
-    messages: {
-        type: Array,
-        default: []
     }
 })
 

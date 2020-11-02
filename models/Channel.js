@@ -30,6 +30,11 @@ const ChannelSchema = new Schema({
     },
     members: {
         type: [{ type: Schema.Types.ObjectId, ref:'User' }],
+    },
+    
+    messages: {
+        type: Array,
+        default: []
     }
 })
 

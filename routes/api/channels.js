@@ -46,6 +46,7 @@ router.post(("/"),
                 },
             });
         }
+        debugger
         const { isValid, errors } = validateChannelInput(req.body);
         if (!isValid) {
             return res.status(400).json(errors)
@@ -78,7 +79,7 @@ router.patch("/:id",
     (req, res) => {
         if (req.body.members && !req.body.removeCurrentUser) {
             Channel.findByIdAndUpdate(req.params.id, { $push: {members: req.body.members.id} }, {new: true})
-                .populate('events members')
+                .populate('events members messages')
                 .then((model) => {
                 (res.json(model))
                 return model.save();})
@@ -86,7 +87,7 @@ router.patch("/:id",
         }
         else if (req.body.removeCurrentUser){
             Channel.findByIdAndUpdate(req.params.id, { $pull: {members: req.body.members.id} }, {new: true})
-            .populate('events members')
+            .populate('events members messages')
             .then((model) => {
             (res.json(model))
             return model.save();})
@@ -96,7 +97,7 @@ router.patch("/:id",
 
         if (req.body.events) {
             Channel.findByIdAndUpdate(req.params.id, { $push: { events: req.body.events } }, { new: true })
-                .populate('events members')
+                .populate('events members messages')
                 .then((model) => {
                     (res.json(model))
                     return model.save();
@@ -106,12 +107,27 @@ router.patch("/:id",
 
         if (req.body.title){
             Channel.findByIdAndUpdate(req.params.id, { title: req.body.title }, { new: true })
-                .populate('events members')
+                .populate('events members messages')
                 .then((model) => {
                     (res.json(model))
                     return model.save();
                 })
                 .catch((err) => res.status(400).json(err));
+        }
+
+        if (req.body.message) {
+            Channel.findByIdAndUpdate(req.params.id,
+                {
+                    $push: { messages: req.body.message },
+                },
+                { new: true })
+                .populate('events members messages')
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
+
         }
 
     })

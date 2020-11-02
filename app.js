@@ -52,23 +52,22 @@ app.use("/api/comments", comments);
 app.use(passport.initialize());
 
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5500;
 
 
-
-const socketio = require('socket.io');
+const socketio = require('socket.io')
 const http = require('http')
 const server = http.createServer(app);
-const io = socketio(server);
+const io = socketio(server, {'wsEngine': 'ws'});
 const Message = require('./models/Message')
 const formatMessage = require('./util-message/message-format')
 // io.origins('*')
-
+// app.use(express.static('frontend'))
 io.on('connection', (socket) => {
 
   // Get the last 10 messages from the database.
   console.log("connected to websocket")
-  // Message.find().sort({ createdAt: -1 }).limit(10).exec((err, messages) => {
+  // Message.find().sort({ createdAt: -1 }).limit(1).exec((err, messages) => {
   //   if (err) return console.error(err);
   //   // Send the last messages to the user.
   //   socket.emit('init', messages);
@@ -81,9 +80,9 @@ io.on('connection', (socket) => {
     
 
     const message = new Message({
-      content: msg.content,
-      name: msg.name,
-      eventId: msg.eventId
+      message: msg.message,
+      username: msg.username,
+
     });
 
     
@@ -98,10 +97,11 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('push', msg);
   });
 
-  socket.on('diconnect', () => {
-    io.emit('message', 'A user has left the chat')
-  })
 });
+io.on('disconnect', () => {
+  console.log("disconnected to websocket")
+  io.emit('message', 'A user has left the chat')
+})
 
 
 
@@ -109,5 +109,9 @@ io.on('connection', (socket) => {
 server.listen(port, () => {
   console.log(`Server is running on port ${port}`)
 });
+
+
+
+
 
 

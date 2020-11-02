@@ -53,7 +53,7 @@ export default function BottomBar(props) {
                     </div>
                     <InputBase
                         onChange={props.handleName}
-                        value={props.name}
+                        value={props.username}
                         placeholder="Name"
                         classes={{
                             root: classes.inputRoot,
@@ -69,7 +69,7 @@ export default function BottomBar(props) {
                         </div>
                         <InputBase
                             onChange={props.handleContent}
-                            value={props.content}
+                            value={props.message}
                             placeholder="Type your message..."
                             classes={{
                                 root: classes.inputRoot,
