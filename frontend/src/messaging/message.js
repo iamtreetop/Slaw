@@ -22,6 +22,8 @@ class Message extends React.Component {
 
         };
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleContent = this.handleContent.bind(this) 
+
     }
 
     componentDidMount() {
@@ -152,12 +154,19 @@ class Message extends React.Component {
                         );
                     })}
                 </Paper>
-                <BottomBar
+                    <form onSubmit={this.handleSubmit}>
+                    <input
+                        onChange={this.handleContent}
+                        value={this.state.message}
+                        placeHolder="Type your message..."
+                        />
+                    </form>
+                {/* <BottomBar
                     message={this.state.message}
                     handleContent={this.handleContent.bind(this)}
                     handleSubmit={this.handleSubmit.bind(this)}
                     username={this.state.username}
-                />
+                /> */}
             </div>
         );
     }
