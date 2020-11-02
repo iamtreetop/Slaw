@@ -89,11 +89,7 @@ export default function SlawMap() {
     const [selectedActivity, setSelectedActivity] = React.useState(null);
 
     const { isLoaded, loadError } = useLoadScript({
-<<<<<<< HEAD
-        googleMapsApiKey: process.env.GOOGLE_KEY,
-=======
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
->>>>>>> c965b4834ba4772713dca3c9bfe1790ab0fd877f
         libraries,
     });
     
@@ -138,7 +134,7 @@ export default function SlawMap() {
 
     useEffect(() => {
         if (address !== null && submitted ) {
-            const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=10&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
+            const apiUrl = `/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=10&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
             fetch(apiUrl, { method: 'GET', mode: 'cors'})
                 .then(function(res) {
                     return res.json()
