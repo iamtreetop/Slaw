@@ -25,7 +25,9 @@
   margin-bottom: 10px;
 }
 #chat {
-  max-height: calc(100vh - 128px);
+  width: 35vw;
+    /* width: 150px; */
+  height: 28vh;
   overflow: scroll;
   padding: 16px;
 }

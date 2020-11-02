@@ -11,18 +11,21 @@
     /* border: 2px solid grey; */
     /* margin-left: 15px; */
     border-radius: 6px;
-    box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
 }
 
 .events-section{
     width: 10%;
     padding-top: 11px;
-    margin-left: 25px
+    align-items: center;
+    padding-right: 10px;
     /* align-items: center; */
 }
 
 .members-section{
-    padding-top: 14px;
+    padding-top: 30px;
+    padding-left: 20px;
+    border-left: 1px solid #06272b;
+    /* padding-top: 14px; */
 }
 
 .channel-edit-button {
@@ -228,6 +231,24 @@
     justify-content: center;
 }
 
+.bottom-section{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
+    margin-left: -40px;
+}
+
+.event-chat-container{
+    width: 50%;
+    display: flex;
+    border: 2px solid;
+    align-self: start;
+
+}
+
 .comment-container{
     width: 66vw;
     height: 48vh;
@@ -252,14 +273,30 @@
     align-self: start;
 
 }
+.delete-event-button{
+    color: black;
+    font-size: 12px;
+    border-radius: 6px;
+    padding: 1px 26px;
+    text-decoration: none;
+    background-color: white;
+    cursor: pointer;
+    margin-top: 3px;
+    margin-left: 14px;
+    align-self: start;
+    outline: none;
+    border: none;
+    width: 128px;
+    font-family: 'Titillium Web', sans-serif;
+}
 
-.create-event-button:hover{
+.create-event-button:hover, .delete-event-button:hover{
     background-color: #8acbb6;
     font-weight: bolder;
     transition: background-color .4s ease-out;
 }
 
-.create-event-button:active{
+.create-event-button:active, .delete-event-button:active{
     text-decoration: underline;
     color: black;
     font-weight: bolder;
@@ -272,6 +309,8 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    width: 45%;
+    height: 100%;
 }
 
 .comment-header-text-box {
@@ -283,10 +322,10 @@
 
 .comment-text-box {
     /* width: 291px; */
-    margin-left: 20px;
+    /* margin-left: 20px; */
     margin-top: 40px;
-    width: 40%;
-    HEIGHT: 15%;
+    width: 72%;
+    HEIGHT: 20%;
     border-radius: 6px;
     background-color: #ebebf7;
     /* position: absolute; */
@@ -324,7 +363,7 @@
 }
 
 .comment-box-wrapper{
-    height: 300px;
+    height: 20vh;;
     border: 1px solid #ebebf7;
     overflow: auto;
     width: 72%;

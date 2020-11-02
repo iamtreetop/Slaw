@@ -155,7 +155,7 @@ class Message extends React.Component {
                         );
                     })}
                 </Paper>
-                <BottomBar
+                <BottomBar 
                     message={this.state.message}
                     handleContent={this.handleContent.bind(this)}
                     handleSubmit={this.handleSubmit.bind(this)}

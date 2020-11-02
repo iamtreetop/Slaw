@@ -172,7 +172,7 @@ export default function SlawMap() {
                         value={value}
                         disabled={!ready}
                         onChange={handleInput}
-                        placeholder="Search your location"
+                        placeHolder="Search your location"
                     />
                     <ComboboxPopover>
                         <ComboboxList className="search-list">

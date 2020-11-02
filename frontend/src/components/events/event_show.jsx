@@ -271,8 +271,8 @@ class EventShow extends React.Component {
 
         let editDelete = (this.props.userId === this.props.event[this.props.eventId].author) && this.props.event[this.props.match.params.eventId].title !== "General" ?
             <div className="authors-dashboard">
-                <div className="delete-event">
-                    <button onClick={() => this.handleDelete(this.props.eventId)}>Delete This Event</button>
+                <div>
+                    <button className="delete-event-button" onClick={() => this.handleDelete(this.props.eventId)}>Delete Event</button>
                     <span>This cannot be undone</span>
                 </div>
                 <div className="edit-event">
@@ -373,25 +373,31 @@ class EventShow extends React.Component {
                         </div>
 
                     </div>
-                    <Message username={username} eventId={this.props.eventId}
-                        updateChannel={this.props.updateChannel}
-                        channelId={this.props.channel._id}
-                        messages={this.props.channel.messages} />
-                    <div className="comment-section">
-                        <div className="comment-box-wrapper">
-                            {comments}
+
+
+                    <div className="bottom-section">
+                        <Message className="event-chat-container"
+                            username={username} eventId={this.props.eventId}
+                            updateChannel={this.props.updateChannel}
+                            channelId={this.props.channel._id}
+                            messages={this.props.channel.messages} />
+                        <div className="comment-section">
+                            <div className="comment-box-wrapper">
+                                {comments}
+                            </div>
+                            {/* <form onSubmit={this.handleCommentSubmit}> */}
+                            <textarea name="" id=""
+                                onChange={this.handleChangeComment("comment")}
+                                placeHolder={eventTitle}
+                                value={this.state.comment}
+                                onKeyDown={this.handleCommentSubmit}
+                                className="comment-text-box"
+                            ></textarea>
+                            {/* <input type="submit" value="Add Comment"/> */}
+                            {/* </form> */}
                         </div>
-                        {/* <form onSubmit={this.handleCommentSubmit}> */}
-                        <textarea name="" id=""
-                            onChange={this.handleChangeComment("comment")}
-                            placeHolder={eventTitle}
-                            value={this.state.comment}
-                            onKeyDown={this.handleCommentSubmit}
-                            className="comment-text-box"
-                        ></textarea>
-                        {/* <input type="submit" value="Add Comment"/> */}
-                        {/* </form> */}
                     </div>
+
                 </div>
             </div>
         ) : 
