@@ -9,7 +9,7 @@ import BottomBar from './bottombar';
 import './app.css';
 require('dotenv').config()
 
-class App extends React.Component {
+class Message extends React.Component {
     constructor(props) {
         super(props);
 
@@ -17,8 +17,11 @@ class App extends React.Component {
             chat: this.props.messages,
             message: '',
             username: '',
+            time: '',
+            day: ''
 
         };
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     componentDidMount() {
@@ -46,6 +49,7 @@ class App extends React.Component {
         this.socket.emit('create', this.props.channelId)
         // Update the chat if a new message is broadcasted.
         this.socket.on('push', (msg) => {
+            debugger
             this.setState((state) => ({
                 chat: [...state.chat, msg],
             }), this.scrollToBottom);
@@ -64,40 +68,56 @@ class App extends React.Component {
     }
 
     //
-    handleName(event) {
-        this.setState({
-            username: event.target.value,
-        });
-    }
+    // handleName(event) {
+    //     this.setState({
+    //         username: event.target.value,
+    //     });
+    // }
 
     handleSubmit(event) {
         // Prevent the form to reload the current page.
         event.preventDefault();
         // Send the new message to the server.
+        const today = new Date();
+        const time = today.toLocaleTimeString()
+        const day = today.toLocaleDateString()
 
+        this.setState({ time: time})
+        this.setState({ day: day })
+        this.setState({ username: this.props.username })
 
         this.socket.emit('message', {
             room: this.props.channelId,
             username: this.props.username,
             message: this.state.message,
+            time: time,
+            day: day
             // eventId: this.props.eventId
         })
         let message = this.state.message
         setTimeout(() => {
-            let newChannel = {id: this.props.channelId, message: {message: message, username:this.props.username}}
+            let newChannel = {id: this.props.channelId, message: 
+            {
+                message: message, 
+                username: this.props.username, 
+                time: time,
+                day: day
+            }}
             this.props.updateChannel(newChannel)
         },1000)
         
-
         this.setState((state) => {
             // Update the chat with the user's message and remove the current message.
             return {
                 chat: [...state.chat, {
                     username: this.props.username,
                     message: this.state.message,
-                    // time: Date.now()
+                    time: time,
+                    day: day
                 }],
                 message: '',
+                time: '',
+                day: ''
             };
         }, this.scrollToBottom);
     }
@@ -115,9 +135,7 @@ class App extends React.Component {
             <div className="App">
                 <Paper id="chat" elevation={3}>
                     {this.state.chat.map((el, index) => {
-                        // let month = el.createdAt.slice(5, 7)
-                        // let day = el.createdAt.slice(8, 10)
-                        // let time = el.createdAt.slice(12, 19)
+                        
                         return (
                             <div key={index}>
                                 <Typography variant="caption" className="name">
@@ -127,8 +145,8 @@ class App extends React.Component {
                                     {el.message}
                                 </Typography>
                                 <Typography variant="body1" className="content">
-                                    {/* <p className="comment-date">({month}/{day})</p>
-                                    <p className="comment-time">{time}</p> */}
+                                    <p className="comment-date">{el.day}</p>
+                                    <p className="comment-time">{el.time}</p>
                                 </Typography>
                             </div>
                         );
@@ -137,7 +155,6 @@ class App extends React.Component {
                 <BottomBar
                     message={this.state.message}
                     handleContent={this.handleContent.bind(this)}
-                    handleName={this.handleName.bind(this)}
                     handleSubmit={this.handleSubmit.bind(this)}
                     username={this.state.username}
                 />
@@ -146,4 +163,4 @@ class App extends React.Component {
     }
 };
 
-export default App;
+export default Message;

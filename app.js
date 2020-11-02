@@ -90,7 +90,8 @@ io.on('connection', (socket) => {
     const message = new Message({
       message: msg.message,
       username: msg.username,
-
+      time: msg.time,
+      day: msg.day
     });
 
     
@@ -104,7 +105,7 @@ io.on('connection', (socket) => {
     // Notify all other users about a new message.
     socket.broadcast.to(msg.room).emit('push', msg)
     // socket.broadcast.emit('push', msg);
-    // console.log(io.sockets.adapter.rooms[msg.room])
+    console.log(msg)
   });
 
 });

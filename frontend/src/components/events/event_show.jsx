@@ -287,7 +287,6 @@ class EventShow extends React.Component {
             </div> : <div></div>;
 
         let username = this.props.user.handle  
-        debugger
         let display = !this.state.loading ? (
             <div className="event-show-container">
                     <div className="events-section">
@@ -313,7 +312,7 @@ class EventShow extends React.Component {
                                 {this.props.channel.events.map((event, idx) => {
                                     return (<li key={idx}>
                                         <Link className="show-list-items-link"to={`/channels/${this.props.channel._id}/${event._id}`}>
-                                            <span className="show-list-items-text">{event.title}</span>
+                                            <span className="show-list-items-text">#{event.title}</span>
                                         </Link>
                                     </li>
                                     )
@@ -329,18 +328,21 @@ class EventShow extends React.Component {
                         <div className="event-details-left">
                             <h2>Welcome to {this.props.channel.title}</h2>
                             <h1>#{this.props.event[this.props.eventId].title}</h1>
-                            <h2>Welcome to {this.props.channel.title} Channel</h2>
                             {this.props.event[this.props.eventId].title === "General" ? <ul><b>You can do all of the following in this channel:</b>
                                 {this.props.event[this.props.eventId].description.split("\n").map(
-                                    (item) => {
+                                    (item, index) => {
                                         return (
-                                            <li>{item}</li>
+                                            <li key={index}>{item}</li>
                                         )
                                     }
                                 )}
                                 And most of all, <b>Enjoy SLAW with your friends!</b>
-                            </ul> : this.props.event[this.props.eventId].description
-                            }
+                            </ul> : (
+                                <>
+                                    <h2>Description</h2>
+                                    <p>{this.props.event[this.props.eventId].description}</p>
+                                </>
+                            )}
                             {join}
                             {leave}
                             {editDelete}
@@ -348,8 +350,8 @@ class EventShow extends React.Component {
                         <div className="event-details-right">
                             <div className="workout-list">
                                 <h1>Event Checklist</h1>
-                                <button className="create-todo-button"onClick={() => this.handleModal()}>Create New Todo</button>
                                 <ul>{todoList}</ul>
+                                <button className="create-todo-button"onClick={() => this.handleModal()}>Create New Todo</button>
                             </div>
                             <div className="participants-list">
                                 <h1>Participants</h1>

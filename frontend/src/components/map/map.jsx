@@ -161,7 +161,7 @@ function Search({ panTo }) {
                     value={value}
                     onChange={handleInput}
                     disabled={!ready}
-                    placeholder="Search your location"
+                    placeHolder="Search your location"
                 />
                 <ComboboxPopover>
                     <ComboboxList>
