@@ -43,7 +43,7 @@ class App extends React.Component {
         //         chat: [...state.chat, ...msgReversed],
         //     }), this.scrollToBottom);
         // });
-       
+        this.socket.emit('create', this.props.channelId)
         // Update the chat if a new message is broadcasted.
         this.socket.on('push', (msg) => {
             this.setState((state) => ({
@@ -77,6 +77,7 @@ class App extends React.Component {
 
 
         this.socket.emit('message', {
+            room: this.props.channelId,
             username: this.props.username,
             message: this.state.message,
             // eventId: this.props.eventId

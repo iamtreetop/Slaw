@@ -12,6 +12,7 @@ import Lottie from "react-lottie";
 import ReactLoading from "react-loading";
 import * as legoData from "../../legoloading.json";
 import * as doneData from "../../doneloading.json";
+import io from 'socket.io-client';
 
 
 class ChannelForm extends React.Component{
@@ -54,7 +55,11 @@ class ChannelForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        let descriptionText = "SOME FANCY DESCRIPTION"
+        let descriptionText = "Live Chat\n"
+            + "Create a new Event\n"
+            + "Join other Events\n"
+            + "Create channel Announcements\n"
+            + "Create workout Todos";
         this.props.createEvent({title: "General", description: descriptionText})
             .then((action) => {
                 this.setState({
@@ -71,6 +76,8 @@ class ChannelForm extends React.Component{
                     this.props.updateUser({channels: action.channel.data._id, id: this.props.user.id});
                     this.props.history.push(`/channels/${action.channel.data._id}/${action.channel.data.events[0]}`)
                     this.props.fetchChannel(action.channel.data._id)
+                    this.socket = io.connect()
+                    this.socket.emit('create', action.channel.data._id)
                     this.props.closeModal()
                 }
             ).catch((res) => console.log(res))
