@@ -15,7 +15,7 @@ const singleUpload = upload.single("image");
 router.get("/", (req, res) => {
     Channel
         .find()
-        .populate('members events')
+        .populate('events members messages')
         .sort({ date: -1 })
         .then(channels => res.json(channels))
         .catch(err => res.status(400).json(err));
@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
     Channel.findById(req.params.id)
-        .populate('members events')
+        .populate('events members messages')
         .exec(function( err, channel) {
             if (err) return console.log(err)
             res.json(channel)
@@ -46,7 +46,6 @@ router.post(("/"),
                 },
             });
         }
-        debugger
         const { isValid, errors } = validateChannelInput(req.body);
         if (!isValid) {
             return res.status(400).json(errors)
