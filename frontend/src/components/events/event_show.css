@@ -21,7 +21,7 @@
 }
 
 .members-section{
-    padding-top: 30px;
+    padding-top: 14px;
 }
 
 .channel-edit-button {
@@ -192,13 +192,15 @@
     margin-top: 20px;
     font-size: 14px;
     font-weight: bold;
-    height: 35px;
+    height: 22px;
     margin-top: 25px;
     border-radius: 6px;
     box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
     border: none;
     outline: none;
     cursor: pointer;
+    width: 122px;
+    text-align: center;
 }
 .create-todo-button:hover {
     background-color: #8acbb6;
@@ -394,4 +396,48 @@
     background-color: #8acbb6;
     font-weight: bolder;
     transition: background-color .4s ease-out;
+}
+
+.members {
+    margin: 0px;
+    margin-left: 10px;
+    font-size: 12px;
+}
+
+.member-header {
+    margin: 0px;
+    margin-left: 10px;
+}
+
+.workout-list h1 {
+    font-size: 24px;
+    margin: 0px;
+    margin-top: 7px;
+}
+
+.participants-list h1 {
+    font-size: 24px;
+    margin: 0px;
+    margin-top: 7px;
+}
+
+.workout-list ul {
+    margin: 0px;
+    padding-left: 36px;
+}
+
+.participants-list ul {
+    margin: 0px;
+    padding-left: 36px;
+
+}
+
+.show-list-members {
+    margin-top: -10px;
+}
+
+.show-list-members ul {
+    list-style-type: none;
+    text-align: left;
+    padding: 0px;
 }
