@@ -24,8 +24,7 @@ class NavBar extends React.Component {
             </div>
         );
       } else {
-        let button;
-
+        
         if (this.props.location.pathname === "/") {
           return (
             <div>
