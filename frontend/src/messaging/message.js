@@ -23,7 +23,6 @@ class App extends React.Component {
 
     componentDidMount() {
         this.socket = io(config[process.env.NODE_ENV].endpoint)
-        debugger
         // this.socket = io(config.endpoint, {
         //     transports: ['polling', 'websocket']
         // })
