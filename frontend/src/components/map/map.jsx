@@ -51,12 +51,13 @@ export default function SlawMap() {
     const [markers, setMarkers] = React.useState([]);
     const [address, setAddress] = React.useState(null);
     const [submitted, setSubmitted] = React.useState(false);
+    const [selectedActivity, setSelectedActivity] = React.useState(null);
 
-    const panTo = React.useCallback(({ lat, lng }) => {
-        mapRef.current.panTo({ lat, lng });
-        mapRef.current.setZoom(14);
-    }, []);
-
+    const { isLoaded, loadError } = useLoadScript({
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
+        libraries,
+    });
+    
     const {
         ready,
         value,
@@ -69,6 +70,12 @@ export default function SlawMap() {
             radius: 100 * 1000,
         },
     });
+    
+    const panTo = React.useCallback(({ lat, lng }) => {
+        mapRef.current.panTo({ lat, lng });
+        mapRef.current.setZoom(14);
+    }, []);
+
 
     // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
 
@@ -91,9 +98,8 @@ export default function SlawMap() {
     };
 
     useEffect(() => {
-        if (address !== null && markers.length === 0 && submitted ) {
-            // const apiUrl = `https://slaw-app.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&query=marathon&current_page=1&per_page=10&sort=distance&exclude_children=true&api_key=qcfehs4xxbbcdvepyyn2udsu`;
-            const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&query=marathon&current_page=1&per_page=10&sort=distance&exclude_children=true&api_key=qcfehs4xxbbcdvepyyn2udsu`;
+        if (address !== null && submitted ) {
+            const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&query=marathon&current_page=1&per_page=10&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
             fetch(apiUrl, { method: 'GET', mode: 'cors'})
                 .then(function(res) {
                     return res.json()
@@ -110,10 +116,6 @@ export default function SlawMap() {
         }
     );
 
-    const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: "AIzaSyDeO5HlPjN1dpNDOgAMVPHZQr3utCmUar0",
-        libraries,
-    });
 
     if (loadError) return "Error";
     if (!isLoaded) return "Loading...";
@@ -133,8 +135,8 @@ export default function SlawMap() {
                 <Combobox onSelect={handleSelect}>
                     <ComboboxInput
                         value={value}
-                        onChange={handleInput}
                         disabled={!ready}
+                        onChange={handleInput}
                         placeholder="Search your location"
                     />
                     <ComboboxPopover>
@@ -162,8 +164,32 @@ export default function SlawMap() {
                         lat: Number(activity.place.geoPoint.lat),
                         lng: Number(activity.place.geoPoint.lon)
                     }}
+                    onClick={() => {
+                        setSelectedActivity(activity);
+                    }}
+                    icon={{
+                        url: "/hiclipart.com.png",
+                        scaledSize: new window.google.maps.Size(25, 25)
+                    }}
                 />
             ))}
+                {selectedActivity && (
+                    <InfoWindow
+                        position={{
+                            lat: Number(selectedActivity.place.geoPoint.lat),
+                            lng: Number(selectedActivity.place.geoPoint.lon)
+                        }}
+                        onCloseClick={() => {
+                            setSelectedActivity(null);
+                        }}
+                    >
+                        <div className="info-window-details">
+                            <h3>{selectedActivity.assetName}</h3>
+                            <p>{selectedActivity.assetChannels[0].channel.channelDsc}</p>
+                            <a target="_blank" href={`${selectedActivity.registrationUrlAdr}`}>Registration Link</a>
+                        </div>
+                    </InfoWindow>
+                )}
 
             </GoogleMap>
             
