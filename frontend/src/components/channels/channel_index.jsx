@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './channel_index.css'
 
 class ChannelIndex extends React.Component{
