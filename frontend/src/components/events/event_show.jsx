@@ -36,13 +36,13 @@ class EventShow extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchEvent(this.props.eventId)
-        
-        this.props.fetchChannel();
         this.setState({ loading: true })
         setTimeout(() => {
             this.setState({ loading: false });
         }, 1000);
+        this.props.fetchEvent(this.props.eventId)
+        
+        this.props.fetchChannel();
         
         window.scrollTo(0, 0);
     }
@@ -287,22 +287,6 @@ class EventShow extends React.Component {
             </div> : <div></div>;
 
         let username = this.props.user.handle
-
-        // let messages;
-        // debugger
-        // if (this.props.event[this.props.eventId].messages.length > 0) {
-            
-        //     messages = this.props.event[this.props.eventId].messages.map((el, index) => {
-        //         debugger
-        //         let text = el
-        //         return (
-        //             <div key={index}>
-        //                 <p>{text.message}</p>
-        //                 <p>{text.username}</p>
-        //             </div>
-        //         )
-        //     })
-        // }
 
         let message;
         
