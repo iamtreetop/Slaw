@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+
 import {
     GoogleMap,
     useLoadScript,
@@ -28,6 +29,8 @@ import {Link} from "react-router-dom"
 require('dotenv').config()
 
 
+const libraries = ["places"]
+
 const mapContainerStyle = {
     height: "100vh",
     width: "100vw",
@@ -44,9 +47,37 @@ const options = {
     zoomControl: true,
 };
 
-
+// function Map(){
+//     return(
+//         <GoogleMap
+//             defaultZoom={10}
+//             defaultCenter={ center }
+//         >
+//             {activeData.results.map((activity, idx) => (
+//                 <Marker
+//                     key={idx}
+//                     position={{
+//                         lat: activity.place.geoPoint.lat,
+//                         lng: activity.place.geoPoint.lon
+//                     }}
+//                 />
+//             ))}
+//         </GoogleMap>
+//     )
+// }
 
 export default function SlawMap() {
+    // const onMapClick = React.useCallback((e) => {
+    //     setMarkers((current) => [
+    //         ...current,
+    //         {
+    //             lat: e.latLng.lat(),
+    //             lng: e.latLng.lng(),
+    //             time: new Date(),
+    //         },
+    //     ]);
+    // }, []);
+
     const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
         mapRef.current = map;
@@ -79,6 +110,9 @@ export default function SlawMap() {
         mapRef.current.panTo({ lat, lng });
         mapRef.current.setZoom(8);
     }, []);
+
+
+    // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
 
     const handleInput = (e) => {
         setValue(e.target.value);
@@ -254,24 +288,4 @@ function Locate({ panTo }) {
 //         }
 //     };
 
-//     return (
-//         <div className="search">
-//             <Combobox onSelect={handleSelect}>
-//                 <ComboboxInput
-//                     value={value}
-//                     onChange={handleInput}
-//                     disabled={!ready}
-//                     placeholder="Search your location"
-//                 />
-//                 <ComboboxPopover>
-//                     <ComboboxList>
-//                         {status === "OK" &&
-//                             data.map(({ id, description }) => (
-//                                 <ComboboxOption key={id} value={description} />
-//                             ))}
-//                     </ComboboxList>
-//                 </ComboboxPopover>
-//             </Combobox>
-//         </div>
-//     );
-// }
+
