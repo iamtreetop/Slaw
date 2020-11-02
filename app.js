@@ -72,7 +72,15 @@ io.on('connection', (socket) => {
   //   // Send the last messages to the user.
   //   socket.emit('init', messages);
   // });
+  socket.on('create', (room) => {
+    if (!socket.rooms[room] !== room) {
+      socket.join(room);
 
+    }
+    
+    console.log(socket.rooms)
+    // console.log(io.sockets.adapter.rooms[room])
+  });
   // Listen to connected users for a new message.
   socket.on('message', (msg) => {
     // Create a message with the content and the name of the user.
@@ -94,7 +102,9 @@ io.on('connection', (socket) => {
     
 
     // Notify all other users about a new message.
-    socket.broadcast.emit('push', msg);
+    socket.broadcast.to(msg.room).emit('push', msg)
+    // socket.broadcast.emit('push', msg);
+    console.log(io.sockets.adapter.rooms[msg.room])
   });
 
 });
