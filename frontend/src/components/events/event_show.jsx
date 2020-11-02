@@ -355,13 +355,13 @@ class EventShow extends React.Component {
                             </div>
                             <div className="members-section">
                                 <div className="section-heading">
-                                    Members
+                                    <p className="member-header">Members</p>
                                     </div>
-                                <div className="show-list">
+                                <div className="show-list-members">
                                     <ul>
                                         {this.props.channel.members.map((member, idx) => {
                                             return (<li key={idx}>
-                                                <h5>
+                                                <h5 className="members">
                                                     {member.handle}
                                                 </h5>
                                             </li>
