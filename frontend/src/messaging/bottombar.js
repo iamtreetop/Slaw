@@ -47,21 +47,6 @@ export default function BottomBar(props) {
     return (
         <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
-                <div className={classes.inputContainer} style={{ maxWidth: '200px' }}>
-                    <div className={classes.icon}>
-                        <FaceIcon />
-                    </div>
-                    <InputBase
-                        onChange={props.handleName}
-                        value={props.username}
-                        placeholder="Name"
-                        classes={{
-                            root: classes.inputRoot,
-                            input: classes.inputInput,
-                        }}
-                        inputProps={{ 'aria-label': 'name' }}
-                    />
-                </div>
                 <div className={classes.inputContainer}>
                     <form onSubmit={props.handleSubmit}>
                         <div className={classes.icon}>
@@ -70,7 +55,7 @@ export default function BottomBar(props) {
                         <InputBase
                             onChange={props.handleContent}
                             value={props.message}
-                            placeholder="Type your message..."
+                            placeHolder="Type your message..."
                             classes={{
                                 root: classes.inputRoot,
                                 input: classes.inputInput,

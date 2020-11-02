@@ -12,7 +12,6 @@ import Lottie from "react-lottie";
 import ReactLoading from "react-loading";
 import * as legoData from "../../legoloading.json";
 import * as doneData from "../../doneloading.json";
-import io from 'socket.io-client';
 
 
 class ChannelForm extends React.Component{
@@ -76,8 +75,6 @@ class ChannelForm extends React.Component{
                     this.props.updateUser({channels: action.channel.data._id, id: this.props.user.id});
                     this.props.history.push(`/channels/${action.channel.data._id}/${action.channel.data.events[0]}`)
                     this.props.fetchChannel(action.channel.data._id)
-                    this.socket = io.connect()
-                    this.socket.emit('create', action.channel.data._id)
                     this.props.closeModal()
                 }
             ).catch((res) => console.log(res))
@@ -121,7 +118,7 @@ class ChannelForm extends React.Component{
                             value={this.state.title}
                             onChange={this.handleChange("title")}
                             className="channel-form-input"
-                            placeholder="Slaw Channel Title"
+                            placeHolder="Slaw Channel Title"
                             required={true}
                         />
                     </div>
