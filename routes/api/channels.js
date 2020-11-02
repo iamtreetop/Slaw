@@ -8,14 +8,11 @@ const Event = require("../../models/Event")
 const upload = require("../../services/image_upload");
 const singleUpload = upload.single("image");
 
-// const formidable = require('express-formidable');
-
-// router.use(formidable())
 
 router.get("/", (req, res) => {
     Channel
         .find()
-        .populate('members events')
+        .populate('events members')
         .sort({ date: -1 })
         .then(channels => res.json(channels))
         .catch(err => res.status(400).json(err));
@@ -23,7 +20,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
     Channel.findById(req.params.id)
-        .populate('members events')
+        .populate('events members')
         .exec(function( err, channel) {
             if (err) return console.log(err)
             res.json(channel)
@@ -112,6 +109,21 @@ router.patch("/:id",
                     return model.save();
                 })
                 .catch((err) => res.status(400).json(err));
+        }
+
+        if (req.body.message) {
+            Channel.findByIdAndUpdate(req.params.id,
+                {
+                    $push: { messages: req.body.message },
+                },
+                { new: true })
+                .populate('events members')
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
+
         }
 
     })

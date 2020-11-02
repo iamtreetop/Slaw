@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const fetchChannels = () => {
-  return axios.get('/api/channels')
+  return axios.get('/api/channels/')
 };
 
 export const fetchChannel = (channelId) => {

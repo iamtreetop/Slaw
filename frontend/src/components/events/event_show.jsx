@@ -8,6 +8,7 @@ import Lottie from "react-lottie";
 import ReactLoading from "react-loading";
 import * as legoData from "../../legoloading.json";
 import * as doneData from "../../doneloading.json";
+import Message from "../../messaging/message"
 
 class EventShow extends React.Component {
     constructor(props) {
@@ -35,18 +36,20 @@ class EventShow extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchEvent(this.props.eventId)
-
-        this.props.fetchChannel();
-        this.setState({loading: true})
+        this.setState({ loading: true })
         setTimeout(() => {
             this.setState({ loading: false });
-        }, 500);
+        }, 1000);
+        this.props.fetchEvent(this.props.eventId)
+        
+        this.props.fetchChannel();
+        
         window.scrollTo(0, 0);
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.channelId !== this.props.match.params.channelId) {
+            this.props.fetchChannel()
             this.props.fetchEvent(this.props.eventId)
             .then((action) => {
                 this.setState({ currentEvent: action.event.data, todo: action.event.data.todo, participants: action.event.data.participants, loading: true });
@@ -77,10 +80,6 @@ class EventShow extends React.Component {
         // this.props.fetchEvent(this.props.eventId).then((action) => {
         //     this.setState({ currentEvent: action.event.data, todo: action.event.data.todo });
         // })
-    }
-
-    initMap(){
-        
     }
 
     handleClick(e, todoId){
@@ -283,6 +282,11 @@ class EventShow extends React.Component {
                 </div>
             </div> : <div></div>;
 
+        let username = this.props.user.handle
+
+        let message;
+        
+
         let display = !this.state.loading ? (
             <div className="event-show-container">
                     <div className="events-section">
@@ -324,7 +328,17 @@ class EventShow extends React.Component {
                         <div className="event-details-left">
                             <h1>#{this.props.event[this.props.eventId].title}</h1>
                             <h2>Welcome to {this.props.channel.title} Channel</h2>
-                            <p>Description: <br /> {this.props.event[this.props.eventId].description}</p>
+                            {this.props.event[this.props.eventId].title === "General" ? <ul><b>You can do all of the following in this channel:</b>
+                                {this.props.event[this.props.eventId].description.split("\n").map(
+                                    (item) => {
+                                        return (
+                                            <li>{item}</li>
+                                        )
+                                    }
+                                )}
+                                And most of all, <b>Enjoy SLAW with your friends!</b>
+                            </ul> : this.props.event[this.props.eventId].description
+                            }
                             {join}
                             {leave}
                             {editDelete}
@@ -359,7 +373,10 @@ class EventShow extends React.Component {
                         </div>
 
                     </div>
-
+                    <Message username={username} eventId={this.props.eventId}
+                        updateChannel={this.props.updateChannel}
+                        channelId={this.props.channel._id}
+                        messages={this.props.channel.messages} />
                     <div className="comment-section">
                         <div className="comment-box-wrapper">
                             {comments}

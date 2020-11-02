@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
+
 import {
     GoogleMap,
     useLoadScript,
     Marker,
     InfoWindow,
+    useGoogleMap,
 } from "@react-google-maps/api";
 import UsePlacesAutoComplete, {
     getGeocode,
@@ -22,7 +24,11 @@ import "../../../node_modules/@reach/combobox/styles.css"
 import mapStyles from "./mapStyles";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import compass from '../../images/compass.svg';
+import {Link} from "react-router-dom"
+// import fetchEvent from "../../util/map.api_util"
+import * as activeData from "./activeData.json"
 require('dotenv').config()
+
 
 const libraries = ["places"]
 
@@ -42,7 +48,39 @@ const options = {
     zoomControl: true,
 };
 
+// function Map(){
+//     return(
+//         <GoogleMap
+//             defaultZoom={10}
+//             defaultCenter={ center }
+//         >
+//             {activeData.results.map((activity, idx) => (
+//                 <Marker
+//                     key={idx}
+//                     position={{
+//                         lat: activity.place.geoPoint.lat,
+//                         lng: activity.place.geoPoint.lon
+//                     }}
+//                 />
+//             ))}
+//         </GoogleMap>
+//     )
+// }
+
 export default function SlawMap() {
+    // const onMapClick = React.useCallback((e) => {
+    //     setMarkers((current) => [
+    //         ...current,
+    //         {
+    //             lat: e.latLng.lat(),
+    //             lng: e.latLng.lng(),
+    //             time: new Date(),
+    //         },
+    //     ]);
+    // }, []);
+
+    const [selectedActivity, setSelectedActivity] = React.useState(null);
+
     const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
         mapRef.current = map;
@@ -73,7 +111,7 @@ export default function SlawMap() {
     
     const panTo = React.useCallback(({ lat, lng }) => {
         mapRef.current.panTo({ lat, lng });
-        mapRef.current.setZoom(14);
+        mapRef.current.setZoom(8);
     }, []);
 
 
@@ -151,6 +189,7 @@ export default function SlawMap() {
             </div>
 
             <GoogleMap mapContainerStyle={mapContainerStyle}
+
                 zoom={8}
                 center={center}
                 options={options}
@@ -158,6 +197,7 @@ export default function SlawMap() {
                 onLoad={onMapLoad}
             >
             {markers.map((activity, idx) => (
+
                 <Marker
                     key={idx}
                     position={{
@@ -173,6 +213,7 @@ export default function SlawMap() {
                     }}
                 />
             ))}
+
                 {selectedActivity && (
                     <InfoWindow
                         position={{
@@ -191,11 +232,12 @@ export default function SlawMap() {
                     </InfoWindow>
                 )}
 
+
             </GoogleMap>
             
         </div>
     )
-    }
+}
 
 function Locate({ panTo }) {
     return (
