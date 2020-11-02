@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 
 import BottomBar from './bottombar';
 import './app.css';
-
+require('dotenv').config()
 
 class App extends React.Component {
     constructor(props) {
@@ -23,6 +23,7 @@ class App extends React.Component {
 
     componentDidMount() {
         this.socket = io(config[process.env.NODE_ENV].endpoint)
+        debugger
         // this.socket = io(config.endpoint, {
         //     transports: ['polling', 'websocket']
         // })
