@@ -151,6 +151,8 @@ class EventShow extends React.Component {
     handleDelete(eventId) {
         this.props.deleteEvent(eventId)
             .then((action) => {
+                this.props.updateChannel({ event: this.props.match.params.eventId, removeEvent: true, id: this.props.match.params.channelId }).catch
+                    ((res) => console.log(res))
                 this.props.fetchChannel()
                 this.props.history.push(`/channels/${this.props.channel._id}/${this.props.channel.events[0]._id}`)
             })

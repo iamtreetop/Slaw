@@ -140,7 +140,6 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
     }
 
     const handleCreateEvent = (eventDetails) => {
-        // this.setState({ participants: [this.props.userId] })
        createEvent(eventDetails).then(
             (action) => {
                 setEventId([action.event.data._id])
