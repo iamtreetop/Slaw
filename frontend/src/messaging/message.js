@@ -22,7 +22,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.socket = io(config.endpoint)
+        this.socket = io(config[process.env.NODE_ENV].endpoint)
         // this.socket = io(config.endpoint, {
         //     transports: ['polling', 'websocket']
         // })
