@@ -24,8 +24,7 @@ class NavBar extends React.Component {
             </div>
         );
       } else {
-        let button;
-
+        
         if (this.props.location.pathname === "/") {
           return (
             <div>
@@ -52,14 +51,16 @@ class NavBar extends React.Component {
 
   render() {
       return (
-        <div className="navbar-container">
-            <div className="navbar-wrapper">
-              <Link to={'/'} className="navbar-header-text">
-              <img src={backgroundImage}/>
-              </Link>
-              { this.getLinks() }
-            </div>
-        </div>
+        <Link to="/events/discover">
+          <div className="navbar-container">
+              <div className="navbar-wrapper">
+                <Link to={'/'} className="navbar-header-text">
+                <img src={backgroundImage}/>
+                </Link>
+                { this.getLinks() }
+              </div>
+          </div>
+        </Link>
       );
   }
 }
