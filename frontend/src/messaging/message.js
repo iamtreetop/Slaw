@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import BottomBar from './bottombar';
-import './app.css';
+import './message.css';
 require('dotenv').config()
 
 class Message extends React.Component {
@@ -138,16 +138,18 @@ class Message extends React.Component {
                     {this.state.chat.map((el, index) => {
                         
                         return (
-                            <div key={index}>
-                                <Typography variant="caption" className="name">
-                                    {el.username}
-                                </Typography>
-                                <Typography variant="body1" className="content">
-                                    {el.message}
-                                </Typography>
-                                <Typography variant="body1" className="content">
-                                    <p className="comment-date">{el.day}</p>
-                                    <p className="comment-time">{el.time}</p>
+                            <div key={index} className="live-chat-box">
+                                <div className="live-chat-box-header">
+                                    <Typography variant="h6" className="live-chat-name">
+                                        {el.username}
+                                    </Typography>
+                                    <Typography variant="body1" className="live-chat-content">
+                                        <p className="live-chat-date">{el.day}</p>
+                                        <p className="live-chat-time">{el.time}</p>
+                                    </Typography>
+                                </div>
+                                <Typography variant="body1">
+                                    <p className="live-chat-message">{el.message}</p>
                                 </Typography>
                             </div>
                         );
