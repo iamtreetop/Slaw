@@ -99,6 +99,13 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
   });
 })
 
+router.get("/:id", (req, res) => {
+  User.findById(req.parmas.id)
+    .populate('channels')
+    .then(users => res.json(users))
+    .catch(err => res.status(400).json(err));
+})
+
 router.patch("/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
