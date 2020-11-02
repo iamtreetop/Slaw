@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './channel_show.css'
 
 class ChannelShow extends React.Component {
     constructor(props) {
