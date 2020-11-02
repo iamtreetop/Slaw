@@ -83,8 +83,13 @@
     text-align: left;
 }
 
+.show-list-items-link {
+    text-decoration: none;
+}
+
 .show-list-items-text {
     /* list-style-type: none; */
+    color: white;
     text-align: center;
     padding: 0px;
     font-size: 20px;
@@ -148,6 +153,7 @@
     /* width: 100%; */
     padding-left: 20px;
     height: 45%;
+   
 }
 
 .event-details-left{
@@ -157,13 +163,29 @@
     box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
     margin-top: -20px;
     margin-left: -20px;
+    
 }
 
 .event-details-left > h2{
     font-size: 32px;
+    margin: 0px;
+    margin-left: 16px;
 }
 
-.workout-list > button{
+.event-details-left h1 {
+    font-size: 26px;
+    margin: 0px;
+    margin-left: 16px;
+}
+
+.event-details-left p {
+    font-size: 18px;
+    /* margin: 0px; */
+    margin-left: 16px;
+    margin-top: 20px;
+}
+
+.create-todo-button {
     font-family: 'Titillium Web', sans-serif;
     /* background-color: #a7e0ce; */
     background-color: #ebebf7;
@@ -177,6 +199,11 @@
     border: none;
     outline: none;
     cursor: pointer;
+}
+.create-todo-button:hover {
+    background-color: #8acbb6;
+    font-weight: bolder;
+    transition: background-color .4s ease-out;
 }
 
 .event-details-right{
@@ -331,4 +358,59 @@
     height: 100vmax;
     width: 100vmax;
     background-color: black;
+}
+
+.todo-form-box {
+    border-radius: 6px;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+    padding-top: 2ß0px;
+    /* background: linear-gradient(217deg, rgba(6, 39, 43,.9), rgba(6,39,43,.9) 70.71%), linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%); */
+    background-color: #0c3b3b;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    height: 200px;
+    width: 238px;
+}
+
+.create-todo-header-text {
+    text-align: center;
+    color: #ebebf7;
+    font-size: 26px;;
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 10px;
+}
+
+.create-todo-input {
+    /* width: 187px; */
+    width: 90%;
+    border-radius: 6px;
+    border: none;
+    box-shadow: 0 2px 5px 0 rgba(12,59,59,1);
+    height: 33px;
+    align-items: center;
+    outline: none;
+}
+
+.create-todo-submit {
+    background-color: white;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    height: 27px;
+    margin-top: 37px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px 0 rgba(12,59,59,1);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 90%;
+}
+
+.create-todo-submit:hover {
+    background-color: #8acbb6;
+    font-weight: bolder;
+    transition: background-color .4s ease-out;
 }

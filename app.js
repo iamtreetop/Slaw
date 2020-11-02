@@ -22,6 +22,11 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
   })
+  app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://slaw-app.herokuapp.com/"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 }
 
 mongoose
@@ -34,6 +39,12 @@ mongoose
 
 app.use(passport.initialize());
 require('./config/passport')(passport);
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.use(bodyParser.urlencoded({
     extended: false
@@ -95,7 +106,8 @@ io.on('connection', (socket) => {
     const message = new Message({
       message: msg.message,
       username: msg.username,
-
+      time: msg.time,
+      day: msg.day
     });
 
     
@@ -109,7 +121,7 @@ io.on('connection', (socket) => {
     // Notify all other users about a new message.
     socket.broadcast.to(msg.room).emit('push', msg)
     // socket.broadcast.emit('push', msg);
-    // console.log(io.sockets.adapter.rooms[msg.room])
+    console.log(msg)
   });
 
 });
