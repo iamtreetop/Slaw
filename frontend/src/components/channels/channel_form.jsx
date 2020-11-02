@@ -55,7 +55,11 @@ class ChannelForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        let descriptionText = "SOME FANCY DESCRIPTION"
+        let descriptionText = "Live Chat\n"
+            + "Create a new Event\n"
+            + "Join other Events\n"
+            + "Create channel Announcements\n"
+            + "Create workout Todos";
         this.props.createEvent({title: "General", description: descriptionText})
             .then((action) => {
                 this.setState({
