@@ -36,6 +36,20 @@
     height: 88vh;
 }
 
+.channel-search-container{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    height: 25px;
+}
+
+.channel-search-bar {
+    border-radius: 6px;
+    border: none;
+    width: 50%;
+}
+
+
 .channel-index-list{
     display: flex;
     flex-direction: column;
