@@ -15,8 +15,9 @@
 }
 
 .events-section{
-    width: 193px;
+    width: 10%;
     padding-top: 11px;
+    margin-left: 25px
     /* align-items: center; */
 }
 

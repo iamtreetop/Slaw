@@ -6,10 +6,15 @@
     box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
     margin-top: 90px;
     padding: 12px 0 0;
-
+  align-items: center;
     background-color: transparent;
+<<<<<<< HEAD
+    height: 89%;
+    width: 5%;
+=======
     height: 88%;
     width: max-content;
+>>>>>>> c965b4834ba4772713dca3c9bfe1790ab0fd877f
     position: absolute;
     z-index: 1;
 }
