@@ -1,17 +1,21 @@
 .navbar-container{
     /* background-color: #06272b; */
     background-color: #00000017;
+    background-image: url('../../images/SLAWBANNER.png');
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     position: absolute;
     z-index: 15;
     width: 100%;
-<<<<<<< HEAD
     /* position: relative; */
-=======
     /* position: absolute; */
->>>>>>> c965b4834ba4772713dca3c9bfe1790ab0fd877f
+}
+
+@media (max-width: 1225px) {
+    .navbar-container {
+        background-image: url('../../images/MINISLAWBANNER.png');
+    }
 }
 
 .navbar-wrapper{

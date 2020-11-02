@@ -26,7 +26,6 @@ import usePlacesAutocomplete from "use-places-autocomplete";
 import compass from '../../images/compass.svg';
 import {Link} from "react-router-dom"
 // import fetchEvent from "../../util/map.api_util"
-import * as activeData from "./activeData.json"
 require('dotenv').config()
 
 
@@ -90,11 +89,7 @@ export default function SlawMap() {
     const [selectedActivity, setSelectedActivity] = React.useState(null);
 
     const { isLoaded, loadError } = useLoadScript({
-<<<<<<< HEAD
-        googleMapsApiKey: process.env.GOOGLE_KEY,
-=======
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
->>>>>>> c965b4834ba4772713dca3c9bfe1790ab0fd877f
         libraries,
     });
     
@@ -139,7 +134,7 @@ export default function SlawMap() {
 
     useEffect(() => {
         if (address !== null && submitted ) {
-            const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&query=marathon&current_page=1&per_page=10&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
+            const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=10&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
             fetch(apiUrl, { method: 'GET', mode: 'cors'})
                 .then(function(res) {
                     return res.json()
@@ -180,10 +175,10 @@ export default function SlawMap() {
                         placeholder="Search your location"
                     />
                     <ComboboxPopover>
-                        <ComboboxList>
+                        <ComboboxList className="search-list">
                             {status === "OK" &&
                                 data.map(({ id, description }) => (
-                                    <ComboboxOption key={id} value={description} />
+                                    <ComboboxOption key={id} value={description} className="search-item"/>
                                 ))}
                         </ComboboxList>
                     </ComboboxPopover>
@@ -191,7 +186,6 @@ export default function SlawMap() {
             </div>
 
             <GoogleMap mapContainerStyle={mapContainerStyle}
-
                 zoom={8}
                 center={center}
                 options={options}
@@ -199,7 +193,6 @@ export default function SlawMap() {
                 onLoad={onMapLoad}
             >
             {markers.map((activity, idx) => (
-
                 <Marker
                     key={idx}
                     position={{
@@ -215,7 +208,6 @@ export default function SlawMap() {
                     }}
                 />
             ))}
-
                 {selectedActivity && (
                     <InfoWindow
                         position={{
@@ -233,7 +225,6 @@ export default function SlawMap() {
                         </div>
                     </InfoWindow>
                 )}
-
 
             </GoogleMap>
             
