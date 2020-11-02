@@ -82,10 +82,6 @@ class EventShow extends React.Component {
         // })
     }
 
-    initMap(){
-        
-    }
-
     handleClick(e, todoId){
         //debugger
         this.props.updateTodo({status: e.target.checked, id: todoId});
