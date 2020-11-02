@@ -106,7 +106,7 @@ class ChannelIndex extends React.Component{
                             <input type="text" placeholder="Search channels" value={this.state.query} onChange={this.handleChange("query")}/>
                             <input type="submit" value="Search"/>
                         </form>
-                        <ul className="channel-index-list">
+                        <ul className="channel-index-list" id={!this.state.searchSubmitted ? "" : this.state.filteredChannels.length === 0 ? `empty-results` : ""}>
                             {
                                 this.state.searchSubmitted ? this.state.filteredChannels.map(
                                     (channel, index) => {

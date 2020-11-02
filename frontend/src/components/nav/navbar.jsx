@@ -52,14 +52,16 @@ class NavBar extends React.Component {
 
   render() {
       return (
-        <div className="navbar-container">
-            <div className="navbar-wrapper">
-              <Link to={'/'} className="navbar-header-text">
-              <img src={backgroundImage}/>
-              </Link>
-              { this.getLinks() }
-            </div>
-        </div>
+        <Link to="/events/discover">
+          <div className="navbar-container">
+              <div className="navbar-wrapper">
+                <Link to={'/'} className="navbar-header-text">
+                <img src={backgroundImage}/>
+                </Link>
+                { this.getLinks() }
+              </div>
+          </div>
+        </Link>
       );
   }
 }
