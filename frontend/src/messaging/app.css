@@ -3,10 +3,19 @@ body {
   padding: 16px;
 }
 
+.App{
+  /* width: 42%; */
+    width: 75vh;
+    justify-content: column;
+    display: block;
+}
+
 #chat {
-  max-height: calc(100vh - 128px);
+  /* max-height: calc(100vh - 128px); */
   overflow: scroll;
   padding: 16px;
+  height: 275px;
+  /* width: 80%; */
 }
 
 .name {
@@ -15,4 +24,9 @@ body {
 
 .content {
   margin-bottom: 8px;
+}
+
+.MuiAppBar-colorPrimary {
+    color: #fff;
+    background-color: #06272b;
 }

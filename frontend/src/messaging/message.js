@@ -9,7 +9,7 @@ import BottomBar from './bottombar';
 import './app.css';
 require('dotenv').config()
 
-class App extends React.Component {
+class Message extends React.Component {
     constructor(props) {
         super(props);
 
@@ -134,7 +134,7 @@ class App extends React.Component {
                         );
                     })}
                 </Paper>
-                <BottomBar
+                <BottomBar 
                     message={this.state.message}
                     handleContent={this.handleContent.bind(this)}
                     handleName={this.handleName.bind(this)}
@@ -146,4 +146,4 @@ class App extends React.Component {
     }
 };
 
-export default App;
+export default Message;
