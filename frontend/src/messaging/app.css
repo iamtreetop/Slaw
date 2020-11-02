@@ -26,13 +26,7 @@ body {
   margin-bottom: 8px;
 }
 
-<<<<<<< HEAD
-.MuiAppBar-colorPrimary {
-    color: #fff;
-    background-color: #06272b;
-=======
 .toolbar-match-color {
   color: #fff;
   background-color: #06272b;
->>>>>>> 4ec52cc1d8d0e99c59320ea8a9b4bab192b61d02
 }
