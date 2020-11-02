@@ -26,7 +26,7 @@ export const removeTodo = (todoId) => {
 }
 
 export const createTodo = (todo) => {
-    // debugger
+
     // return (dispatch) => {
         return TodoAPIUtil.createTodo(todo).then((res) => {
             console.log(res)
@@ -44,7 +44,6 @@ export const updateTodo = (todo) => {
 
 export const deleteTodo = (todoId) => {
     // return (dispatch) => {
-        // debugger
         return TodoAPIUtil.deleteTodo(todoId).then((res) => {
              console.log(res)
         }).catch(err => console.log(err))

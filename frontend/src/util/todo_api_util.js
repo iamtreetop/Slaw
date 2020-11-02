@@ -15,8 +15,7 @@ export const createTodo = (todo) => {
 
 export const updateTodo = (todo) => {
     // let newDetails = { 
-    //     title: todo.title, 
-    //     description: todo.description,
+    //     title: todo.title,
     //     status: todo.status,
     // };
     return axios.patch('/api/todos/' + todo.id, todo)

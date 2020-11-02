@@ -8,6 +8,7 @@ import Lottie from "react-lottie";
 import ReactLoading from "react-loading";
 import * as legoData from "../../legoloading.json";
 import * as doneData from "../../doneloading.json";
+import Message from "../../messaging/message"
 
 class EventShow extends React.Component {
     constructor(props) {
@@ -35,18 +36,20 @@ class EventShow extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchEvent(this.props.eventId)
-
-        this.props.fetchChannel();
-        this.setState({loading: true})
+        this.setState({ loading: true })
         setTimeout(() => {
             this.setState({ loading: false });
-        }, 500);
+        }, 1000);
+        this.props.fetchEvent(this.props.eventId)
+        
+        this.props.fetchChannel();
+        
         window.scrollTo(0, 0);
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.channelId !== this.props.match.params.channelId) {
+            this.props.fetchChannel()
             this.props.fetchEvent(this.props.eventId)
             .then((action) => {
                 this.setState({ currentEvent: action.event.data, todo: action.event.data.todo, participants: action.event.data.participants, loading: true });
@@ -110,7 +113,7 @@ class EventShow extends React.Component {
     leaveChannel(){
         this.props.updateUser({removeChannel: true, channels: this.props.channel._id, id: this.props.userId }).then(
             (action) => {
-                this.props.updateChannel({removeCurrentUser: true, members: {id: this.props.userId}, id: this.props.channel._id}).then(
+                this.props.updateChannel({removeCurrentUser: true, members: this.props.userId, id: this.props.channel._id}).then(
                     (action) => {
                         this.props.history.push(`/channels/`);
                     }
@@ -279,6 +282,11 @@ class EventShow extends React.Component {
                 </div>
             </div> : <div></div>;
 
+        let username = this.props.user.handle
+
+        let message;
+        
+
         let display = !this.state.loading ? (
             <div className="event-show-container">
                     <div className="events-section">
@@ -355,7 +363,10 @@ class EventShow extends React.Component {
                         </div>
 
                     </div>
-
+                    <Message username={username} eventId={this.props.eventId}
+                        updateChannel={this.props.updateChannel}
+                        channelId={this.props.channel._id}
+                        messages={this.props.channel.messages} />
                     <div className="comment-section">
                         <div className="comment-box-wrapper">
                             {comments}

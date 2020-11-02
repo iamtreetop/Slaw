@@ -7,9 +7,6 @@ const TodoSchema = new Schema({
         type: String,
         required: true
     },
-    description: {
-        type: String
-    },
     status: {
         type: Boolean,
         default: false

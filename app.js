@@ -13,7 +13,9 @@ const User = require("./models/User")
 const bodyParser = require("body-parser")
 const path = require('path');
 const cors = require("cors");
+
 app.use(cors());
+
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('frontend/build'));
@@ -26,7 +28,10 @@ mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
-  
+
+
+
+
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
@@ -51,8 +56,67 @@ app.use("/api/comments", comments);
 
 app.use(passport.initialize());
 
-const port = process.env.PORT || 5000;
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`)
+const port = process.env.PORT || 5500;
+
+
+const socketio = require('socket.io')
+const http = require('http')
+const server = http.createServer(app);
+const io = socketio(server, {'wsEngine': 'ws'});
+const Message = require('./models/Message')
+const formatMessage = require('./util-message/message-format')
+// io.origins('*')
+// app.use(express.static('frontend'))
+io.on('connection', (socket) => {
+
+  // Get the last 10 messages from the database.
+  console.log("connected to websocket")
+  // Message.find().sort({ createdAt: -1 }).limit(1).exec((err, messages) => {
+  //   if (err) return console.error(err);
+  //   // Send the last messages to the user.
+  //   socket.emit('init', messages);
+  // });
+
+  // Listen to connected users for a new message.
+  socket.on('message', (msg) => {
+    // Create a message with the content and the name of the user.
+
+    
+
+    const message = new Message({
+      message: msg.message,
+      username: msg.username,
+
+    });
+
+    
+    // Save the message to the database.
+    message.save((err) => {
+      if (err) return console.error(err);
+    });
+
+    
+
+    // Notify all other users about a new message.
+    socket.broadcast.emit('push', msg);
+  });
+
 });
+io.on('disconnect', () => {
+  console.log("disconnected to websocket")
+  io.emit('message', 'A user has left the chat')
+})
+
+
+
+
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`)
+});
+
+
+
+
+
+

@@ -36,7 +36,6 @@ export const fetchEvents = () => {
 export const fetchEvent = (eventId) => {
     return (dispatch) => {
         return EventAPIUtil.fetchEvent(eventId).then((event) => {
-            // debugger
             return dispatch(receiveEvent(event))
         }).catch(err => console.log(err))
     }
