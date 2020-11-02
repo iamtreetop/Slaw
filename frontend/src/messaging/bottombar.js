@@ -46,7 +46,7 @@ export default function BottomBar(props) {
 
     return (
         <AppBar position="fixed" className={classes.appBar}>
-            <Toolbar>
+            <Toolbar className="toolbar-match-color">
                 <div className={classes.inputContainer}>
                     <form onSubmit={props.handleSubmit}>
                         <div className={classes.icon}>

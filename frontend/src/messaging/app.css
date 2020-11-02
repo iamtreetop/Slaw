@@ -16,3 +16,8 @@ body {
 .content {
   margin-bottom: 8px;
 }
+
+.toolbar-match-color {
+  color: #fff;
+  background-color: #06272b;
+}
