@@ -1,21 +1,23 @@
-.signup-bg-image{
-    background-image:url('../../images/signup-bg.jpg');
+.channel-index-bg-image{
+    background-image:url('../../images/channel-index-bg.jpg');
     background-repeat:no-repeat;
     background-size:cover;
     backdrop-filter: grayscale(1);
-    height: 110vh;
+    height: 100vh;
     filter: saturate(0.4);
 }
 
 .channel-index-container {
     /* border: 2px solid red; */
-    display: block;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 91vh;
     padding-left: 68px;
     background: linear-gradient(217deg, rgb(6 39 43 / 25%), rgb(6 39 43 / 41%) 70.71%), linear-gradient(127deg, rgb(8 96 5 / 56%), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgb(74 74 153 / 58%), rgba(0,0,255,0) 70.71%);
     /* height: 100vh;
     width: 95vw; */
     /* top: 79px; */
-    position: relative;
     padding-top: 90px;
 }
 
@@ -27,9 +29,11 @@
 
 .channel-index-list-block {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     /* border: 2px solid blue; */
-    height: 97vh;
+    align-items: center;
+    height: 88vh;
 }
 
 .channel-index-list{

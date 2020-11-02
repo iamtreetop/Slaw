@@ -128,7 +128,7 @@ export default function SlawMap() {
     });
 
     // useEffect(() => {
-    //     const apiUrl = `http://api.amp.active.com/v2/search/?lat_lon=43.2%2C-118&current_page=1&per_page=10&sort=distance&exclude_children=true&api_key=prkm4jcm6g6f68m625ecfv7u`;
+    //     const apiUrl = `http://api.amp.active.com/v2/search/?lat_lon=43.2%2C-118&current_page=1&per_page=10&sort=distance&exclude_children=true&api_key={ACTIVE_KEY}`;
     //     debugger
     //     fetch(apiUrl, { method: 'GET', mode: 'no-cors'})
     //         .then((res) => {

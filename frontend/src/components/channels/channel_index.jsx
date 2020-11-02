@@ -101,7 +101,7 @@ class ChannelIndex extends React.Component{
         }
 
         return (
-            <div className="signup-bg-image">
+            <div className="channel-index-bg-image">
 
                 <div className="channel-index-container">
                     <div className="channel-index-list-block">
