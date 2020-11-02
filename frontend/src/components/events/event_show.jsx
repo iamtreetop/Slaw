@@ -328,7 +328,7 @@ class EventShow extends React.Component {
                         <div className="event-details-left">
                             <h1>#{this.props.event[this.props.eventId].title}</h1>
                             <h2>Welcome to {this.props.channel.title} Channel</h2>
-                            <ul><b>You can do all of the following in this channel:</b>
+                            {this.props.event[this.props.eventId].title === "General" ? <ul><b>You can do all of the following in this channel:</b>
                                 {this.props.event[this.props.eventId].description.split("\n").map(
                                     (item) => {
                                         return (
@@ -337,7 +337,8 @@ class EventShow extends React.Component {
                                     }
                                 )}
                                 And most of all, <b>Enjoy SLAW with your friends!</b>
-                            </ul>
+                            </ul> : this.props.event[this.props.eventId].description
+                            }
                             {join}
                             {leave}
                             {editDelete}
