@@ -337,18 +337,17 @@
 }
 
 .comment-author {
-    color: black;
-    font-weight: bolder;
-    font-size: 20px;
-    align-self: center;
+    color: white;
+    font-size: 12px;
+    margin: 0px;
 }
 
 .comment-date {
-    margin-left: 10px;
-    font-size: 12px;
-    /* margin-top: 5px; */
+    font-size: 22px;
     align-self: center;
-    margin-top: 14px;
+    margin: 0px;
+    margin-top: 9px;
+    margin-left: 13px;
 }
 
 .comment-time {
@@ -360,6 +359,7 @@
 
 .comment-comment {
     margin: 0px;
+    font-size: 25px;
 }
 
 .comment-box-wrapper{
