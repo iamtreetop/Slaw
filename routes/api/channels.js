@@ -8,14 +8,11 @@ const Event = require("../../models/Event")
 const upload = require("../../services/image_upload");
 const singleUpload = upload.single("image");
 
-// const formidable = require('express-formidable');
-
-// router.use(formidable())
 
 router.get("/", (req, res) => {
     Channel
         .find()
-        .populate('events members messages')
+        .populate('events members')
         .sort({ date: -1 })
         .then(channels => res.json(channels))
         .catch(err => res.status(400).json(err));
@@ -23,7 +20,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
     Channel.findById(req.params.id)
-        .populate('events members messages')
+        .populate('events members')
         .exec(function( err, channel) {
             if (err) return console.log(err)
             res.json(channel)
@@ -78,7 +75,7 @@ router.patch("/:id",
     (req, res) => {
         if (req.body.members && !req.body.removeCurrentUser) {
             Channel.findByIdAndUpdate(req.params.id, { $push: {members: req.body.members.id} }, {new: true})
-                .populate('events members messages')
+                .populate('events members')
                 .then((model) => {
                 (res.json(model))
                 return model.save();})
@@ -86,7 +83,7 @@ router.patch("/:id",
         }
         else if (req.body.removeCurrentUser){
             Channel.findByIdAndUpdate(req.params.id, { $pull: {members: req.body.members.id} }, {new: true})
-            .populate('events members messages')
+            .populate('events members')
             .then((model) => {
             (res.json(model))
             return model.save();})
@@ -96,7 +93,7 @@ router.patch("/:id",
 
         if (req.body.events) {
             Channel.findByIdAndUpdate(req.params.id, { $push: { events: req.body.events } }, { new: true })
-                .populate('events members messages')
+                .populate('events members')
                 .then((model) => {
                     (res.json(model))
                     return model.save();
@@ -106,7 +103,7 @@ router.patch("/:id",
 
         if (req.body.title){
             Channel.findByIdAndUpdate(req.params.id, { title: req.body.title }, { new: true })
-                .populate('events members messages')
+                .populate('events members')
                 .then((model) => {
                     (res.json(model))
                     return model.save();
@@ -120,7 +117,7 @@ router.patch("/:id",
                     $push: { messages: req.body.message },
                 },
                 { new: true })
-                .populate('events members messages')
+                .populate('events members')
                 .then((model) => {
                     (res.json(model))
                     return model.save();
