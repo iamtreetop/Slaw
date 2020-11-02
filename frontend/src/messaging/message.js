@@ -51,7 +51,6 @@ class Message extends React.Component {
         this.socket.emit('create', this.props.channelId)
         // Update the chat if a new message is broadcasted.
         this.socket.on('push', (msg) => {
-            debugger
             this.setState((state) => ({
                 chat: [...state.chat, msg],
             }), this.scrollToBottom);
@@ -154,19 +153,12 @@ class Message extends React.Component {
                         );
                     })}
                 </Paper>
-                    <form onSubmit={this.handleSubmit}>
-                    <input
-                        onChange={this.handleContent}
-                        value={this.state.message}
-                        placeHolder="Type your message..."
-                        />
-                    </form>
-                {/* <BottomBar
+                <BottomBar
                     message={this.state.message}
                     handleContent={this.handleContent.bind(this)}
                     handleSubmit={this.handleSubmit.bind(this)}
                     username={this.state.username}
-                /> */}
+                />
             </div>
         );
     }
