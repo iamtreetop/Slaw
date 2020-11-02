@@ -1,6 +1,7 @@
 .navbar-container{
     /* background-color: #06272b; */
     background-color: #00000017;
+    background-image: url('../../images/SLAWBANNER.png');
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -9,6 +10,12 @@
     width: 100%;
     /* position: relative; */
     /* position: absolute; */
+}
+
+@media (max-width: 1225px) {
+    .navbar-container {
+        background-image: url('../../images/MINISLAWBANNER.png');
+    }
 }
 
 .navbar-wrapper{
