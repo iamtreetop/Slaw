@@ -2,7 +2,7 @@
 
 Slaw is a Health and Fitness Social Media application that allows a user to explore many differents communities and allow them to interact with others. Users can form communities with those who have common fitness goals.
 
-https://slaw-app.herokuapp.com/ Live Link
+Link to Live App: [Slaw](https://slaw-app.herokuapp.com/)
 
 ## Background and Overview
 
