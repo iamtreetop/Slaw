@@ -51,6 +51,7 @@
 
 
 .channel-index-list{
+    align-items: center;
     display: flex;
     flex-direction: column;
     background-color: #0c3b3b;
@@ -60,6 +61,12 @@
     overflow: auto;
     padding-top: 20px;
     height: 80%;
+    min-width: 480px;
+    min-height: 430.5px;
+}
+
+#empty-results {
+    background-image: url('../../images/noresults.png');
 }
 
 .channel-list-item {

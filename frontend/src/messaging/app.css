@@ -1,12 +1,21 @@
 body {
   background: #f5f5f5;
-  padding: 16px;
+  padding: 0;
+}
+
+.App{
+  /* width: 42%; */
+    width: 75vh;
+    justify-content: column;
+    display: block;
 }
 
 #chat {
-  max-height: calc(100vh - 128px);
+  /* max-height: calc(100vh - 128px); */
   overflow: scroll;
   padding: 16px;
+  height: 275px;
+  /* width: 80%; */
 }
 
 .name {
