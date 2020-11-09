@@ -24,14 +24,14 @@ const { errors, isValid } = validateRegisterInput(req.body);
   User.findOne({ email: req.body.email })
     .then(user => {
       if (user) {
-        return res.status(400).json({ email: "Email already exists" });
+        return res.status(400).json({ email: "Email already taken" });
       }
     })
     .then(() => {
       User.findOne({ handle: req.body.handle })
         .then(user => {
           if (user) {
-            return res.status(400).json({ handle: "Handle already exists" });
+            return res.status(400).json({ handle: "Username already taken" });
           }
           else {
             const newUser = new User({
