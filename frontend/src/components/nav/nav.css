@@ -7,11 +7,7 @@
     position: absolute;
     z-index: 15;
     width: 100%;
-<<<<<<< HEAD
-    /* position: relative; */
-=======
     /* position: absolute; */
->>>>>>> c965b4834ba4772713dca3c9bfe1790ab0fd877f
 }
 
 .navbar-wrapper{

@@ -90,11 +90,7 @@ export default function SlawMap() {
     const [selectedActivity, setSelectedActivity] = React.useState(null);
 
     const { isLoaded, loadError } = useLoadScript({
-<<<<<<< HEAD
-        googleMapsApiKey: process.env.GOOGLE_KEY,
-=======
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
->>>>>>> c965b4834ba4772713dca3c9bfe1790ab0fd877f
         libraries,
     });
     
