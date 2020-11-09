@@ -92,6 +92,7 @@ class SignupForm extends React.Component {
                   <label className="signup-label">PASSWORD</label>
                   <input className="signup-input-field"  
                     type="password"
+                    minlength="8"
                     required={true}
                     value={this.state.password}
                     onChange={this.update('password')}
@@ -101,6 +102,7 @@ class SignupForm extends React.Component {
                   <label className="signup-label">CONFIRM PASSWORD</label>
                   <input className="signup-input-field"  
                     type="password"
+                    minlength="8"
                     required={true}
                     value={this.state.password2}
                     onChange={this.update('password2')}

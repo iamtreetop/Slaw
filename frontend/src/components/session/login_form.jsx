@@ -106,6 +106,7 @@ class LoginForm extends React.Component {
                   <input className="login-input-field" 
                     type="password"
                     required={true}
+                    minlength="8"
                     value={this.state.password}
                     onChange={this.update('password')}
                   />
