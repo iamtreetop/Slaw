@@ -1,16 +1,15 @@
-.members-section, .participants-list {
-    /* padding-right: 48px; */
-    width: 28%;
-    /* background-color: grey; */
-}
-
-
 .events-section, .members-section {
     display: flex;
     flex-direction: column;
     /* border: 2px solid grey; */
     /* margin-left: 15px; */
     border-radius: 6px;
+}
+
+.participants-list{
+    border-left: 1px solid darkgreen;
+    text-align: center;
+    width: 25%;
 }
 
 .events-section{
@@ -24,7 +23,8 @@
 .members-section{
     padding-top: 30px;
     padding-left: 20px;
-    border-left: 1px solid #06272b;
+    align-self: flex-start;
+    /* border-left: 1px solid #06272b; */
     /* padding-top: 14px; */
 }
 
@@ -162,8 +162,10 @@
 
 .event-details-left{
     /* border: 2px solid green; */
+    border: 1px solid darkgreen;
+    border-bottom: none;
     width: 50%;
-    border-radius: 6px;
+    /* border-radius: 6px; */
     box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
     margin-top: -20px;
     margin-left: -20px;
@@ -213,13 +215,15 @@
 }
 
 .event-details-right{
-    /* border: 2px solid orange; */
     width: 50%;
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     padding-left: 20px;
-    border-radius: 6px;
+    /* border-radius: 6px; */
+    border: 1px solid darkgreen;
     box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+    border-left: none;
+    border-bottom: none;
     margin-top: -20px;
 }
 
@@ -234,11 +238,12 @@
 .bottom-section{
     display: flex;
     flex-direction: row-reverse;
+    border: 1px solid darkgreen;
     width: 100%;
     height: 50%;
     justify-content: center;
     align-items: center;
-    margin-left: -40px;
+    /* margin-left: -40px; */
 }
 
 .event-chat-container{
@@ -447,6 +452,10 @@
 .member-header {
     margin: 0px;
     margin-left: 10px;
+}
+
+.workout-list{
+    width: 65%
 }
 
 .workout-list h1 {
