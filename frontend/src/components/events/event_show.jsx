@@ -318,6 +318,23 @@ class EventShow extends React.Component {
                         <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
                             Add an Event
                         </Link>
+                        <div className="members-section">
+                                <div className="section-heading">
+                                    <p className="member-header">Members</p>
+                                    </div>
+                                <div className="show-list-members">
+                                    <ul>
+                                        {this.props.channel.members.map((member, idx) => {
+                                            return (<li key={idx}>
+                                                <h5 className="members">
+                                                    {member.handle}
+                                                </h5>
+                                            </li>
+                                            )
+                                        })}
+                                    </ul>
+                                </div>
+                            </div>
                     </div>
                 <div className="main-detail-wrapper">
                     <div className="event-details-container">
@@ -352,23 +369,6 @@ class EventShow extends React.Component {
                             <div className="participants-list">
                                 <h1>Participants</h1>
                                 <ul>{participants}</ul>
-                            </div>
-                            <div className="members-section">
-                                <div className="section-heading">
-                                    <p className="member-header">Members</p>
-                                    </div>
-                                <div className="show-list-members">
-                                    <ul>
-                                        {this.props.channel.members.map((member, idx) => {
-                                            return (<li key={idx}>
-                                                <h5 className="members">
-                                                    {member.handle}
-                                                </h5>
-                                            </li>
-                                            )
-                                        })}
-                                    </ul>
-                                </div>
                             </div>
                         </div>
 
