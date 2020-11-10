@@ -70,10 +70,6 @@
     outline: none;
 }
 
-input[type="text"]{  
-    text-align: center; 
-} 
-
 .photo-input-box {
     margin-left: 20px;
     margin-right: 20px;
