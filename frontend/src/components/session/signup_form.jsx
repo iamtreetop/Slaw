@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import "./signup_form.css"
+import "./login_form.css"
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -42,20 +43,22 @@ class SignupForm extends React.Component {
 
     this.props.signup(user, this.props.history).then(
       (action) => {
-        let userLogin = {
-          email: user.email,
-          password: user.password
-        };
-        this.props.login(userLogin);
+        if (Object.values(this.props.errors).length === 0) {
+          let userLogin = {
+            email: user.email,
+            password: user.password
+          };
+          this.props.login(userLogin);
+        }
       }
-    ); 
+    )
   }
 
   renderErrors() {
     return(
-      <ul>
+      <ul className="render-errors-list">
         {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>
+          <li key={`error-${i}`} className="render-errors">
             {this.state.errors[error]}
           </li>
         ))}
@@ -80,7 +83,7 @@ class SignupForm extends React.Component {
                     // placeholder="Email"
                   />
                 <br/>
-                  <label className="signup-label">HANDLE</label>
+                  <label className="signup-label">USERNAME</label>
                   <input className="signup-input-field" 
                     type="text"
                     required={true}
@@ -92,7 +95,7 @@ class SignupForm extends React.Component {
                   <label className="signup-label">PASSWORD</label>
                   <input className="signup-input-field"  
                     type="password"
-                    minlength="8"
+                    minlength="6"
                     required={true}
                     value={this.state.password}
                     onChange={this.update('password')}
@@ -102,7 +105,7 @@ class SignupForm extends React.Component {
                   <label className="signup-label">CONFIRM PASSWORD</label>
                   <input className="signup-input-field"  
                     type="password"
-                    minlength="8"
+                    minlength="6"
                     required={true}
                     value={this.state.password2}
                     onChange={this.update('password2')}
