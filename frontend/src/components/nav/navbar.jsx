@@ -52,18 +52,18 @@ class NavBar extends React.Component {
 
   render() {
       return (
-        <Link to="/events/discover">
           <div className="navbar-container">
               <div className="navbar-wrapper">
                 <Link to={'/'} className="navbar-header-text">
                   <img src={backgroundImage}/>
                 </Link>
                 {/* <div className="main-banner">BANNER HERE</div> */}
-                <img class="main-banner" src={bannerImage} />
+                <Link to="/events/discover">
+                  <img class="main-banner" src={bannerImage} />
+                </Link> 
                 { this.getLinks() }
               </div>
           </div>
-        </Link>
       );
   }
 }
