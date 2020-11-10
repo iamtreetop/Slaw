@@ -63,6 +63,7 @@ class NavBar extends React.Component {
                 </Link> 
                 { this.getLinks() }
               </div>
+              <Link to={'/about'}>About</Link>
           </div>
       );
   }
