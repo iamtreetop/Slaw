@@ -24,7 +24,11 @@
   margin: 0px;
   margin-bottom: 10px;
 }
+
 #chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   width: 35vw;
     /* width: 150px; */
   height: 28vh;
@@ -51,3 +55,4 @@
     margin-bottom: 2px;
     /* margin-top: 14px; */
 }
+
