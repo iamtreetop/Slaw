@@ -430,6 +430,7 @@
     height: 33px;
     align-items: center;
     outline: none;
+    text-align: center;
 }
 
 .create-todo-submit {
