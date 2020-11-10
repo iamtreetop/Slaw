@@ -37,6 +37,15 @@ h3 p a{
   padding: 0;
 }
 
+.success-message {
+  font-weight: bold;
+  color: #0c3b3b
+}
+
+.info-window-details button:hover {
+  cursor: pointer;
+}
+
 .search {
   position: absolute;
   top: 1rem;

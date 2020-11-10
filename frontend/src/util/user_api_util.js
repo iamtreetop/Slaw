@@ -7,3 +7,7 @@ export const updateUser = (user) => {
 export const fetchUser = () => {
     return axios.get('api/users/current')
 }
+
+export const fetchUser2 = (userId) => {
+    return axios.get('api/users/' + userId)
+}

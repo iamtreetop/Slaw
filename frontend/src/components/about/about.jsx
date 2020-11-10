@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import "./about.css"
+
 
 class About extends React.Component {
 
@@ -28,13 +30,13 @@ class About extends React.Component {
             <div className="about-page-container">
                 <div className="about-page-header">
                     {introduction}
-                    <a href={`${mainGithubRepo}`}>
-                        <img src="./images/github.png" alt=""/>
-                    </a>
-                </div>
+                    {/* <a href={mainGithubRepo}>
+                        <img src="../../frontend/images/github.png" alt=""/>
+                    </a> */}
                 <footer>
                     Copyright &copy; 2020 SlawApp
                 </footer>
+                </div>
             </div>
         );
     }

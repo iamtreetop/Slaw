@@ -1,5 +1,8 @@
 .about-page-container {
-    /* margin-top: 90px; */
-    /* position: relative; */
+    z-index: 99;
+    position: relative;
+    top: 200px;
+    color: black;
     z-index: 25;
+    
 }

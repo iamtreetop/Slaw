@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     display: flex;
-    height: 91vh;
+    height: 88.5%;
     padding-left: 68px;
     background: linear-gradient(217deg, rgb(6 39 43 / 25%), rgb(6 39 43 / 41%) 70.71%), linear-gradient(127deg, rgb(8 96 5 / 56%), rgba(0,255,0,0) 70.71%), linear-gradient(336deg, rgb(74 74 153 / 58%), rgba(0,0,255,0) 70.71%);
     /* height: 100vh;

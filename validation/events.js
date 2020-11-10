@@ -5,7 +5,7 @@ module.exports = function validateEventInput(data) {
     let errors = {};
 
     data.title = validText(data.title) ? data.title : ""
-    data.description = validText(data.description) ? data.description : ""
+    // data.description = validText(data.description) ? data.description : ""
     // data.date = validText(data.date) ? data.date : ""
     
 
@@ -13,9 +13,9 @@ module.exports = function validateEventInput(data) {
         errors.title = "Title field is required"
     }
 
-    if (Validator.isEmpty(data.description)) {
-        errors.description = "Description field is required"
-    }
+    // if (Validator.isEmpty(data.description)) {
+    //     errors.description = "Description field is required"
+    // }
 
     // if (Validator.isEmpty(data.date)) {
     //     errors.date = "Date field is required"
