@@ -66,7 +66,7 @@ const options = {
 //     )
 // }
 
-export default function SlawMap() {
+export default function SlawMap({event,channels, fetchChannels, createEvent, updateChannel, user, redirect}) {
     // const onMapClick = React.useCallback((e) => {
     //     setMarkers((current) => [
     //         ...current,
@@ -77,7 +77,6 @@ export default function SlawMap() {
     //         },
     //     ]);
     // }, []);
-
     const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
         mapRef.current = map;
@@ -87,12 +86,23 @@ export default function SlawMap() {
     const [address, setAddress] = React.useState(null);
     const [submitted, setSubmitted] = React.useState(false);
     const [selectedActivity, setSelectedActivity] = React.useState(null);
+    const [channel, setChannel] = React.useState(null);
+    const [eventId, setEventId] = React.useState(null);
+    const [successMessage, setSuccessMessage] = React.useState(false);
 
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
         libraries,
     });
     
+    
+    const panTo = React.useCallback(({ lat, lng }) => {
+        mapRef.current.panTo({ lat, lng });
+        mapRef.current.setZoom(13);
+    }, []);
+
+    // debugger
+
     const {
         ready,
         value,
@@ -104,13 +114,8 @@ export default function SlawMap() {
             location: { lat: () => 37.774929, lng: () => -122.419418 },
             radius: 100 * 1000,
         },
+        debounce:300
     });
-    
-    const panTo = React.useCallback(({ lat, lng }) => {
-        mapRef.current.panTo({ lat, lng });
-        mapRef.current.setZoom(8);
-    }, []);
-
 
     // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
 
@@ -132,29 +137,62 @@ export default function SlawMap() {
         }
     };
 
+    const handleChannel = (e) => {
+        e.preventDefault();
+        setChannel(e.currentTarget.value);
+    }
+
+    const handleCreateEvent = (eventDetails) => {
+       createEvent(eventDetails).then(
+            (action) => {
+                if (action) {
+                    let activeEventId = ([action.event.data._id])
+                    // setSuccessMessage(true)
+                    updateChannel({ events: activeEventId, id: channel })
+                    .then(
+                        setSuccessMessage(true)
+                    ).then(
+                        redirect(`/channels/${channel}/${activeEventId}`)
+                    )
+                    .catch
+                        ((res) => console.log(res))
+                }
+            })
+    }
+
     useEffect(() => {
+        if (Object.keys(channels).length === 0){
+            fetchChannels()
+        } 
         if (address !== null && submitted ) {
-            const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=15&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
+            const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=20&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
             fetch(apiUrl, { method: 'GET', mode: 'cors'})
                 .then(function(res) {
                     return res.json()
                 })
                 .then(function (data) {
-                    console.log(data)
-                    setMarkers(data.results)
+                    // console.log(data)
+                    panTo({
+                        lat: Number(data.results[0].place.geoPoint.lat),
+                        lng: Number(data.results[0].place.geoPoint.lon)
+                    })
+                    setMarkers(data.results);
+
                 })
                 .catch((res) => {
                     console.log(res);
-                });
+                }, []);
         }
         setSubmitted(false)
-        }
+        },[]
     );
-
 
     if (loadError) return "Error";
     if (!isLoaded) return "Loading...";
 
+    if (!ready) {
+        redirect({pathname: '/channels', state: "/events/discover"})
+    }
     return(
         <div className="slaw-map">
             <h1>
@@ -170,9 +208,9 @@ export default function SlawMap() {
                 <Combobox onSelect={handleSelect}>
                     <ComboboxInput
                         value={value}
-                        disabled={!ready}
                         onChange={handleInput}
-                        placeHolder="Search your location"
+                        disabled={!ready}
+                        placeholder="Search your location"
                     />
                     <ComboboxPopover>
                         <ComboboxList className="search-list">
@@ -186,7 +224,7 @@ export default function SlawMap() {
             </div>
 
             <GoogleMap mapContainerStyle={mapContainerStyle}
-                zoom={8}
+                zoom={11}
                 center={center}
                 options={options}
                 // onClick={onMapClick}
@@ -221,6 +259,16 @@ export default function SlawMap() {
                         <div className="info-window-details">
                             <h3>{selectedActivity.assetName}</h3>
                             <p>{selectedActivity.assetChannels[0].channel.channelDsc}</p>
+                            <label>Select A Channel to Add Event To
+                                    <select required={true} onChange={handleChannel}>
+                                    <option value="" selected={channel ? false : true} disabled={true}>Select an channel</option>
+                                    {user.channels.map((usersChannel, idx) => (
+                                    <option value={usersChannel} selected={channel === usersChannel ? true : false}>{channels[usersChannel].title}</option>
+                                    ))}
+                                </select>
+                            </label>
+                            <button onClick={() => handleCreateEvent({ title: selectedActivity.assetName, description: selectedActivity.assetChannels[0].channel.channelDsc, participants: [user.id]})}>Add Event to Channel</button>
+                            <p className="success-message">{successMessage ? "Success! This event has been added to your channel 🙌" : ""}</p>
                             <a target="_blank" href={`${selectedActivity.registrationUrlAdr}`}>Registration Link</a>
                         </div>
                     </InfoWindow>

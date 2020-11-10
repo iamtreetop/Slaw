@@ -73,7 +73,6 @@ class EventForm extends React.Component {
                                     value={this.state.description}
                                     onChange={this.handleChange("description")}
                                     placeHolder="6:30pm at LA Fitness"
-                                    required={true}
                                 />
                             </label>
                         <br/>

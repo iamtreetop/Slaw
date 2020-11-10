@@ -128,7 +128,7 @@
 .event-show-container {
     padding-top: 90px;
     width: 96vw;
-    height: 90.5vh;
+    height: 88.5vh;
     /* border: 2px solid red; */
     padding-left: 80px;
     display: flex;
@@ -278,7 +278,10 @@
     margin-top: 3px;
     margin-left: 14px;
     align-self: start;
+}
 
+.create-event-button:last-of-type{
+    margin-top: 10px;
 }
 .delete-event-button{
     color: black;

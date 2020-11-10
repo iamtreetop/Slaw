@@ -151,6 +151,8 @@ class EventShow extends React.Component {
     handleDelete(eventId) {
         this.props.deleteEvent(eventId)
             .then((action) => {
+                this.props.updateChannel({ event: this.props.match.params.eventId, removeEvent: true, id: this.props.match.params.channelId }).catch
+                    ((res) => console.log(res))
                 this.props.fetchChannel()
                 this.props.history.push(`/channels/${this.props.channel._id}/${this.props.channel.events[0]._id}`)
             })
@@ -315,9 +317,8 @@ class EventShow extends React.Component {
                                 })}
                             </ul>
                         </div>
-                        <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
-                            Add an Event
-                        </Link>
+                        <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>Add an Event</Link>
+                        <Link className="create-event-button" to="/events/discover">Find Events</Link>
                         <div className="members-section">
                                 <div className="section-heading">
                                     <p className="member-header">Members</p>
