@@ -6,11 +6,11 @@ Slaw, which stands for Searchable Logs of All Workouts, will be accompanied by a
 
 Link to Live App: [Slaw](https://slaw-app.herokuapp.com/)
 
-## Group Members & Work Breakdown
-* Tri Ta 
-* Jacky Li 
-* Kevin Lai
-* JD Buendia 
+## Engineers on Project
+* [Tri Ta](https://www.linkedin.com/in/trivta/)
+* [Jacky Li](https://www.linkedin.com/in/xlihuang/) 
+* [Kevin Lai](http://linkedin.com/in/kevinlai247)
+* [JD Buendia](https://www.linkedin.com/in/jd-buendia-66ab7483/)
 
 ## Technologies
 
