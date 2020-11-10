@@ -154,13 +154,13 @@ class Message extends React.Component {
                             </div>
                         );
                     })}
+                    <BottomBar
+                        message={this.state.message}
+                        handleContent={this.handleContent.bind(this)}
+                        handleSubmit={this.handleSubmit.bind(this)}
+                        username={this.state.username}
+                    />
                 </Paper>
-                <BottomBar 
-                    message={this.state.message}
-                    handleContent={this.handleContent.bind(this)}
-                    handleSubmit={this.handleSubmit.bind(this)}
-                    username={this.state.username}
-                />
             </div>
         );
     }

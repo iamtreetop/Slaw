@@ -1,7 +1,7 @@
 .navbar-container{
     /* background-color: #06272b; */
     background-color: #00000017;
-    background-image: url('../../images/SLAWBANNER.png');
+    /* background-image: url('../../images/SLAWBANNER.png'); */
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -12,11 +12,12 @@
     /* position: absolute; */
 }
 
-@media (max-width: 1225px) {
+/* @media (max-width: 1225px) {
     .navbar-container {
         background-image: url('../../images/MINISLAWBANNER.png');
     }
-}
+} */
+
 
 .navbar-wrapper{
     display: flex;
@@ -28,10 +29,14 @@
 }
 
 .navbar-wrapper img {
-    max-width: 75px;
+    max-width: 700px;
     max-height: 75px;
     object-fit: contain;
     margin-bottom: 10px;
+}
+.main-banner{
+    max-width: 700px;
+    padding-right: 150px;
 }
 
 .navbar-header-text:link {

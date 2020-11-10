@@ -46,7 +46,7 @@ export default function BottomBar(props) {
     const classes = useStyles();
 
     return (
-        <AppBar position="fixed" className={classes.appBar}>
+        <AppBar position="none" className={classes.appBar}>
             <Toolbar className="toolbar-match-color">
                 <div className={classes.inputContainer}>
                     <form onSubmit={props.handleSubmit}>
