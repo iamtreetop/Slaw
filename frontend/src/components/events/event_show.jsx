@@ -244,7 +244,7 @@ class EventShow extends React.Component {
             }
         ) : <p className="comment-holder-text">Post Here</p>
 
-        let eventTitle = `Post on #${this.props.event[this.props.eventId].title}`
+        let eventTitle = `Post announcement on #${this.props.event[this.props.eventId].title}`
 
 
         let leave = (this.props.userId !== this.props.event[this.props.eventId].author) && this.props.event[this.props.match.params.eventId].title !== "General" ?
