@@ -6,3 +6,8 @@
     z-index: 25;
     
 }
+
+.about-page-header {
+    display: flex;
+    flex-direction: column;
+}
