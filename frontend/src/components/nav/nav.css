@@ -51,7 +51,7 @@
 }
 
 
-.session-button{
+.session-button, .about-button{
     color: black;
     font-size: 12px;
     margin-left: 20px;
@@ -66,13 +66,18 @@
     font-family: 'Titillium Web', sans-serif;
 }
 
-.session-button:hover{
+.about-button a{
+    text-decoration: none;
+    color: black;
+}
+
+.session-button:hover, .about-button:hover{
     background-color: #8acbb6;
     font-weight: bolder;
     transition: background-color .4s ease-out;
 }
 
-.session-button:active{
+.session-button:active, .about-button:hover{
     text-decoration: underline;
     color: black;
     font-weight: bolder;
