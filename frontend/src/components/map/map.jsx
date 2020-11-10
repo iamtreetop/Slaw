@@ -100,7 +100,9 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
         mapRef.current.panTo({ lat, lng });
         mapRef.current.setZoom(13);
     }, []);
-    
+
+    debugger
+
     const {
         ready,
         value,
@@ -112,6 +114,7 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
             location: { lat: () => 37.774929, lng: () => -122.419418 },
             radius: 100 * 1000,
         },
+        debounce:300
     });
 
     // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
@@ -160,7 +163,7 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
     useEffect(() => {
         if (Object.keys(channels).length === 0){
             fetchChannels()
-        }
+        } 
         if (address !== null && submitted ) {
             const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=20&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
             fetch(apiUrl, { method: 'GET', mode: 'cors'})
@@ -178,15 +181,18 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
                 })
                 .catch((res) => {
                     console.log(res);
-                });
+                }, []);
         }
         setSubmitted(false)
-        }
+        },[]
     );
-
 
     if (loadError) return "Error";
     if (!isLoaded) return "Loading...";
+
+    if (!ready) {
+        redirect({pathname: '/channels', state: "/events/discover"})
+    }
     return(
         <div className="slaw-map">
             <h1>
@@ -202,8 +208,8 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
                 <Combobox onSelect={handleSelect}>
                     <ComboboxInput
                         value={value}
-                        disabled={!ready}
                         onChange={handleInput}
+                        disabled={!ready}
                         placeholder="Search your location"
                     />
                     <ComboboxPopover>
