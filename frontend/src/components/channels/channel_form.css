@@ -68,6 +68,7 @@
     height: 35px;
     align-items: center;
     outline: none;
+    text-align: center;
 }
 
 .photo-input-box {

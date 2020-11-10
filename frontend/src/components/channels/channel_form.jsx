@@ -114,7 +114,7 @@ class ChannelForm extends React.Component{
 
                     </div>
                     <div className="channel-form-input-box">
-                        <input className="channel-text-input" type="text"
+                        <input type="text"
                             value={this.state.title}
                             onChange={this.handleChange("title")}
                             className="channel-form-input"
