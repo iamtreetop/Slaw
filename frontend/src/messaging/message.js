@@ -140,8 +140,8 @@ class Message extends React.Component {
                         return (
                             <div key={index} className="live-chat-box">
                                 <div className="live-chat-box-header">
-                                    <Typography variant="h6" className="live-chat-name">
-                                        {el.username}
+                                    <Typography>
+                                        <p className="live-chat-name">{el.username}</p>
                                     </Typography>
                                     <Typography variant="body1" className="live-chat-content">
                                         <p className="live-chat-date">{el.day}</p>
