@@ -1,0 +1,13 @@
+.about-page-container {
+    z-index: 99;
+    position: relative;
+    top: 200px;
+    color: black;
+    z-index: 25;
+    
+}
+
+.about-page-header {
+    display: flex;
+    flex-direction: column;
+}
