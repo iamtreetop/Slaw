@@ -127,7 +127,7 @@
 
 .event-show-container {
     padding-top: 90px;
-    width: 96vw;
+    width: 95vw;
     height: 88.5vh;
     /* border: 2px solid red; */
     padding-left: 80px;
@@ -266,11 +266,7 @@
 .create-event-button{
     color: black;
     font-size: 12px;
-    /* margin-left: 10px; */
-    /* border: 1px solid #fff; */
     border-radius: 6px;
-    /* min-width: 118px;
-    min-height: 20px; */
     padding: 1px 26px;
     text-decoration: none;
     background-color: white;
@@ -278,6 +274,8 @@
     margin-top: 3px;
     margin-left: 14px;
     align-self: start;
+    text-align: center;
+    width: 50%;
 }
 
 .create-event-button:last-of-type{
