@@ -11,6 +11,7 @@ import ChannelIndexContainer from './channels/channel_index_container';
 import EventFormContainer from './events/event_form_container';
 import EventShowContainer from './events/event_show_container';
 import EventEditContainer from './events/event_edit_container';
+import About from "./about/about"
 import SlawMap from './map/map'
 
 import Modal from "../components/modal/modal"
@@ -25,6 +26,7 @@ const App = () => (
       {/* <ProtectedRoute exact path="/channels/:channelId" component={SideBarContainer} /> */}
       <ProtectedRoute exact path="/channels/:channelId/:eventId" component={SideBarContainer} />
     <Switch>
+      <Route exact path="/about" component={About} /> 
       <AuthRoute exact path="/" component={MainPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />

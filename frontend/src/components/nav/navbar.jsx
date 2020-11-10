@@ -62,6 +62,7 @@ class NavBar extends React.Component {
                 <img class="main-banner" src={bannerImage} />
                 { this.getLinks() }
               </div>
+              <Link to={'/about'}>About</Link>
           </div>
         </Link>
       );
