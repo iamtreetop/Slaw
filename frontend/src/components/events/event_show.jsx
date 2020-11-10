@@ -234,11 +234,11 @@ class EventShow extends React.Component {
                     <>  
                         <div className="comment-header-text-box">
                             <div className="comment-header-text">
-                                <p className="comment-author">{comment.author}</p>
+                                <p className="comment-comment" >{comment.comment} </p>
                                 <p className="comment-date">({month}/{day})</p>
-                                <p className="comment-time">{time}</p>
+                                {/* <p className="comment-time">{time}</p> */}
                             </div>
-                            <p className="comment-comment" >{comment.comment} </p>
+                                <p className="comment-author">by {comment.author}</p>
 
                         </div>
                     </>
@@ -246,7 +246,7 @@ class EventShow extends React.Component {
             }
         ) : <p className="comment-holder-text">Post Here</p>
 
-        let eventTitle = `Post on #${this.props.event[this.props.eventId].title}`
+        let eventTitle = `Post announcement on #${this.props.event[this.props.eventId].title}`
 
 
         let leave = (this.props.userId !== this.props.event[this.props.eventId].author) && this.props.event[this.props.match.params.eventId].title !== "General" ?
@@ -273,8 +273,8 @@ class EventShow extends React.Component {
 
         let editDelete = (this.props.userId === this.props.event[this.props.eventId].author) && this.props.event[this.props.match.params.eventId].title !== "General" ?
             <div className="authors-dashboard">
-                <div className="delete-event">
-                    <button onClick={() => this.handleDelete(this.props.eventId)}>Delete This Event</button>
+                <div>
+                    <button className="delete-event-button" onClick={() => this.handleDelete(this.props.eventId)}>Delete Event</button>
                     <span>This cannot be undone</span>
                 </div>
                 <div className="edit-event">
@@ -323,6 +323,23 @@ class EventShow extends React.Component {
                         <Link className="create-event-button" to="/events/discover">
                         Discover Events
                         </Link>
+                        <div className="members-section">
+                                <div className="section-heading">
+                                    <p className="member-header">Members</p>
+                                    </div>
+                                <div className="show-list-members">
+                                    <ul>
+                                        {this.props.channel.members.map((member, idx) => {
+                                            return (<li key={idx}>
+                                                <h5 className="members">
+                                                    {member.handle}
+                                                </h5>
+                                            </li>
+                                            )
+                                        })}
+                                    </ul>
+                                </div>
+                            </div>
                     </div>
                 <div className="main-detail-wrapper">
                     <div className="event-details-container">
@@ -358,45 +375,34 @@ class EventShow extends React.Component {
                                 <h1>Participants</h1>
                                 <ul>{participants}</ul>
                             </div>
-                            <div className="members-section">
-                                <div className="section-heading">
-                                    Members
-                                    </div>
-                                <div className="show-list">
-                                    <ul>
-                                        {this.props.channel.members.map((member, idx) => {
-                                            return (<li key={idx}>
-                                                <h5>
-                                                    {member.handle}
-                                                </h5>
-                                            </li>
-                                            )
-                                        })}
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
-                    <Message username={username} eventId={this.props.eventId}
-                        updateChannel={this.props.updateChannel}
-                        channelId={this.props.channel._id}
-                        messages={this.props.channel.messages} />
-                    <div className="comment-section">
-                        <div className="comment-box-wrapper">
-                            {comments}
+
+
+                    <div className="bottom-section">
+                        <Message className="event-chat-container"
+                            username={username} eventId={this.props.eventId}
+                            updateChannel={this.props.updateChannel}
+                            channelId={this.props.channel._id}
+                            messages={this.props.channel.messages} />
+                        <div className="comment-section">
+                            <div className="comment-box-wrapper">
+                                {comments}
+                            </div>
+                            {/* <form onSubmit={this.handleCommentSubmit}> */}
+                            <textarea name="" id=""
+                                onChange={this.handleChangeComment("comment")}
+                                placeHolder={eventTitle}
+                                value={this.state.comment}
+                                onKeyDown={this.handleCommentSubmit}
+                                className="comment-text-box"
+                            ></textarea>
+                            {/* <input type="submit" value="Add Comment"/> */}
+                            {/* </form> */}
                         </div>
-                        {/* <form onSubmit={this.handleCommentSubmit}> */}
-                        <textarea name="" id=""
-                            onChange={this.handleChangeComment("comment")}
-                            placeHolder={eventTitle}
-                            value={this.state.comment}
-                            onKeyDown={this.handleCommentSubmit}
-                            className="comment-text-box"
-                        ></textarea>
-                        {/* <input type="submit" value="Add Comment"/> */}
-                        {/* </form> */}
                     </div>
+
                 </div>
             </div>
         ) : 
