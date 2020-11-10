@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import './nav.css';
 import backgroundImage from '../../images/532_-_Boxing-513.png';
+import bannerImage from "../../images/MINISLAWBANNER.png";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -55,8 +56,10 @@ class NavBar extends React.Component {
           <div className="navbar-container">
               <div className="navbar-wrapper">
                 <Link to={'/'} className="navbar-header-text">
-                <img src={backgroundImage}/>
+                  <img src={backgroundImage}/>
                 </Link>
+                {/* <div className="main-banner">BANNER HERE</div> */}
+                <img class="main-banner" src={bannerImage} />
                 { this.getLinks() }
               </div>
           </div>
