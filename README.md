@@ -13,10 +13,11 @@ Wouldn't it be nice to be able to easily find someone to workout with at a momen
 Slaw, which stands for Searchable Logs of All Workouts, will be accompanied by a web application which lets users join and create channels, todos, events, and communicate via a live chat with members of their channels!
 
 We will need to:
-* Make a web/mobile application that allows users to create and join channels to communicate with others in the community
-* Build a database to store users, channels, events, and todo items.
-* Allow users to create events/todo workouts and communicate with their channel or join public channel
-* Implement Google Maps API and EventsBrite API to display events happening close to their geolocation and join the public even channels
+* Make a web application that allows users to create and join channels to communicate with others in the community
+* Build a database to store users, channels, events, and event checklist.
+* Allow users to create events/event checklist and communicate with their channel or join other channels
+* Implement Google Maps API and Active API to display events happening close to a searched location and create the event within a channel 
+* Implement real-time chat utilizing Socket.io
 
 ## Functionality & MVP
 
@@ -36,7 +37,7 @@ Researching more on Google Maps/EventBrite API might pose issues when we want to
 Researching and developing how to implement a live chat feature.
 
 ## Group Members & Work Breakdown
-* Tri Ta - Team Lead
+* Tri Ta - Flex Engineer
 * Jacky Li - Flex Engineer
 * Kevin Lai - Flex Engineer
 * JD Buendia - Flex Engineer
