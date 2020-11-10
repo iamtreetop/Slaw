@@ -19,7 +19,7 @@ class ChannelIndex extends React.Component{
         // if (prevProps.location.pathname === "/events/discover") {
         //     this.props.history.push("/events/discover")
         // }
-        debugger
+        // debugger
         this.props.fetchChannels().then(
             (action) => {
                 this.props.fetchUser(this.props.user.id).then(
@@ -55,7 +55,7 @@ class ChannelIndex extends React.Component{
     }
 
     componentDidUpdate(prevProps){
-        debugger
+        // debugger
         if (prevProps.location.state === "/events/discover") {
             this.props.history.push("/events/discover")
         }

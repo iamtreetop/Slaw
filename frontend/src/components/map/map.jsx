@@ -101,7 +101,7 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
         mapRef.current.setZoom(13);
     }, []);
 
-    debugger
+    // debugger
 
     const {
         ready,
