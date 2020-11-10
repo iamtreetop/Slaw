@@ -7,6 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 import ChatIcon from '@material-ui/icons/Chat';
 import FaceIcon from '@material-ui/icons/Face';
+import "./app.css"
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -45,7 +46,7 @@ export default function BottomBar(props) {
     const classes = useStyles();
 
     return (
-        <AppBar position="fixed" className={classes.appBar}>
+        <AppBar position="none" className={classes.appBar}>
             <Toolbar className="toolbar-match-color">
                 <div className={classes.inputContainer}>
                     <form onSubmit={props.handleSubmit}>

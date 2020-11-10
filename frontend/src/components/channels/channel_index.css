@@ -51,6 +51,7 @@
 
 
 .channel-index-list{
+    align-items: center;
     display: flex;
     flex-direction: column;
     background-color: #0c3b3b;

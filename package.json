@@ -41,10 +41,10 @@
     "socket.io-client": "^2.3.1",
     "use-places-autocomplete": "^1.5.9",
     "validator": "^13.1.17",
-    "webfontloader": "^1.6.28"
+    "webfontloader": "^1.6.28",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
-    "dotenv": "^8.2.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "nodemon": "^2.0.6"
   }

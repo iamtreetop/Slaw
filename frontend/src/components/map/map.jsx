@@ -209,8 +209,12 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
                     <ComboboxInput
                         value={value}
                         onChange={handleInput}
+<<<<<<< HEAD
                         disabled={!ready}
                         placeholder="Search your location"
+=======
+                        placeHolder="Search your location"
+>>>>>>> 0a7a4f8ab67408d31282a7150f17ddc747a08d7b
                     />
                     <ComboboxPopover>
                         <ComboboxList className="search-list">
