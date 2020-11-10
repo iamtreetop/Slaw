@@ -21,9 +21,11 @@ const { errors, isValid } = validateRegisterInput(req.body);
     return res.status(400).json(errors);
   }
   
+
   User.findOne({ email: req.body.email })
     .then(user => {
       if (user) {
+
         return res.status(400).json({ email: "Email already taken" });
       }
     })
@@ -53,6 +55,30 @@ const { errors, isValid } = validateRegisterInput(req.body);
         })
     })
 })
+//   User.findOne({ email: req.body.email })
+//     .then(user => {
+//         if (user) {
+//             return res.status(400).json({email: "Email already exists"});
+//         } else {
+//             const newUser = new User ({
+//                 handle: req.body.handle,
+//                 email: req.body.email,
+//                 password: req.body.password,
+//                 // zipcode: req.body.zipcode
+//             })
+
+//             bcrypt.genSalt(10, (err, salt) => {
+//                 bcrypt.hash(newUser.password, salt, (err, hash) => {
+//                     if(err) throw err;
+//                     newUser.password = hash;
+//                     newUser.save()
+//                         .then((user) => res.send(user))
+//                         .catch(err => console.log(err))
+//                 })
+//             }) 
+//         }
+//     })
+// })
 
 // 
 router.post('/login', (req, res) => {
@@ -105,6 +131,13 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
     email: req.user.email,
     channels: req.user.channels
   });
+})
+
+router.get("/:id", (req, res) => {
+  User.findById(req.parmas.id)
+    .populate('channels')
+    .then(users => res.json(users))
+    .catch(err => res.status(400).json(err));
 })
 
 router.patch("/:id",

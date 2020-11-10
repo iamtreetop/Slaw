@@ -91,8 +91,17 @@ router.patch("/:id",
         }
 
 
-        if (req.body.events) {
+        if (req.body.events && !req.body.removeEvent) {
             Channel.findByIdAndUpdate(req.params.id, { $push: { events: req.body.events } }, { new: true })
+                .populate('events members')
+                .then((model) => {
+                    (res.json(model))
+                    return model.save();
+                })
+                .catch((err) => res.status(400).json(err));
+        }
+        else if (req.body.removeEvent){
+            Channel.findByIdAndUpdate(req.params.id, { $pull: { events: req.body.event } }, { new: true })
                 .populate('events members')
                 .then((model) => {
                     (res.json(model))

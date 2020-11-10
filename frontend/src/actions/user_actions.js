@@ -25,3 +25,11 @@ export const fetchUser = () => {
         }).catch(err => console.log(err))
     }
 }
+
+export const fetchUser2 = (userId) => {
+    return (dispatch) => {
+        return UserAPIUtil.fetchUser2(userId).then((user) => {
+            return dispatch(receiveUser(user))
+        }).catch(err => console.log(err))
+    }
+}

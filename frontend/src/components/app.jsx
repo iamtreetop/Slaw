@@ -11,7 +11,7 @@ import ChannelIndexContainer from './channels/channel_index_container';
 import EventFormContainer from './events/event_form_container';
 import EventShowContainer from './events/event_show_container';
 import EventEditContainer from './events/event_edit_container';
-import SlawMap from './map/map'
+import MapContainer from './map/mapcontainer'
 
 import Modal from "../components/modal/modal"
 
@@ -30,7 +30,7 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/channels" component={ChannelIndexContainer} />
       {/* <ProtectedRoute exact path="/channels/:channelId" component={ChannelShowContainer} /> */}
-      <ProtectedRoute exact path="/events/discover" component={SlawMap} />
+      <ProtectedRoute exact path="/events/discover" component={MapContainer} />
       <ProtectedRoute exact path="/channels/:channelId/:eventId" component={EventShowContainer} />
       <ProtectedRoute exact path="/events/:channelId/new" component={EventFormContainer} />
       <ProtectedRoute exact path="/events/:channelId/:eventId/edit" component={EventEditContainer} />
