@@ -66,7 +66,7 @@ const options = {
 //     )
 // }
 
-export default function SlawMap({event,channels, fetchChannels, createEvent, updateChannel, user}) {
+export default function SlawMap({event,channels, fetchChannels, createEvent, updateChannel, user, redirect}) {
     // const onMapClick = React.useCallback((e) => {
     //     setMarkers((current) => [
     //         ...current,
@@ -98,7 +98,7 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
     
     const panTo = React.useCallback(({ lat, lng }) => {
         mapRef.current.panTo({ lat, lng });
-        mapRef.current.setZoom(11);
+        mapRef.current.setZoom(13);
     }, []);
     
     const {
@@ -142,10 +142,18 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
     const handleCreateEvent = (eventDetails) => {
        createEvent(eventDetails).then(
             (action) => {
-                setEventId([action.event.data._id])
-                setSuccessMessage(true)
-                updateChannel({ events: eventId, id: channel }).catch
-                    ((res) => console.log(res))
+                if (action) {
+                    let activeEventId = ([action.event.data._id])
+                    // setSuccessMessage(true)
+                    updateChannel({ events: activeEventId, id: channel })
+                    .then(
+                        setSuccessMessage(true)
+                    ).then(
+                        redirect(`/channels/${channel}/${activeEventId}`)
+                    )
+                    .catch
+                        ((res) => console.log(res))
+                }
             })
     }
 
@@ -160,8 +168,13 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
                     return res.json()
                 })
                 .then(function (data) {
-                    console.log(data)
-                    setMarkers(data.results)
+                    // console.log(data)
+                    panTo({
+                        lat: Number(data.results[0].place.geoPoint.lat),
+                        lng: Number(data.results[0].place.geoPoint.lon)
+                    })
+                    setMarkers(data.results);
+
                 })
                 .catch((res) => {
                     console.log(res);

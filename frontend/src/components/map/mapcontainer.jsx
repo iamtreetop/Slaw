@@ -13,11 +13,12 @@ const mstp = (state, ownProps) => {
             participants: []
         },
         user: state.users,
-        channels: state.channels
+        channels: state.channels,
+        redirect: ownProps.history.push
     }
 }
 
-const mdtp = (dispatch) => {
+const mdtp = (dispatch, ownProps) => {
     return {
         createEvent: (event) => dispatch(createEvent(event)),
         updateChannel: (channel) => dispatch(updateChannel(channel)),

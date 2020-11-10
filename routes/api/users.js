@@ -21,30 +21,63 @@ const { errors, isValid } = validateRegisterInput(req.body);
     return res.status(400).json(errors);
   }
   
+
   User.findOne({ email: req.body.email })
     .then(user => {
+      if (user) {
+        return res.status(400).json({ email: "Email already exists" });
+      }})
+    .then(()=>{
+      User.findOne({handle: req.body.handle})
+      .then(user=>{
         if (user) {
-            return status(400).json({email: "Email already exists"});
-        } else {
-            const newUser = new User ({
-                handle: req.body.handle,
-                email: req.body.email,
-                password: req.body.password,
-                // zipcode: req.body.zipcode
-            })
-
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if(err) throw err;
-                    newUser.password = hash;
-                    newUser.save()
-                        .then((user) => res.send(user))
-                        .catch(err => console.log(err))
-                })
-            }) 
+          return res.status(400).json({handle:  "Handle already exists"});
         }
+        else {
+          const newUser = new User({
+            handle: req.body.handle,
+            email: req.body.email,
+            password: req.body.password,
+            // zipcode: req.body.zipcode
+          })
+
+          bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
+              if (err) throw err;
+              newUser.password = hash;
+              newUser.save()
+                .then((user) => res.send(user))
+                .catch(err => res.send(err))
+            })
+          })
+        }
+      })
     })
 })
+//   User.findOne({ email: req.body.email })
+//     .then(user => {
+//         if (user) {
+//             return res.status(400).json({email: "Email already exists"});
+//         } else {
+//             const newUser = new User ({
+//                 handle: req.body.handle,
+//                 email: req.body.email,
+//                 password: req.body.password,
+//                 // zipcode: req.body.zipcode
+//             })
+
+//             bcrypt.genSalt(10, (err, salt) => {
+//                 bcrypt.hash(newUser.password, salt, (err, hash) => {
+//                     if(err) throw err;
+//                     newUser.password = hash;
+//                     newUser.save()
+//                         .then((user) => res.send(user))
+//                         .catch(err => console.log(err))
+//                 })
+//             }) 
+//         }
+//     })
+// })
 
 // 
 router.post('/login', (req, res) => {

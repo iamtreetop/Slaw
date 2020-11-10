@@ -10,7 +10,7 @@ class SignupForm extends React.Component {
       handle: '',
       password: '',
       password2: '',
-      errors: {}
+      errors: []
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,13 +42,15 @@ class SignupForm extends React.Component {
 
     this.props.signup(user, this.props.history).then(
       (action) => {
-        let userLogin = {
-          email: user.email,
-          password: user.password
-        };
-        this.props.login(userLogin);
+        if (Object.values(this.props.errors).length === 0) {
+          let userLogin = {
+            email: user.email,
+            password: user.password
+          };
+          this.props.login(userLogin);
+        }
       }
-    ); 
+    )
   }
 
   renderErrors() {
@@ -64,6 +66,11 @@ class SignupForm extends React.Component {
   }
 
   render() {
+    // let errors = this.props.errors.map((error)=>{
+    //   return (
+    //     <li>error</li>
+    //   )
+    // })
     return (
       <div className="signup-bg-image">
         <div className="signup-container">

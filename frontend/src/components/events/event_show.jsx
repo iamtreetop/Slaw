@@ -320,6 +320,9 @@ class EventShow extends React.Component {
                         <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
                             Add an Event
                         </Link>
+                        <Link className="create-event-button" to="/events/discover">
+                        Discover Events
+                        </Link>
                     </div>
                 <div className="main-detail-wrapper">
                     <div className="event-details-container">
