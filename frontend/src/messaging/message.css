@@ -6,7 +6,7 @@
 .live-chat-box {
   display: flex;
   flex-direction: column;
-  
+  padding-left: 15px;
 }
 
 .live-chat-box-header {
@@ -29,11 +29,11 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  width: 35vw;
+  width: 44vw;
     /* width: 150px; */
-  height: 28vh;
+  height: 36vh;
   overflow: scroll;
-  padding: 16px;
+  padding: 16px 0 0 0;
 }
 
 
