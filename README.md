@@ -29,7 +29,7 @@ Link to Live App: [Slaw](https://slaw-app.herokuapp.com/)
 
 * Socket.io (Utilized Socket.io to enable realtime, bidirectional communication between web cliets and servers for live-chat)
 
-* Google Maps API and Active.com API (Leveraged Google Maps and Active.com API to display live events happening within a specific search location
+* Google Maps API and Active.com API (Leveraged Google Maps and Active.com API to display live events happening within a specific search location)
 
 
 ## Features
@@ -64,7 +64,7 @@ This application was designed and developed within a one-week time period. Below
 **Live Chat**
 * Within each channel, user's can communicate with each other in real-time
 * Each channel is chat-specific and will be private within the channel
-* FUTURE IMPLEMENTATION - Provide notifications for the channe;
+* FUTURE IMPLEMENTATION - Provide notifications for the channel's
 
 
 ## Code Snippets
