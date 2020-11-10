@@ -317,12 +317,8 @@ class EventShow extends React.Component {
                                 })}
                             </ul>
                         </div>
-                        <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>
-                            Add an Event
-                        </Link>
-                        <Link className="create-event-button" to="/events/discover">
-                        Discover Events
-                        </Link>
+                        <Link className="create-event-button" to={`/events/${this.props.channel._id}/new`}>Add an Event</Link>
+                        <Link className="create-event-button" to="/events/discover">Find Events</Link>
                         <div className="members-section">
                                 <div className="section-heading">
                                     <p className="member-header">Members</p>
