@@ -1,9 +1,8 @@
 import { connect } from 'react-redux';
 import { createEvent } from '../../actions/event_actions';
 import { updateChannel, fetchChannels } from '../../actions/channel_actions'
-import { fetchUser } from '../../actions/user_actions'
-import SlawMap from "./map";
 import { withRouter } from 'react-router-dom';
+import SlawMap from "./map";
 
 const mstp = (state, ownProps) => {
     return {

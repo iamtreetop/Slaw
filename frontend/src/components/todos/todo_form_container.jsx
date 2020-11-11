@@ -1,13 +1,11 @@
 import { connect } from 'react-redux';
 import { updateEvent, fetchEvent } from '../../actions/event_actions';
 import { createTodo } from "../../util/todo_api_util";
-import TodoForm from "../todos/todo_form";
 import { withRouter } from 'react-router-dom';
-
 import { closeModal } from '../../actions/modal_actions';
+import TodoForm from "../todos/todo_form";
 
 const mstp = (state, ownProps) =>{
-    //debugger
     return {
         todo: {
             title: "",

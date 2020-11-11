@@ -31,7 +31,6 @@ const mdtp = (dispatch, ownProps) => {
         updatePicture: (image) => updatePicture(image),
         updateUser: (user) => dispatch(updateUser(user)),
         fetchChannel: (channel) => dispatch(fetchChannel(channel))
-        // Would have something to clear eerrors?
     }
 }
 

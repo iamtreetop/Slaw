@@ -67,11 +67,6 @@ class SignupForm extends React.Component {
   }
 
   render() {
-    // let errors = this.props.errors.map((error)=>{
-    //   return (
-    //     <li>error</li>
-    //   )
-    // })
     return (
       <div className="signup-bg-image">
         <div className="signup-container">
@@ -85,7 +80,6 @@ class SignupForm extends React.Component {
                     required={true}
                     value={this.state.email}
                     onChange={this.update('email')}
-                    // placeholder="Email"
                   />
                 <br/>
                   <label className="signup-label">USERNAME</label>
@@ -94,7 +88,6 @@ class SignupForm extends React.Component {
                     required={true}
                     value={this.state.handle}
                     onChange={this.update('handle')}
-                    // placeholder="Handle"
                   />
                 <br/>
                   <label className="signup-label">PASSWORD</label>
@@ -104,7 +97,6 @@ class SignupForm extends React.Component {
                     required={true}
                     value={this.state.password}
                     onChange={this.update('password')}
-                    // placeholder="Password"
                   />
                 <br/>
                   <label className="signup-label">CONFIRM PASSWORD</label>
@@ -114,7 +106,6 @@ class SignupForm extends React.Component {
                     required={true}
                     value={this.state.password2}
                     onChange={this.update('password2')}
-                    // placeholder="Confirm Password"
                   />
                 <br/>
                 <input className="signup-button" type="submit" value="Submit" />

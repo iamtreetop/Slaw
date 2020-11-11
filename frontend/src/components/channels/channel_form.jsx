@@ -1,23 +1,15 @@
 import React from 'react';
-// import 'bootstrap/dist/css/bootstrap.css';
-// import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
-// import '../../../node_modules/normalize.css'
-import './channel_form.css';
-import * as ReactBootStrap from 'react-bootstrap'
-import { merge } from 'lodash';
-// import Spinner from 'react-bootstrap/Spinner';
-// import Button from 'react-bootstrap/Button';
 import FadeIn from "react-fade-in";
 import Lottie from "react-lottie";
-import ReactLoading from "react-loading";
 import * as legoData from "../../legoloading.json";
 import * as doneData from "../../doneloading.json";
+import { merge } from 'lodash';
+import './channel_form.css';
 
 
 class ChannelForm extends React.Component{
     constructor(props){
         super(props)
-        // this.state = this.props.channel;
         this.state = merge({}, this.props.channel, { loading: false, done: false })
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -80,7 +72,6 @@ class ChannelForm extends React.Component{
             ).catch((res) => console.log(res))
         })
     }
-
 
     render(){
 
@@ -147,47 +138,6 @@ class ChannelForm extends React.Component{
                 </div>
             </FadeIn>
         )
-        // let display = !this.state.done ? (
-        //     <FadeIn>
-        //         <div class="d-flex justify-content-center align-items-center">
-        //             <h1>fetching pizza</h1>
-        //             {!this.state.loading ? (
-        //                 <Lottie options={defaultOptions} height={120} width={120} />
-        //             ) : (
-        //                     <Lottie options={defaultOptions2} height={120} width={120} />
-        //                 )}
-        //         </div>
-        //     </FadeIn>
-        // ) :
-        //  (<form onSubmit={this.handleSubmit}>
-        //         <div className="channel-form-box">
-        //             <div className="channel-form-header">
-        //                 <p>Create your SLAW channel!</p>
-        //                 <div onClick={this.props.closeModal} className="close-x">X</div>
-
-        //             </div>
-        //             <div className="channel-form-input-box">
-        //                 <input className=".channel-text-input" type="text"
-        //                     value={this.state.title}
-        //                     onChange={this.handleChange("title")}
-        //                     className="channel-form-input"
-        //                     placeholder="Slaw Channel Title"
-        //                     required={true}
-        //                 />
-        //             </div>
-
-        //             <div className="photo-input-box">
-        //                 <p>Add a Channel Profile Picture</p>
-        //                 <div className="file-input">
-        //                     <input type="file" id="file-input-button" name="image"
-        //                         onChange={this.handlePhotoInput}
-        //                     />
-        //                 </div>
-        //                 {preview}
-        //             </div>
-        //             <button type="submit" value="Submit" className="channel-submit-button">Create your channel</button>
-        //         </div>
-        //     </form>)
 
         return (
             <div>

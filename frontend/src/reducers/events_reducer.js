@@ -13,7 +13,6 @@ const EventReducer = (state = {}, action) => {
             action.events.data.forEach((event) => {
                 newState[event._id] = event;
             })
-            // might just need to set the events as the channel show page
             return newState;
         case RECEIVE_EVENT:
             newState[action.event.data._id] = action.event.data;

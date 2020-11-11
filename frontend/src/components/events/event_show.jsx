@@ -1,14 +1,8 @@
 import React from "react";
-// import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
-import "./event_show.css"
-import { Link } from 'react-router-dom';
-import EventMap from "../map/map";
-import FadeIn from "react-fade-in";
-import Lottie from "react-lottie";
 import ReactLoading from "react-loading";
-import * as legoData from "../../legoloading.json";
-import * as doneData from "../../doneloading.json";
 import Message from "../../messaging/message"
+import { Link } from 'react-router-dom';
+import "./event_show.css"
 
 class EventShow extends React.Component {
     constructor(props) {
@@ -31,8 +25,6 @@ class EventShow extends React.Component {
         this.setChannelTitle = this.setChannelTitle.bind(this);
         this.handleLeave = this.handleLeave.bind(this);
         this.handleJoin = this.handleJoin.bind(this);
-
-        // this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount(){
@@ -56,8 +48,7 @@ class EventShow extends React.Component {
                 setTimeout(() => {
                     this.setState({ loading: false });
                 }, 500);
-            }
-            );
+            });
         }
 
         if (prevProps.eventId !== this.props.match.params.eventId) {
@@ -65,25 +56,15 @@ class EventShow extends React.Component {
                 .then((action) => {
                     this.setState({ currentEvent: action.event.data, todo: action.event.data.todo, participants: action.event.data.participants });
                 }
-                );
+            );
         }
-        // debugger
-        // if ((prevProps.match.params.channelId === this.props.match.params.channelId) && prevProps.event[this.props.eventId]) {
-        //     if (prevProps.event[this.props.eventId].todo.length < (this.props.event[this.props.eventId]).todo.length) {
-        //         this.props.fetchEvent(this.props.eventId)
-        //     }
-        // }
     }
 
     handleModal(e) {
         this.props.openModal('todo', this.props.eventId)
-        // this.props.fetchEvent(this.props.eventId).then((action) => {
-        //     this.setState({ currentEvent: action.event.data, todo: action.event.data.todo });
-        // })
     }
 
     handleClick(e, todoId){
-        //debugger
         this.props.updateTodo({status: e.target.checked, id: todoId});
     }
     
@@ -118,11 +99,11 @@ class EventShow extends React.Component {
                         this.props.history.push(`/channels/`);
                     }
                 )
-        });
+            }
+        );
     }
 
     handleCommentSubmit(e) {
-        // e.preventDefault();
         if(e.key === "Enter") {
             this.props.createComment({comment: this.state.comment, handle: this.props.handle})
                 .then((comment) => {
@@ -185,7 +166,6 @@ class EventShow extends React.Component {
         }
         let todoList = this.props.event[this.props.eventId] ? this.props.event[this.props.eventId].todo.map(
             (todo) => {
-                //debugger
                 return (
                     <li className="todo-list-item">
                         {todo.title}
@@ -195,7 +175,6 @@ class EventShow extends React.Component {
             }
         ) : this.state.currentEvent[this.props.eventId].todo.map(
             (todo) => {
-                //debugger
                 return (
                     <li className="todo-list-item">
                         {todo.title}
@@ -236,10 +215,8 @@ class EventShow extends React.Component {
                             <div className="comment-header-text">
                                 <p className="comment-author">Posted by {comment.author}</p>
                                 <p className="comment-date">({month}/{day})</p>
-                                {/* <p className="comment-time">{time}</p> */}
                             </div>
-                                <p className="comment-comment" >{comment.comment} </p>
-
+                            <p className="comment-comment" >{comment.comment} </p>
                         </div>
                     </>
                 )
@@ -255,9 +232,7 @@ class EventShow extends React.Component {
                     <button onClick={() => this.handleLeave()}>Decommit From This Event</button>
                 </div>
             </div> : <div></div>;
-        // debugger
-        
-        // let join = (!(this.props.event[this.props.eventId].participants.includes(this.props.userId))) && this.props.event[this.props.match.params.eventId].title !== "General" ? 
+
         let exists = false;
         this.props.event[this.props.eventId].participants.forEach(participant=>{
             if (participant._id === this.props.userId) {
@@ -375,7 +350,6 @@ class EventShow extends React.Component {
 
                     </div>
 
-
                     <div className="bottom-section">
                         <Message className="event-chat-container"
                             username={username} eventId={this.props.eventId}
@@ -386,7 +360,6 @@ class EventShow extends React.Component {
                             <div className="comment-box-wrapper">
                                 {comments}
                             </div>
-                            {/* <form onSubmit={this.handleCommentSubmit}> */}
                             <textarea id="event-announcements"
                                 onChange={this.handleChangeComment("comment")}
                                 placeHolder={eventTitle}
@@ -394,8 +367,6 @@ class EventShow extends React.Component {
                                 onKeyDown={this.handleCommentSubmit}
                                 className="comment-text-box"
                             ></textarea>
-                            {/* <input type="submit" value="Add Comment"/> */}
-                            {/* </form> */}
                         </div>
                     </div>
 

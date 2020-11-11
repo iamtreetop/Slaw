@@ -5,10 +5,8 @@ class TodoForm extends React.Component{
         super(props)
 
         this.state = this.props.todo;
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
     }
 
     componentDidMount(){
@@ -28,15 +26,12 @@ class TodoForm extends React.Component{
 
         this.props.createTodo(this.state)
             .then((todo) => {
-                //debugger
                 let newEventState = {
                     id: this.props.eventId,
                     todo: todo.data._id
                 }
-                //debugger
                 this.props.updateEvent(newEventState).then(
                     (action) => {
-                        //debugger
                     }
                 );
                 this.props.closeModal();

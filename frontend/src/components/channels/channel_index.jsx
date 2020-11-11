@@ -16,10 +16,7 @@ class ChannelIndex extends React.Component{
     }
 
     componentDidMount(){
-        // if (prevProps.location.pathname === "/events/discover") {
-        //     this.props.history.push("/events/discover")
-        // }
-        // debugger
+
         this.props.fetchChannels().then(
             (action) => {
                 this.props.fetchUser(this.props.user.id).then(
@@ -55,7 +52,6 @@ class ChannelIndex extends React.Component{
     }
 
     componentDidUpdate(prevProps){
-        // debugger
         if (prevProps.location.state === "/events/discover") {
             this.props.history.push("/events/discover")
         }
@@ -67,17 +63,13 @@ class ChannelIndex extends React.Component{
             channels: channelId
         }
 
-        
         this.props.updateUser(newChannels).then((unused)=>{
             let newMembers = {
                 id: channelId,
                 members: this.props.user._id
             }
-    
             
-            this.props.updateChannel(newMembers).then( (action)=>{
-        
-                
+            this.props.updateChannel(newMembers).then( (action)=> {
                 this.props.history.push(`/channels/${action.channel.data._id}/${action.channel.data.events[0]._id}`);
             })
         });
@@ -101,8 +93,6 @@ class ChannelIndex extends React.Component{
             })
         }
     }
-
-
 
     render(){
 
