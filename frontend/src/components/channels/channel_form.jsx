@@ -137,7 +137,7 @@ class ChannelForm extends React.Component{
             </form>)  :
         (
             <FadeIn>
-                <div class="d-flex justify-content-center align-items-center">
+                <div className="d-flex justify-content-center align-items-center">
                     <h1>creating channel</h1>
                     {!this.state.done ? (
                         <Lottie options={defaultOptions} height={120} width={120} />
