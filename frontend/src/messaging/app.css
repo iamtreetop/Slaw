@@ -10,12 +10,6 @@ body {
   display: block;
 }
 
-#chat {
-  overflow: scroll;
-  padding: 16px;
-  height: 35vh;
-}
-
 .name {
   color: rgba(0, 0, 0, 0.54);
 }

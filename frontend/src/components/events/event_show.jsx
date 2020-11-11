@@ -234,11 +234,11 @@ class EventShow extends React.Component {
                     <>  
                         <div className="comment-header-text-box">
                             <div className="comment-header-text">
-                                <p className="comment-comment" >{comment.comment} </p>
+                                <p className="comment-author">Posted by {comment.author}</p>
                                 <p className="comment-date">({month}/{day})</p>
                                 {/* <p className="comment-time">{time}</p> */}
                             </div>
-                                <p className="comment-author">by {comment.author}</p>
+                                <p className="comment-comment" >{comment.comment} </p>
 
                         </div>
                     </>
@@ -387,7 +387,7 @@ class EventShow extends React.Component {
                                 {comments}
                             </div>
                             {/* <form onSubmit={this.handleCommentSubmit}> */}
-                            <textarea name="" id=""
+                            <textarea id="event-announcements"
                                 onChange={this.handleChangeComment("comment")}
                                 placeHolder={eventTitle}
                                 value={this.state.comment}

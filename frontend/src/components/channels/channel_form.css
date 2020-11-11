@@ -68,11 +68,8 @@
     height: 35px;
     align-items: center;
     outline: none;
+    text-align: center;
 }
-
-input[type="text"]{  
-    text-align: center; 
-} 
 
 .photo-input-box {
     margin-left: 20px;
