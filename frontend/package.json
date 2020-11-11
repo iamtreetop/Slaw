@@ -17,6 +17,7 @@
     "jwt-decode": "^3.0.0",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
+    "redux-logger": "^3.0.6",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.1",
     "react-fade-in": "^1.1.1",
@@ -55,7 +56,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "redux-logger": "^3.0.6"
-  }
+  "devDependencies": {}
 }
