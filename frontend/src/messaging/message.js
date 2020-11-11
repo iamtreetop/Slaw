@@ -135,25 +135,29 @@ class Message extends React.Component {
         return (
             <div className="App">
                 <Paper id="chat" elevation={3}>
-                    {this.state.chat.map((el, index) => {
-                        
-                        return (
-                            <div key={index} className="live-chat-box">
-                                <div className="live-chat-box-header">
-                                    <Typography>
-                                        <p className="live-chat-name">{el.username}</p>
-                                    </Typography>
-                                    <Typography variant="body1" className="live-chat-content">
-                                        <p className="live-chat-date">{el.day}</p>
-                                        <p className="live-chat-time">{el.time}</p>
+                    
+                    <div className="chatbox-container">
+                        {this.state.chat.map((el, index) => {
+                            return (
+                                <div key={index} className="live-chat-box">
+                                    <div className="live-chat-box-header">
+                                        <Typography>
+                                            <p className="live-chat-name">{el.username}</p>
+                                        </Typography>
+                                        <Typography variant="body1" className="live-chat-content">
+                                            <p className="live-chat-date">{el.day}</p>
+                                            <p className="live-chat-time">{el.time}</p>
+                                        </Typography>
+                                    </div>
+                                    <Typography variant="body1">
+                                        <p className="live-chat-message">{el.message}</p>
                                     </Typography>
                                 </div>
-                                <Typography variant="body1">
-                                    <p className="live-chat-message">{el.message}</p>
-                                </Typography>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                    </div>
+
+
                     <BottomBar
                         message={this.state.message}
                         handleContent={this.handleContent.bind(this)}

@@ -387,7 +387,7 @@ class EventShow extends React.Component {
                                 {comments}
                             </div>
                             {/* <form onSubmit={this.handleCommentSubmit}> */}
-                            <textarea name="" id=""
+                            <textarea id="event-announcements"
                                 onChange={this.handleChangeComment("comment")}
                                 placeHolder={eventTitle}
                                 value={this.state.comment}

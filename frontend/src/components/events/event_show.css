@@ -120,7 +120,7 @@
 .event-show-container {
     padding-top: 90px;
     width: 95vw;
-    height: 88.5vh;
+    height: 89.5vh;
     padding-left: 80px;
     display: flex;
     flex-direction: row;
@@ -226,7 +226,7 @@
     justify-content: center;
     align-items: center;
     border: none;
-    margin-left: -50px;
+    margin-left: -30px;
 }
 
 .event-chat-container{
@@ -369,7 +369,10 @@
     border-radius: 6px;
 }
 
-
+#event-announcements{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px 0 0 15px;
+}
 
 .loading-parent{
     display: flex;
