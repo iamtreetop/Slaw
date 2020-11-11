@@ -8,7 +8,7 @@ import kevin from "../../images/Kevin_Lai.JPG"
 import jd from "../../images/jd.JPG"
 import tri from "../../images/tritop.png"
 import jacky from "../../images/jacky.PNG"
-import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap.css';
 
 class About extends React.Component {
 
@@ -46,7 +46,6 @@ class About extends React.Component {
                     <div className="row">
                         <div class="heading-title text-center">
                             <h3 className="text-uppercase">Our Engineers </h3>
-                            <p className="p-top-30 half-txt"></p>
                         </div>
                         <div className="bios">
                             <div className="col-md-4 col-sm-4">
