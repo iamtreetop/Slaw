@@ -1,18 +1,21 @@
 import React, { useEffect } from "react";
+import mapStyles from "./mapStyles";
+import usePlacesAutocomplete from "use-places-autocomplete";
+import compass from '../../images/compass.svg';
+import './map.css';
 
 import {
     GoogleMap,
     useLoadScript,
     Marker,
     InfoWindow,
-    useGoogleMap,
 } from "@react-google-maps/api";
-import UsePlacesAutoComplete, {
+
+import {
     getGeocode,
     getLatLng,
 } from 'use-places-autocomplete';
-import './map.css';
-import axios from "axios";
+
 import {
     Combobox, 
     ComboboxInput,
@@ -20,12 +23,7 @@ import {
     ComboboxList,
     ComboboxOption,
 } from '@reach/combobox';
-// import "../../../node_modules/@reach/combobox/styles.css"
-import mapStyles from "./mapStyles";
-import usePlacesAutocomplete from "use-places-autocomplete";
-import compass from '../../images/compass.svg';
-import {Link} from "react-router-dom"
-// import fetchEvent from "../../util/map.api_util"
+
 require('dotenv').config()
 
 
@@ -47,36 +45,7 @@ const options = {
     zoomControl: true,
 };
 
-// function Map(){
-//     return(
-//         <GoogleMap
-//             defaultZoom={10}
-//             defaultCenter={ center }
-//         >
-//             {activeData.results.map((activity, idx) => (
-//                 <Marker
-//                     key={idx}
-//                     position={{
-//                         lat: activity.place.geoPoint.lat,
-//                         lng: activity.place.geoPoint.lon
-//                     }}
-//                 />
-//             ))}
-//         </GoogleMap>
-//     )
-// }
-
 export default function SlawMap({event,channels, fetchChannels, createEvent, updateChannel, user, redirect}) {
-    // const onMapClick = React.useCallback((e) => {
-    //     setMarkers((current) => [
-    //         ...current,
-    //         {
-    //             lat: e.latLng.lat(),
-    //             lng: e.latLng.lng(),
-    //             time: new Date(),
-    //         },
-    //     ]);
-    // }, []);
     const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
         mapRef.current = map;
@@ -93,15 +62,12 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
         libraries,
-    });
-    
+    }); 
     
     const panTo = React.useCallback(({ lat, lng }) => {
         mapRef.current.panTo({ lat, lng });
         mapRef.current.setZoom(13);
     }, []);
-
-    // debugger
 
     const {
         ready,
@@ -116,8 +82,6 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
         },
         debounce:300
     });
-
-    // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
 
     const handleInput = (e) => {
         setValue(e.target.value);
@@ -147,7 +111,6 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
             (action) => {
                 if (action) {
                     let activeEventId = ([action.event.data._id])
-                    // setSuccessMessage(true)
                     updateChannel({ events: activeEventId, id: channel })
                     .then(
                         setSuccessMessage(true)
@@ -157,7 +120,8 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
                     .catch
                         ((res) => console.log(res))
                 }
-            })
+            }
+        )
     }
 
     useEffect(() => {
@@ -171,7 +135,6 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
                     return res.json()
                 })
                 .then(function (data) {
-                    // console.log(data)
                     panTo({
                         lat: Number(data.results[0].place.geoPoint.lat),
                         lng: Number(data.results[0].place.geoPoint.lon)
@@ -227,7 +190,6 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
                 zoom={11}
                 center={center}
                 options={options}
-                // onClick={onMapClick}
                 onLoad={onMapLoad}
             >
             {markers.map((activity, idx) => (

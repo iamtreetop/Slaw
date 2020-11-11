@@ -23,5 +23,4 @@ const mdtp = (dispatch) => {
     }
 }
 
-
 export default withRouter(connect(mstp, mdtp)(EventForm));

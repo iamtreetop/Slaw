@@ -4,12 +4,10 @@ import './event_form.css'
 class EventForm extends React.Component {
     constructor(props) {
         super(props)
-        // debugger
         this.state = this.props.event;
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
     }
 
     componentDidMount() {
@@ -33,7 +31,6 @@ class EventForm extends React.Component {
             this.setState({ participants: [this.props.userId] })
             this.props.createEvent(this.state).then(
                 (action) => {
-                    // debugger
                     this.setState({
                         events: [action.event.data._id]
                     })
@@ -42,7 +39,7 @@ class EventForm extends React.Component {
                     this.props.history.push(`/channels/${this.props.match.params.channelId}/${this.state.events}`)
                 })
         }
-        else{
+        else {
             this.props.updateEvent(this.state).then(
                 (action) => {
                     this.props.history.push(`/channels/${this.props.match.params.channelId}/${this.props.match.params.eventId}`)

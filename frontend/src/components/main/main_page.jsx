@@ -14,9 +14,6 @@ class MainPage extends React.Component {
             </h4>
           </div>
         </div>  
-        {/* <footer>
-          Copyright &copy; 2020 SlawApp
-        </footer> */}
       </div>
     );
   }

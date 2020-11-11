@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import './nav.css';
 import backgroundImage from '../../images/532_-_Boxing-513.png';
 import bannerImage from "../../images/MINISLAWBANNER.png";
+import './nav.css';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -20,7 +20,6 @@ class NavBar extends React.Component {
       if (this.props.loggedIn) {
         return (
             <div className="logout-wrapper">
-                {/* <Link to={'/profile'}>Profile</Link> */}
                 <button className="session-button" onClick={this.logoutUser}>Logout</button>
             </div>
         );
@@ -57,15 +56,14 @@ class NavBar extends React.Component {
                 <Link to={'/'} className="navbar-header-text">
                   <img src={backgroundImage}/>
                 </Link>
-                {/* <div className="main-banner">BANNER HERE</div> */}
                 <Link to="/events/discover">
                   <img class="main-banner" src={bannerImage} />
                 </Link> 
                 { this.getLinks() }
               </div>
-            <div className="about-button">
-              <Link to={'/about'}>About</Link>
-            </div>
+              <div className="about-button">
+                <Link to={'/about'}>About</Link>
+              </div>
           </div>
       );
   }

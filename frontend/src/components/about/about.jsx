@@ -1,14 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import "./about.css"
 import githubImg from "../../images/github.png"
 import linkedin from "../../images/linkedin.png"
-import Carousel from 'react-bootstrap/Carousel'
 import kevin from "../../images/Kevin_Lai.JPG"
 import jd from "../../images/jd.JPG"
 import tri from "../../images/tritop.png"
 import jacky from "../../images/jacky.PNG"
-// import 'bootstrap/dist/css/bootstrap.css';
+import "./about.css"
 
 class About extends React.Component {
 
@@ -39,7 +36,6 @@ class About extends React.Component {
                     {introduction}
                     <a href={mainGithubRepo} target="_blank">
                         Click here for our main Github Repo
-                        {/* <img src={githubImg} alt=""/> */}
                     </a>
                 </div>
                 <div className="container">
@@ -178,12 +174,9 @@ class About extends React.Component {
                                                 <span>Full Stack Software Engineer</span>
                                         </div>
                                     </div>
-
-                        </div>
-
                                 </div>
-
                             </div>
+                        </div>
                 <footer>
                     Copyright &copy; 2020 SlawApp
                 </footer>

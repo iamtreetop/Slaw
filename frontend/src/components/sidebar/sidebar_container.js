@@ -9,7 +9,6 @@ import SideBar from './sidebar';
 const mstp = (state) => {
     return {
         channels: state.channels,
-        // currentUser: state.session.user,
         user: state.users
     }
 }
