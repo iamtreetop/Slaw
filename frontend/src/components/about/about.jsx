@@ -16,7 +16,7 @@ class About extends React.Component {
 
         let mainGithubRepo = "https://github.com/iamtreetop/Slaw"
         let introduction ="Thank you for using Slaw! We are a group of engineers from App Academy \
-        that developed this application from the ground up with the MERN Stack within a 1 week timeframe \
+        that developed this application from the ground up with the MERN Stack within a 1 week timeframe. \
         We incorporated features using technologies outside of MERN such as Google Maps API and Active.com API to allow \
         search for events at a specific location, and Socket.io to allow real-time chat between users in channels. \
         We hope you enjoyed using our application and feel free to see the main repo below or checkout our bios below and connect with us on LinkedIn! "
