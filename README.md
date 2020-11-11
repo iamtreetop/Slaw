@@ -1,77 +1,70 @@
 # Slaw
 
-Slaw is a Health and Fitness Social Media application that allows a user to explore many differents communities and allow them to interact with others. Users can form communities with those who have common fitness goals.
+## Overview
+
+Slaw, which stands for Searchable Logs of All Workouts, will be accompanied by a web application which lets users join and create channels, todos, events, and communicate via a live chat with members of their channels! Slaw is a Health and Fitness Social Media application that allows a user to explore many differents communities and allow them to interact with others. Users can form communities with those who have common fitness goals.
 
 Link to Live App: [Slaw](https://slaw-app.herokuapp.com/)
 
-## Background and Overview
+## Engineers on Project
+* [Tri Ta](https://www.linkedin.com/in/trivta/)
+* [Jacky Li](https://www.linkedin.com/in/xlihuang/) 
+* [Kevin Lai](http://linkedin.com/in/kevinlai247)
+* [JD Buendia](https://www.linkedin.com/in/jd-buendia-66ab7483/)
 
-We have noticed firsthand that many individuals prefer to workout in groups or with others, and that there lacked a clearcut go-to place to coordinate with and find workout partners. We wanted to take the aspects of effective and easy-to-use collaborative-workplace apps into the health and fitness community.
+## Technologies
 
-Wouldn't it be nice to be able to easily find someone to workout with at a moment's notice? To be able to coordinate workouts and other events with your workout buddies? And to be able to be part of an online community surrounded by those with similar fitness goals and interests.
+**Frontend**
+* React/Redux
+* JavaScript
+* HTML/CSS
 
-Slaw, which stands for Searchable Logs of All Workouts, will be accompanied by a web application which lets users join and create channels, todos, events, and communicate via a live chat with members of their channels!
+**Backend**
+* Express.js
+* Node.js
+* MongoDB
 
-We will need to:
-* Make a web/mobile application that allows users to create and join channels to communicate with others in the community
-* Build a database to store users, channels, events, and todo items.
-* Allow users to create events/todo workouts and communicate with their channel or join public channel
-* Implement Google Maps API and EventsBrite API to display events happening close to their geolocation and join the public even channels
+**External Technologies**
+* AWS S3 (Connected backend to AWS S3 to host all project images in order to reduce page load and improve server performance, ensuring content security with AWS IAM
 
-## Functionality & MVP
+* Socket.io (Utilized Socket.io to enable realtime, bidirectional communication between web cliets and servers for live-chat)
 
-* User authorization: sign up and log in
-* MVP 2 - Channels
-* MVP 3 - Events/Todos
-* MVP 4 - Comments
-* MVP 5 - Google Maps/EventBrite API
-* Bonus - Live Chat
+* Google Maps API and Active.com API (Leveraged Google Maps and Active.com API to display live events happening within a specific search location)
 
-## Technologies & Technical Challenges
 
-We think some of the technical challenges will come with how we set the backend for our channels, events, todos, and our live chat feature. The live chat feature will accompany events happening within a channel and have users be able to communicate with one another there.
+## Features
 
-Researching more on Google Maps/EventBrite API might pose issues when we want to be able to create public channels for events happening near the area.
+This application was designed and developed within a one-week time period. Below are the main features we were able to implement.
 
-Researching and developing how to implement a live chat feature.
+**Login**
+* Secure User Authorization using BCrypt hashing
+* User Authorization errors are displayed in the form
+* Demo-Login for users who want to test the website
 
-## Group Members & Work Breakdown
-* Tri Ta - Team Lead
-* Jacky Li - Flex Engineer
-* Kevin Lai - Flex Engineer
-* JD Buendia - Flex Engineer
+**Channel**
+* User's are allowed to create or join channels.
+* General event page will be created immediately as default event for each channel to explain what can be done within a channel
+* If created or joined, user will be redirected to the general event page within the channel
 
-## Day 1
+**Events/Event Checklist**
+* User's that are part of channel are able to create events
+* Other members in the channel are able to commit to the event and the participants tab will show who have committed to that specific event
+* Users are allowed to add to the event checklist and list items that must be done 
+* Users are allowed to toggle the checklist to saw they have completed the task
 
-* Finish Out User Auth and design
-* Build out backend for channels
-* Build out frontend for channels
-* Research Google Maps Api/EventBrite
+**Announcements**
+* User's are allowed to create announcements for specific events and have them displayed
 
-## Day 2
+**Google Maps/Active API**
+* User's can click on discover events within a channel or click the banner on the navbar to be directed to event discover page
+* Type a location to display events from Active.com in that specific area
+* Map will be zoomed and markers will be placed on the event location
+* Description allows users to add the event to a specific channel or go to the register link provided by Active.com
 
-* Finish out out Channels and design
-* Build out backend for events
-* Build out frontend for events 
+**Live Chat**
+* Within each channel, user's can communicate with each other in real-time
+* Each channel is chat-specific and will be private within the channel
+* FUTURE IMPLEMENTATION - Provide notifications for the channel's
 
-## Day 3
 
-* Finish out Events and design
-* Build out backend for todo's
-* Build out frontend for todo's
-* Begin Google API/EventBrite Connection
-
-## Day 4
-
-* Finish out Todo's and design
-* Build out backend comments for event's
-* Build out frontend comments for event's
-* Connect Google API/EventBrite for public channels
-
-## Day 5
-
-* Automatic creation of public channels for events that are coming up for a given geo location
-
-## Day 6
-
-* DEBUG THE CODE 
+## Code Snippets
