@@ -80,6 +80,7 @@ This application was designed and developed within a one-week time period. Below
 
 ## Code Snippets
 
+```
 <div className="search">
     <Combobox onSelect={handleSelect}>
         <ComboboxInput
@@ -98,9 +99,11 @@ This application was designed and developed within a one-week time period. Below
         </ComboboxPopover>
     </Combobox>
 </div>
+```
 
 Utilizing Google API’s usePlacesAutocomplete, we were able to render a search box onto our map equipped with autocomplete suggestions. As shown in the code snippets, the Combobox element has an onSelect event handler.
 
+```
 const handleSelect = async (address) => {
         setValue(address, false);
         clearSuggestions();
@@ -113,7 +116,7 @@ const handleSelect = async (address) => {
         } catch (error) {
             console.log("😱 Error: ", error);
         }
-        const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=20&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
+const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=20&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
             fetch(apiUrl, { method: 'GET', mode: 'cors' })
                 .then(function (res) {
                     return res.json()
@@ -130,5 +133,6 @@ const handleSelect = async (address) => {
                 }, []);
         setSubmitted(false)
     };
+```
     
 In our onSelect event handler function called handleSelect, which accepts an address as an argument, we set the state for an object we instantiated using React Hooks called address. In addition, we set the state for another object called submitted to true. We then use the address state as a query to send the http  request to Active.com to receive the events that match the query. For each one of the results,  we create markers on the map for them, that upon a click, will render a window featuring the name, description, and option to create add the event to ones channel.
