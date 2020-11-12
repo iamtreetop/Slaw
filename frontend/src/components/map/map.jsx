@@ -99,6 +99,23 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
         } catch (error) {
             console.log("😱 Error: ", error);
         }
+        const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=20&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
+            fetch(apiUrl, { method: 'GET', mode: 'cors' })
+                .then(function (res) {
+                    return res.json()
+                })
+                .then(function (data) {
+                    panTo({
+                        lat: Number(data.results[0].place.geoPoint.lat),
+                        lng: Number(data.results[0].place.geoPoint.lon)
+                    })
+                    setMarkers(data.results);
+
+                })
+                .catch((res) => {
+                    console.log(res);
+                }, []);
+        setSubmitted(false)
     };
 
     const handleChannel = (e) => {
@@ -128,25 +145,25 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
         if (Object.keys(channels).length === 0){
             fetchChannels()
         } 
-        if (address !== null && submitted ) {
-            const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=20&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
-            fetch(apiUrl, { method: 'GET', mode: 'cors'})
-                .then(function(res) {
-                    return res.json()
-                })
-                .then(function (data) {
-                    panTo({
-                        lat: Number(data.results[0].place.geoPoint.lat),
-                        lng: Number(data.results[0].place.geoPoint.lon)
-                    })
-                    setMarkers(data.results);
+        // if (address !== null && submitted ) {
+        //     const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=20&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
+        //     fetch(apiUrl, { method: 'GET', mode: 'cors'})
+        //         .then(function(res) {
+        //             return res.json()
+        //         })
+        //         .then(function (data) {
+        //             panTo({
+        //                 lat: Number(data.results[0].place.geoPoint.lat),
+        //                 lng: Number(data.results[0].place.geoPoint.lon)
+        //             })
+        //             setMarkers(data.results);
 
-                })
-                .catch((res) => {
-                    console.log(res);
-                }, []);
-        }
-        setSubmitted(false)
+        //         })
+        //         .catch((res) => {
+        //             console.log(res);
+        //         }, []);
+        // }
+        // setSubmitted(false)
         },[]
     );
 
@@ -156,6 +173,7 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
     if (!ready) {
         redirect({pathname: '/channels', state: "/events/discover"})
     }
+
     return(
         <div className="slaw-map">
             <h1>
@@ -178,8 +196,8 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
                     <ComboboxPopover>
                         <ComboboxList className="search-list">
                             {status === "OK" &&
-                                data.map(({ id, description }) => (
-                                    <ComboboxOption key={id} value={description} className="search-item"/>
+                                data.map(({ description, idx }) => (
+                                    <ComboboxOption key={idx} value={description} className="search-item"/>
                                 ))}
                         </ComboboxList>
                     </ComboboxPopover>
@@ -225,7 +243,7 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
                                     <select required={true} onChange={handleChannel}>
                                     <option value="" selected={channel ? false : true} disabled={true}>Select an channel</option>
                                     {user.channels.map((usersChannel, idx) => (
-                                    <option value={usersChannel} selected={channel === usersChannel ? true : false}>{channels[usersChannel].title}</option>
+                                    <option key={idx} value={usersChannel} selected={channel === usersChannel ? true : false}>{channels[usersChannel].title}</option>
                                     ))}
                                 </select>
                             </label>

@@ -90,11 +90,16 @@ class Message extends React.Component {
     }
 
     scrollToBottom() {
+<<<<<<< HEAD
         // animateScroll.scrollToBottom( {
         //     containerId: "chatbox-container"
         // })
         const chat = document.getElementById('chat');
         chat.scrollBottom = chat.scrollHeight;
+=======
+        const chat = document.getElementById('chat-messages');
+        chat.scrollTop = chat.scrollHeight;
+>>>>>>> ae01064421104657b1ad1c388abeaad125af46aa
     }
 
     
@@ -104,7 +109,7 @@ class Message extends React.Component {
             <div className="App">
                 <Paper id="chat" elevation={3}>
                     
-                    <div className="chatbox-container">
+                    <div className="chatbox-container" id="chat-messages">
                         {this.state.chat.map((el, index) => {
                             return (
                                 <div key={index} className="live-chat-box">

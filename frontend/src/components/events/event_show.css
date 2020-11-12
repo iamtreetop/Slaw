@@ -10,6 +10,11 @@
     width: 25%;
 }
 
+.participant-list-item{
+    list-style: none;
+    text-align: left;
+}
+
 .events-section{
     width: 10%;
     padding-top: 11px;
@@ -70,6 +75,9 @@
 }
 .show-list {
     margin-top: -1px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 .show-list ul {
     list-style-type: none;
@@ -81,20 +89,20 @@
     padding: 0px;
     border: 0px;
     text-align: left;
+    padding-left: 16px;
 }
 
 .show-list-items-link {
     text-decoration: none;
+    margin-left: 16px;
 }
 
 .show-list-items-text {
     color: white;
-    text-align: center;
     padding: 0px;
     font-size: 20px;
     font-size: 14px;
     text-decoration: none;
-    margin-left: 16px;
 }
 
 .show-list-items-text:hover {
@@ -175,7 +183,7 @@
 .event-details-left p {
     font-size: 18px;
     margin-left: 16px;
-    margin-top: 20px;
+    margin-top: 16px;
 }
 
 .create-todo-button {
@@ -221,12 +229,12 @@
     flex-direction: row-reverse;
     border-bottom: none;
     border: 1px solid rgba(12,59,59,1);
-    width: 100%;
+    width: 96%;
     height: 50%;
     justify-content: center;
     align-items: center;
     border: none;
-    margin-left: -30px;
+    margin-left: -40px;
 }
 
 .event-chat-container{
@@ -262,7 +270,7 @@
 .create-event-button:last-of-type{
     margin-top: 10px;
 }
-.delete-event-button{
+.delete-event-button, .join-event-button{
     color: black;
     font-size: 12px;
     border-radius: 6px;
@@ -270,22 +278,25 @@
     text-decoration: none;
     background-color: white;
     cursor: pointer;
-    margin-top: 3px;
-    margin-left: 14px;
+    margin: 3px 8px 8px 14px;
     align-self: start;
     outline: none;
     border: none;
-    width: 128px;
+    width: 126px;
     font-family: 'Titillium Web', sans-serif;
 }
 
-.create-event-button:hover, .delete-event-button:hover{
+.join-event-button{
+    width: 163px;
+}
+
+.create-event-button:hover, .delete-event-button:hover, .join-event-button:hover{
     background-color: #8acbb6;
     font-weight: bolder;
     transition: background-color .4s ease-out;
 }
 
-.create-event-button:active, .delete-event-button:active{
+.create-event-button:active, .delete-event-button:active, .join-event-button:active{
     text-decoration: underline;
     color: black;
     font-weight: bolder;
@@ -310,7 +321,7 @@
 
 .comment-text-box {
     margin-top: 40px;
-    width: 90%;
+    width: 87%;
     HEIGHT: 15%;
     border-radius: 6px;
     background-color: #ebebf7;
