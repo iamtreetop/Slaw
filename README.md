@@ -41,10 +41,17 @@ This application was designed and developed within a one-week time period. Below
 * User Authorization errors are displayed in the form
 * Demo-Login for users who want to test the website
 
+[![Image from Gyazo](https://i.gyazo.com/8f3f91029d900b9720781dc1e07c2d01.gif)](https://gyazo.com/8f3f91029d900b9720781dc1e07c2d01)
+
 **Channel**
 * User's are allowed to create or join channels.
 * General event page will be created immediately as default event for each channel to explain what can be done within a channel
+
+[![Image from Gyazo](https://i.gyazo.com/6a5da16d99b8c425e473ba090165855c.gif)](https://gyazo.com/6a5da16d99b8c425e473ba090165855c)
+
 * If created or joined, user will be redirected to the general event page within the channel
+
+[![Image from Gyazo](https://i.gyazo.com/e2b3c1a35e1f1aa1805243a662469d95.gif)](https://gyazo.com/e2b3c1a35e1f1aa1805243a662469d95)
 
 **Events/Event Checklist**
 * User's that are part of channel are able to create events
@@ -52,8 +59,12 @@ This application was designed and developed within a one-week time period. Below
 * Users are allowed to add to the event checklist and list items that must be done 
 * Users are allowed to toggle the checklist to saw they have completed the task
 
+[![Image from Gyazo](https://i.gyazo.com/c1a39aeafac647c0143c690697ca005c.gif)](https://gyazo.com/c1a39aeafac647c0143c690697ca005c)
+
 **Announcements**
-* User's are allowed to create announcements for specific events and have them displayed
+* User's are allowed to create announcements for specific events and have them displaye
+
+// Place holder for announcements picture
 
 **Google Maps/Active API**
 * User's can click on discover events within a channel or click the banner on the navbar to be directed to event discover page
