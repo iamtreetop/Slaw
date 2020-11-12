@@ -187,7 +187,7 @@ class EventShow extends React.Component {
         let participants = this.props.event[this.props.eventId] ? this.props.event[this.props.eventId].participants.map(
             (participants) => {
                 return (
-                    <li className="todo-list-item">
+                    <li className="participant-list-item">
                         {participants.handle}
                     </li>
                 )
@@ -229,7 +229,7 @@ class EventShow extends React.Component {
         let leave = (this.props.userId !== this.props.event[this.props.eventId].author) && this.props.event[this.props.match.params.eventId].title !== "General" ?
             <div className="participants-dashboard">
                 <div className="leave-event">
-                    <button onClick={() => this.handleLeave()}>Decommit From This Event</button>
+                    <button className="join-event-button" onClick={() => this.handleLeave()}>Decommit from Event</button>
                 </div>
             </div> : <div></div>;
 
@@ -241,8 +241,8 @@ class EventShow extends React.Component {
         })
         let join = (!exists) && this.props.event[this.props.match.params.eventId].title !== "General" ?
            <div className="potential-participant-dashboard">
-                <div className="join-event">
-                    <button onClick={() => this.handleJoin()}>Commit to This Event</button>
+                <div>
+                    <button className="join-event-button" onClick={() => this.handleJoin()}>Commit to Event</button>
                 </div>
             </div> : <div></div>
 
