@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import BottomBar from './bottombar';
 import './message.css';
+import { animateScroll } from 'react-scroll'
 require('dotenv').config()
 
 class Message extends React.Component {
@@ -89,8 +90,11 @@ class Message extends React.Component {
     }
 
     scrollToBottom() {
+        // animateScroll.scrollToBottom( {
+        //     containerId: "chatbox-container"
+        // })
         const chat = document.getElementById('chat');
-        chat.scrollTop = chat.scrollHeight;
+        chat.scrollBottom = chat.scrollHeight;
     }
 
     
