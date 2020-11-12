@@ -2,7 +2,7 @@
 
 ## Overview
 
-Slaw, which stands for Searchable Logs of All Workouts, will be accompanied by a web application which lets users join and create channels, todos, events, and communicate via a live chat with members of their channels! Slaw is a Health and Fitness Social Media application that allows a user to explore many differents communities and allow them to interact with others. Users can form communities with those who have common fitness goals.
+Slaw, which stands for Searchable Logs of Activities & Workouts, will be accompanied by a web application which lets users join and create channels, todos, events, and communicate via a live chat with members of their channels! Slaw is a Health and Fitness Social Media application that allows a user to explore many differents communities and allow them to interact with others. Users can form communities with those who have common fitness goals.
 
 Link to Live App: [Slaw](https://slaw-app.herokuapp.com/)
 
