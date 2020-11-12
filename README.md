@@ -72,6 +72,8 @@ This application was designed and developed within a one-week time period. Below
 * Map will be zoomed and markers will be placed on the event location
 * Description allows users to add the event to a specific channel or go to the register link provided by Active.com
 
+[![Image from Gyazo](https://i.gyazo.com/9434004fe2a0eaf10140eccec368e524.gif)](https://gyazo.com/9434004fe2a0eaf10140eccec368e524)
+
 **Live Chat**
 * Within each channel, user's can communicate with each other in real-time
 * Each channel is chat-specific and will be private within the channel
