@@ -64,7 +64,7 @@ This application was designed and developed within a one-week time period. Below
 **Announcements**
 * User's are allowed to create announcements for specific events and have them displaye
 
-// Place holder for announcements picture
+![image](https://github.com/iamtreetop/Slaw/blob/master/frontend/src/images/announcements.png)
 
 **Google Maps/Active API**
 * User's can click on discover events within a channel or click the banner on the navbar to be directed to event discover page
