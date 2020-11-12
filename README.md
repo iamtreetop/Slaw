@@ -77,10 +77,11 @@ This application was designed and developed within a one-week time period. Below
 * Each channel is chat-specific and will be private within the channel
 * FUTURE IMPLEMENTATION - Provide notifications for the channel's
 
+[![Image from Gyazo](https://i.gyazo.com/1b91f21f02748753e4d483e113e99670.gif)](https://gyazo.com/1b91f21f02748753e4d483e113e99670)
 
 ## Code Snippets
 
-```
+```js
 <div className="search">
     <Combobox onSelect={handleSelect}>
         <ComboboxInput
@@ -103,7 +104,7 @@ This application was designed and developed within a one-week time period. Below
 
 Utilizing Google API’s usePlacesAutocomplete, we were able to render a search box onto our map equipped with autocomplete suggestions. As shown in the code snippets, the Combobox element has an onSelect event handler.
 
-```
+```js
 const handleSelect = async (address) => {
         setValue(address, false);
         clearSuggestions();
