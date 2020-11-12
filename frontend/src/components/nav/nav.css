@@ -53,18 +53,13 @@
     font-family: 'Titillium Web', sans-serif;
 }
 
-.about-button a{
-    text-decoration: none;
-    color: black;
-}
-
 .session-button:hover, .about-button:hover{
     background-color: #8acbb6;
     font-weight: bolder;
     transition: background-color .4s ease-out;
 }
 
-.session-button:active, .about-button:hover{
+.session-button:active, .about-button:active{
     text-decoration: underline;
     color: black;
     font-weight: bolder;
@@ -74,4 +69,19 @@
 
 .logout-wrapper{
     border: none;
+}
+
+.about-button{
+    margin-top: 3px;
+}
+
+.about-button:hover{
+    background-color: #f6b933;
+    font-weight: bolder;
+    transition: background-color .4s ease-out;
+}
+
+.about-button a{
+    text-decoration: none;
+    color: black;
 }
