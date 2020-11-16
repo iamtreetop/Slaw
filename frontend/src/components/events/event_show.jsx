@@ -210,7 +210,7 @@ class EventShow extends React.Component {
                 let day = comment.date.slice(8,10)
                 let time = comment.date.slice(12,19)
                 return (
-                    <div>  
+                    <>  
                         <div key={idx} className="comment-header-text-box">
                             <div className="comment-header-text">
                                 <p className="comment-author">Posted by {comment.author}</p>
@@ -218,7 +218,7 @@ class EventShow extends React.Component {
                             </div>
                             <p className="comment-comment" >{comment.comment} </p>
                         </div>
-                    </div>
+                    </>
                 )
             }
         ) : <p className="comment-holder-text">Post Here</p>
@@ -239,7 +239,7 @@ class EventShow extends React.Component {
                 exists = true;
             }
         })
-        
+
         let join = (!exists) && this.props.event[this.props.match.params.eventId].title !== "General" ?
            <div className="potential-participant-dashboard">
                 <div>
@@ -328,10 +328,10 @@ class EventShow extends React.Component {
                                 )}
                                 And most of all, <b>Enjoy SLAW with your friends!</b>
                             </ul> : (
-                                <div>
+                                <>
                                     <h2>Description</h2>
                                     <p>{this.props.event[this.props.eventId].description}</p>
-                                </div>
+                                </>
                             )}
                             {join}
                             {leave}

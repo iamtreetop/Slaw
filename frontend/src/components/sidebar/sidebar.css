@@ -90,6 +90,7 @@
 .channel-create-text {
   font-size: 30px;
   cursor: pointer;
+  margin-top: 25px;
 } 
 
 .create-event-button{
