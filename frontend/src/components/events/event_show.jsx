@@ -165,18 +165,18 @@ class EventShow extends React.Component {
             return null;
         }
         let todoList = this.props.event[this.props.eventId] ? this.props.event[this.props.eventId].todo.map(
-            (todo) => {
+            (todo, idx) => {
                 return (
-                    <li className="todo-list-item">
-                        {todo.title}
+                    <li key={idx} className="todo-list-item">
                         <input type="checkbox" onClick={(e)=>this.handleClick(e, todo._id)}/>
+                        {todo.title}
                     </li>
                 )
             }
         ) : this.state.currentEvent[this.props.eventId].todo.map(
-            (todo) => {
+            (todo, idx) => {
                 return (
-                    <li className="todo-list-item">
+                    <li key={idx} className="todo-list-item">
                         {todo.title}
                         <input type="checkbox" onClick={(e) => this.handleClick(e, todo._id)} />
                     </li>
@@ -185,17 +185,17 @@ class EventShow extends React.Component {
         )
 
         let participants = this.props.event[this.props.eventId] ? this.props.event[this.props.eventId].participants.map(
-            (participants) => {
+            (participants, idx) => {
                 return (
-                    <li className="participant-list-item">
+                    <li key={idx} className="participant-list-item">
                         {participants.handle}
                     </li>
                 )
             }
         ) : this.state.currentEvent[this.props.eventId].participants.map(
-            (participants) => {
+            (participants, idx) => {
                 return (
-                    <li className="todo-list-item">
+                    <li key={idx} className="todo-list-item">
                         {participants.handle}
                     </li>
                 )
@@ -205,20 +205,20 @@ class EventShow extends React.Component {
 
         let comments =
         (this.props.event[this.props.eventId].comments.length > 0) ? this.props.event[this.props.eventId].comments.map(
-            (comment) => {
+            (comment, idx) => {
                 let month = comment.date.slice(5,7)
                 let day = comment.date.slice(8,10)
                 let time = comment.date.slice(12,19)
                 return (
-                    <>  
-                        <div className="comment-header-text-box">
+                    <div>  
+                        <div key={idx} className="comment-header-text-box">
                             <div className="comment-header-text">
                                 <p className="comment-author">Posted by {comment.author}</p>
                                 <p className="comment-date">({month}/{day})</p>
                             </div>
                             <p className="comment-comment" >{comment.comment} </p>
                         </div>
-                    </>
+                    </div>
                 )
             }
         ) : <p className="comment-holder-text">Post Here</p>
@@ -239,6 +239,7 @@ class EventShow extends React.Component {
                 exists = true;
             }
         })
+        
         let join = (!exists) && this.props.event[this.props.match.params.eventId].title !== "General" ?
            <div className="potential-participant-dashboard">
                 <div>
@@ -327,10 +328,10 @@ class EventShow extends React.Component {
                                 )}
                                 And most of all, <b>Enjoy SLAW with your friends!</b>
                             </ul> : (
-                                <>
+                                <div>
                                     <h2>Description</h2>
                                     <p>{this.props.event[this.props.eventId].description}</p>
-                                </>
+                                </div>
                             )}
                             {join}
                             {leave}
@@ -338,9 +339,11 @@ class EventShow extends React.Component {
                         </div>
                         <div className="event-details-right">
                             <div className="workout-list">
-                                <h1>Event Checklist</h1>
+                                <div className="checklist-header">
+                                    <h1>Event Checklist</h1> 
+                                    <button className="create-todo-button"onClick={() => this.handleModal()}>Create New Todo</button>
+                                </div>
                                 <ul>{todoList}</ul>
-                                <button className="create-todo-button"onClick={() => this.handleModal()}>Create New Todo</button>
                             </div>
                             <div className="participants-list">
                                 <h1>Participants</h1>
@@ -362,7 +365,7 @@ class EventShow extends React.Component {
                             </div>
                             <textarea id="event-announcements"
                                 onChange={this.handleChangeComment("comment")}
-                                placeHolder={eventTitle}
+                                placeholder={eventTitle}
                                 value={this.state.comment}
                                 onKeyDown={this.handleCommentSubmit}
                                 className="comment-text-box"

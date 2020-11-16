@@ -57,7 +57,7 @@ export default function BottomBar(props) {
                         <InputBase
                             onChange={props.handleContent}
                             value={props.message}
-                            placeHolder="Type your message..."
+                            placeholder="Type your message..."
                             classes={{
                                 root: classes.inputRoot,
                                 input: classes.inputInput,

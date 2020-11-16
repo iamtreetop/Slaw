@@ -47,7 +47,7 @@ class TodoForm extends React.Component{
                     <input className="create-todo-input" type="text"
                         value={this.state.title}
                         onChange={this.handleChange("title")}
-                        placeHolder="What's do you need todo?"
+                        placeholder="What's do you need todo?"
                     />
                     <input type="submit" value="Add your todo!" className="create-todo-submit" />
                 </div>
