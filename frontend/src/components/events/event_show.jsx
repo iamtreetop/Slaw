@@ -328,10 +328,10 @@ class EventShow extends React.Component {
                                 )}
                                 And most of all, <b>Enjoy SLAW with your friends!</b>
                             </ul> : (
-                                <div>
+                                <>
                                     <h2>Description</h2>
                                     <p>{this.props.event[this.props.eventId].description}</p>
-                                </div>
+                                </>
                             )}
                             {join}
                             {leave}
