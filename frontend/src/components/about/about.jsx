@@ -40,24 +40,24 @@ class About extends React.Component {
                 </div>
                 <div className="container">
                     <div className="row">
-                        <div class="heading-title text-center">
+                        <div className="heading-title text-center">
                             <h3 className="text-uppercase">Our Engineers </h3>
                         </div>
                         <div className="bios">
                             <div className="col-md-4 col-sm-4">
                                 <div className="team-member">
                                     <div className="team-img">
-                                        <img src={jd} alt="team member" class="img-responsive"/>
+                                        <img src={jd} alt="team member" className="img-responsive"/>
                                     </div>
                                         <div className="team-hover">
                                             <div className="desk">
                                                 <h4>What's Up!</h4>
-                                                <p>I am a Los Angeles based Software Engineer with a passion to build things and explore new possibilities of coding.</p>
+                                                <p>I am a Los Angeles based Software Engineer with a passion to solve complex problems and explore new possibilities of coding.</p>
                                             </div>
                                             <div className="s-link">
-                                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                                                <a href="#"><i className="fa fa-facebook"></i></a>
+                                                <a href="#"><i className="fa fa-twitter"></i></a>
+                                                <a href="#"><i className="fa fa-google-plus"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -79,7 +79,7 @@ class About extends React.Component {
                                 <div className="col-md-4 col-sm-4">
                                     <div className="team-member">
                                         <div className="team-img">
-                                            <img src={tri} alt="team member" class="img-responsive"/>
+                                            <img src={tri} alt="team member" className="img-responsive"/>
                                     </div>
                                             <div className="team-hover">
                                                 <div className="desk">
@@ -87,9 +87,9 @@ class About extends React.Component {
                                                     <p>I'm a Los Angeles-based software engineer with a passion for building applications and websites that can bring positivity to the world.</p>
                                                 </div>
                                                 <div className="s-link">
-                                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                                    <a href="#"><i className="fa fa-facebook"></i></a>
+                                                    <a href="#"><i className="fa fa-twitter"></i></a>
+                                                    <a href="#"><i className="fa fa-google-plus"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -111,7 +111,7 @@ class About extends React.Component {
                                     <div className="col-md-4 col-sm-4">
                                         <div className="team-member">
                                             <div className="team-img">
-                                                <img src={kevin} alt="team member" class="img-responsive"/>
+                                                <img src={kevin} alt="team member" className="img-responsive"/>
                                     </div>
                                                 <div className="team-hover">
                                                     <div className="desk">
@@ -119,9 +119,9 @@ class About extends React.Component {
                                                         <p>I am a full stack software engineer with a passion for web development and machine learning.</p>
                                                     </div>
                                                     <div className="s-link">
-                                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                                        <a href="#"><i className="fa fa-facebook"></i></a>
+                                                        <a href="#"><i className="fa fa-twitter"></i></a>
+                                                        <a href="#"><i className="fa fa-google-plus"></i></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -144,17 +144,17 @@ class About extends React.Component {
                                     <div className="col-md-4 col-sm-4">
                                         <div className="team-member">
                                             <div className="team-img">
-                                                <img src={jacky} alt="team member" class="img-responsive" />
+                                                <img src={jacky} alt="team member" className="img-responsive" />
                                             </div>
                                             <div className="team-hover">
-                                                <div class="desk">
+                                                <div className="desk">
                                                     <h4>Hello World!</h4>
                                                     <p>I am a Bay Area based Software Engineer with a passion to explore the possibilities of programming and strive for pixel-perfect applications</p>
                                                 </div>
                                                 <div className="s-link">
-                                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                                    <a href="#"><i className="fa fa-facebook"></i></a>
+                                                    <a href="#"><i className="fa fa-twitter"></i></a>
+                                                    <a href="#"><i className="fa fa-google-plus"></i></a>
                                                 </div>
                                             </div>
                                         </div>
