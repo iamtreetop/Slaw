@@ -60,7 +60,7 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
     const [successMessage, setSuccessMessage] = React.useState(false);
 
     const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
+        googleMapsApiKey: 'AIzaSyABaF3NWJ3e_GiQkKH_5I4st-8Oqk9kE20',
         libraries,
     }); 
     
@@ -247,7 +247,8 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
                                     ))}
                                 </select>
                             </label>
-                            <button onClick={() => handleCreateEvent({ title: selectedActivity.assetName, description: selectedActivity.assetChannels[0].channel.channelDsc, participants: [user.id]})}>Add Event to Channel</button>
+                        <br/>
+                            <button className="map-event-button" onClick={() => handleCreateEvent({ title: selectedActivity.assetName, description: selectedActivity.assetChannels[0].channel.channelDsc, participants: [user.id]})}>Add Event to Channel</button>
                             <p className="success-message">{successMessage ? "Success! This event has been added to your channel 🙌" : ""}</p>
                             <a target="_blank" href={`${selectedActivity.registrationUrlAdr}`}>Registration Link</a>
                         </div>

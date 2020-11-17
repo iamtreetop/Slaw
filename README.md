@@ -2,7 +2,7 @@
 
 ## Overview
 
-Slaw, which stands for Searchable Logs of All Workouts, will be accompanied by a web application which lets users join and create channels, todos, events, and communicate via a live chat with members of their channels! Slaw is a Health and Fitness Social Media application that allows a user to explore many differents communities and allow them to interact with others. Users can form communities with those who have common fitness goals.
+Slaw, which stands for Searchable Logs of Activities & Workouts, will be accompanied by a web application which lets users join and create channels, todos, events, and communicate via a live chat with members of their channels! Slaw is a Health and Fitness Social Media application that allows a user to explore many differents communities and allow them to interact with others. Users can form communities with those who have common fitness goals.
 
 Link to Live App: [Slaw](https://slaw-app.herokuapp.com/)
 
@@ -64,7 +64,7 @@ This application was designed and developed within a one-week time period. Below
 **Announcements**
 * User's are allowed to create announcements for specific events and have them displaye
 
-// Place holder for announcements picture
+![image](https://github.com/iamtreetop/Slaw/blob/master/frontend/src/images/announcements.png)
 
 **Google Maps/Active API**
 * User's can click on discover events within a channel or click the banner on the navbar to be directed to event discover page
@@ -72,10 +72,70 @@ This application was designed and developed within a one-week time period. Below
 * Map will be zoomed and markers will be placed on the event location
 * Description allows users to add the event to a specific channel or go to the register link provided by Active.com
 
+[![Image from Gyazo](https://i.gyazo.com/9434004fe2a0eaf10140eccec368e524.gif)](https://gyazo.com/9434004fe2a0eaf10140eccec368e524)
+
 **Live Chat**
 * Within each channel, user's can communicate with each other in real-time
 * Each channel is chat-specific and will be private within the channel
 * FUTURE IMPLEMENTATION - Provide notifications for the channel's
 
+[![Image from Gyazo](https://i.gyazo.com/1b91f21f02748753e4d483e113e99670.gif)](https://gyazo.com/1b91f21f02748753e4d483e113e99670)
 
 ## Code Snippets
+
+```js
+<div className="search">
+    <Combobox onSelect={handleSelect}>
+        <ComboboxInput
+            value={value}
+            onChange={handleInput}
+            disabled={!ready}
+            placeholder="Search your location"
+        />
+        <ComboboxPopover>
+            <ComboboxList className="search-list">
+                {status === "OK" &&
+                    data.map(({ id, description }) => (
+                        <ComboboxOption key={id} value={description} className="search-item"/>
+                    ))}
+            </ComboboxList>
+        </ComboboxPopover>
+    </Combobox>
+</div>
+```
+
+Utilizing Google API’s usePlacesAutocomplete, we were able to render a search box onto our map equipped with autocomplete suggestions. As shown in the code snippets, the Combobox element has an onSelect event handler.
+
+```js
+const handleSelect = async (address) => {
+        setValue(address, false);
+        clearSuggestions();
+        setAddress(address)
+        setSubmitted(true)
+        try {
+            const results = await getGeocode({ address });
+            const { lat, lng } = await getLatLng(results[0]);
+            panTo({ lat, lng });
+        } catch (error) {
+            console.log("😱 Error: ", error);
+        }
+const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=20&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
+            fetch(apiUrl, { method: 'GET', mode: 'cors' })
+                .then(function (res) {
+                    return res.json()
+                })
+                .then(function (data) {
+                    panTo({
+                        lat: Number(data.results[0].place.geoPoint.lat),
+                        lng: Number(data.results[0].place.geoPoint.lon)
+                    })
+                    setMarkers(data.results);
+                })
+                .catch((res) => {
+                    console.log(res);
+                }, []);
+        setSubmitted(false)
+    };
+```
+    
+In our onSelect event handler function called handleSelect, which accepts an address as an argument, we set the state for an object we instantiated using React Hooks called address. In addition, we set the state for another object called submitted to true. We then use the address state as a query to send the http  request to Active.com to receive the events that match the query. For each one of the results,  we create markers on the map for them, that upon a click, will render a window featuring the name, description, and option to create add the event to ones channel.

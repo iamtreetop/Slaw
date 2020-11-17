@@ -60,7 +60,7 @@ class EventForm extends React.Component {
                                     type="text"
                                     value={this.state.title}
                                     onChange={this.handleChange("title")}
-                                    placeHolder="Wednesday Leg Days"
+                                    placeholder="Wednesday Leg Days"
                                     required={true}
                                 />
                             </label>
@@ -69,7 +69,7 @@ class EventForm extends React.Component {
                                 <textarea
                                     value={this.state.description}
                                     onChange={this.handleChange("description")}
-                                    placeHolder="6:30pm at LA Fitness"
+                                    placeholder="6:30pm at LA Fitness"
                                 />
                             </label>
                         <br/>
