@@ -40,9 +40,10 @@
 
 .sidebar-channel-items:hover {
     background-color: #8acbb6;
+    opacity: 0.75;
     color: #ebebf7;
     font-weight: bolder;
-    transition: background-color .4s ease-out;
+    transition: background-color .2s ease-out;
     border-radius: 6px;
 } 
 
