@@ -89,6 +89,7 @@
 
 #empty-results {
     background-image: url('../../images/noresults.png');
+    background-size: cover;
 }
 
 .channel-list-item {
