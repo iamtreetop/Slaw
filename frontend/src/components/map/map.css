@@ -14,12 +14,11 @@ h3 p a{
 
 .slaw-map {
     position: absolute;
-    top: 91px;
 }
 
 .slaw-map h1 {
   position: absolute;
-  top: 1rem;
+  top: 120px;
   left: 1rem;
   color: #281414;
   z-index: 10;
@@ -38,7 +37,7 @@ h3 p a{
 
 .search {
   position: absolute;
-  top: 1rem;
+  top: 120px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -67,16 +66,18 @@ h3 p a{
 
 .locate {
   position: absolute;
-  top: 1rem;
+  top: 120px;
   right: 1rem;
   background: none;
   border: none;
   z-index: 10;
+  outline: none;
 }
 
 .locate img {
   width: 30px;
   cursor: pointer;
+  outline: none;
 }
 
 .map-event-button{

@@ -106,7 +106,7 @@ class ChannelIndex extends React.Component{
                 <div className="channel-index-container">
                     <div className="channel-index-list-block">
                         <form className="channel-search-container" onSubmit={this.handleSearch}>
-                            <input className="channel-search-bar" type="text" placeholder="Search channels" value={this.state.query} onChange={this.handleChange("query")}/>
+                            <input className="channel-search-bar" type="text" placeholder="Search Channels" value={this.state.query} onChange={this.handleChange("query")}/>
                             <input className="channel-search-button" type="submit" value="Search"/>
                         </form>
                         <ul className="channel-index-list" id={!this.state.searchSubmitted ? "" : this.state.filteredChannels.length === 0 ? `empty-results` : ""}>

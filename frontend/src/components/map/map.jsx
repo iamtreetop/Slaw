@@ -60,7 +60,7 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
     const [successMessage, setSuccessMessage] = React.useState(false);
 
     const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
+        googleMapsApiKey: 'AIzaSyABaF3NWJ3e_GiQkKH_5I4st-8Oqk9kE20',
         libraries,
     }); 
     
