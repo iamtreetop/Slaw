@@ -4,6 +4,7 @@ import usePlacesAutocomplete from "use-places-autocomplete";
 import compass from '../../images/compass.svg';
 import './map.css';
 
+
 import {
     GoogleMap,
     useLoadScript,
@@ -60,7 +61,7 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
     const [successMessage, setSuccessMessage] = React.useState(false);
 
     const { isLoaded, loadError } = useLoadScript({
-        googleMapsApiKey: 'AIzaSyABaF3NWJ3e_GiQkKH_5I4st-8Oqk9kE20',
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
         libraries,
     }); 
     
@@ -99,7 +100,7 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
         } catch (error) {
             console.log("😱 Error: ", error);
         }
-        const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=20&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
+        const apiUrl = `https://floating-cove-49063.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=20&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
             fetch(apiUrl, { method: 'GET', mode: 'cors' })
                 .then(function (res) {
                     return res.json()
@@ -145,25 +146,6 @@ export default function SlawMap({event,channels, fetchChannels, createEvent, upd
         if (Object.keys(channels).length === 0){
             fetchChannels()
         } 
-        // if (address !== null && submitted ) {
-        //     const apiUrl = `https://cors-anywhere.herokuapp.com/http://api.amp.active.com/v2/search/?near=${encodeURI(address)}&radius=25&current_page=1&per_page=20&sort=distance&exclude_children=true&api_key=${process.env.REACT_APP_ACTIVE_KEY}`;
-        //     fetch(apiUrl, { method: 'GET', mode: 'cors'})
-        //         .then(function(res) {
-        //             return res.json()
-        //         })
-        //         .then(function (data) {
-        //             panTo({
-        //                 lat: Number(data.results[0].place.geoPoint.lat),
-        //                 lng: Number(data.results[0].place.geoPoint.lon)
-        //             })
-        //             setMarkers(data.results);
-
-        //         })
-        //         .catch((res) => {
-        //             console.log(res);
-        //         }, []);
-        // }
-        // setSubmitted(false)
         },[]
     );
 
